@@ -11,13 +11,16 @@ const Login: React.FC = () => {
 	const router = useRouter();
 
 	async function handleLogin(e: React.FormEvent<HTMLFormElement>): Promise<boolean | void> {
-		e.preventDefault();
+		e.preventDefault();		
 		let res = await axios.post('/login', {
 			email,
 			password
 		})
+		
+		
 		if (res.data.error) return setError(res.data.error);
-		return router.push('/');
+		
+		return router.replace('/');
 	}
 	return (
 		<>
@@ -47,6 +50,7 @@ const Login: React.FC = () => {
 							</div>
 							<h2>Student Log In Form</h2>
 							<hr className={"horizontalRule"} />
+							{error}
 							<label>Account Email Address:</label>
 							<input
 								type="email"

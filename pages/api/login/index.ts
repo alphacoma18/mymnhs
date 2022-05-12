@@ -1,6 +1,11 @@
 import { serialize } from "cookie";
+// import connection from "../../../db/db"
 export default async function (req: any, res: any): Promise<void> { 
+    console.log("HERE1");
+    
 	function getData(): Promise<any> {
+        console.log("HERE2");
+        
 		return new Promise((resolve, reject) => {
 			const data = {
 				email: req.body.email,
@@ -9,9 +14,14 @@ export default async function (req: any, res: any): Promise<void> {
 			return resolve(data);
 		});
 	}
+    console.log(req.method);
+    
 	try {
-        if (req.method === "POST") {  
+        if (req.method === "POST") { 
+            console.log("HERE3");
+             
             let data = await getData();
+            
             return res.setHeader(
                 "Set-Cookie",
                 serialize("refresh_token_extreme", "token_cookie_value", {

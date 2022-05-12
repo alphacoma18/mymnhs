@@ -18,13 +18,15 @@ export default function (req: {
         `${baseUrl}/attachables/mnhs-images/logos/login_logo.png`,
         `${baseUrl}/attachables/mnhs-images/logos/mnhs_favicon_og.ico`,
     ]
+    
+    
     if (unprotectedPaths.includes(url)) {
         return void 0;
-    } else if (refreshToken) {
-        console.log(cookies);
-        
+    } else if (!refreshToken && url === "http://localhost:3000/api/login") {   
         return NextResponse.next();
-    } else {
+    } else if (!refreshToken) {
         return NextResponse.redirect(`${baseUrl}/login`);
+    } else { 
+        return NextResponse.next();
     }
 }
