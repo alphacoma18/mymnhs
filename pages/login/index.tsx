@@ -1,26 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./index.module.css";
 import Image from "next/image";
 import Meta from "../../components/meta";
-import { axios } from "../../axios/axios";
+import Link from "next/link";
+import { axios } from "../../_operations/axios/axios";
 import { useRouter } from "next/router";
+import AuthContext from "../../_operations/context/AuthProvider";
 const Login: React.FC = () => {
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const [error, setError] = useState<string>("");
 	const router = useRouter();
+	const { login } = useContext(AuthContext);
 
-	async function handleLogin(e: React.FormEvent<HTMLFormElement>): Promise<boolean | void> {
-		e.preventDefault();		
-		let res = await axios.post('/login', {
-			email,
-			password
-		})
-		
-		
-		if (res.data.error) return setError(res.data.error);
-		
-		return router.replace('/');
+	async function handleLogin(
+		e: React.FormEvent<HTMLFormElement>
+	): Promise<boolean | void> {
+		e.preventDefault();
+		try {
+			let res = await axios.post("/login", {
+				email,
+				password,
+			});
+			login(res.data.user, res.data.access_token_extreme);
+			return router.replace("/");
+		} catch (error: any) {
+			let status: number = error.response.status;
+			let message: string = error.response.data.message;
+
+			if (status === 401) return setError(message);
+			if (status === 403) return setError(message);
+			if (status === 500) return setError(message);
+		}
+	}
+	function handleClear(): void {
+		setEmail("");
+		setPassword("");
+		return void 0;
 	}
 	return (
 		<>
@@ -50,7 +66,7 @@ const Login: React.FC = () => {
 							</div>
 							<h2>Student Log In Form</h2>
 							<hr className={"horizontalRule"} />
-							{error}
+							<h2>{error}</h2>
 							<label>Account Email Address:</label>
 							<input
 								type="email"
@@ -78,8 +94,14 @@ const Login: React.FC = () => {
 								maxLength={50}
 								required
 							/>
-							<button type="button">Need an account?</button>
-							<button type="reset">Clear Fields</button>
+							<button type="button">
+								<Link href="/signup">
+									<a>Need an account?</a>
+								</Link>
+							</button>
+							<button type="reset" onClick={handleClear}>
+								Clear Fields
+							</button>
 							<button type="submit">Link Start!</button>
 						</form>
 					</div>

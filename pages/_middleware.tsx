@@ -5,12 +5,13 @@ export default function (req: {
 }): void | NextResponse {
 	const { cookies } = req;
 	const url: string = req.url;
-	const refreshToken: string | undefined = cookies?.refresh_token_extreme;
+	const accessToken: string | undefined = cookies?.refresh_token_extreme;
     const baseUrl: string = "http://localhost:3000";
 
     // vercel.svg is used in /login
     const unprotectedPaths: string[] = [
         `${baseUrl}/login`,
+        `${baseUrl}/signup`,
         `${baseUrl}/favicon.ico`,
         `${baseUrl}/vercel.svg`,
         `${baseUrl}/_next/webpack-hmr`,
@@ -22,9 +23,9 @@ export default function (req: {
     
     if (unprotectedPaths.includes(url)) {
         return void 0;
-    } else if (!refreshToken && url === "http://localhost:3000/api/login") {   
+    } else if (!accessToken && url === `${baseUrl}/api/login`) {   
         return NextResponse.next();
-    } else if (!refreshToken) {
+    } else if (!accessToken) {
         return NextResponse.redirect(`${baseUrl}/login`);
     } else { 
         return NextResponse.next();
