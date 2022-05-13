@@ -45,6 +45,16 @@ div.imagePositioner {
 	display: inline;
 	padding: 5px;
 }
+.errorDiv {
+	display: none;
+	background: var(--error-color);
+	margin: auto;
+	padding: 4px;
+	text-align: center;
+}
+.hiddenHome {
+	display: none;
+}
 @keyframes mnhs-logo-glow {
 	0% {
 		box-shadow: 0px 0px 20px 5px var(--primary-color-yellow);

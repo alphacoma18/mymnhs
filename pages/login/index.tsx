@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styles from "./index.module.css";
 import Image from "next/image";
 import Meta from "../../components/meta";
@@ -10,7 +10,8 @@ const Login: React.FC = () => {
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const [error, setError] = useState<string>("");
-	const router = useRouter();
+	const [showError, setShowError] = useState<boolean>(false);
+	const router: any = useRouter();
 	const { login } = useContext(AuthContext);
 
 	async function handleLogin(
@@ -22,15 +23,15 @@ const Login: React.FC = () => {
 				email,
 				password,
 			});
-			login(res.data.user, res.data.access_token_extreme);
+			login(res.data.user);
 			return router.replace("/");
 		} catch (error: any) {
 			let status: number = error.response.status;
 			let message: string = error.response.data.message;
 
-			if (status === 401) return setError(message);
-			if (status === 403) return setError(message);
-			if (status === 500) return setError(message);
+			if (status === 401) return setError(message), setShowError(true);
+			if (status === 403) return setError(message), setShowError(true);
+			if (status === 500) return setError(message), setShowError(true);
 		}
 	}
 	function handleClear(): void {
@@ -38,6 +39,11 @@ const Login: React.FC = () => {
 		setPassword("");
 		return void 0;
 	}
+	useEffect((): void => {
+		setShowError(false);
+		return void 0;
+	}, [email, password]);
+
 	return (
 		<>
 			<Meta
@@ -66,7 +72,14 @@ const Login: React.FC = () => {
 							</div>
 							<h2>Student Log In Form</h2>
 							<hr className={"horizontalRule"} />
-							<h2>{error}</h2>
+							<div
+								className={styles.errorDiv}
+								style={{
+									display: showError ? "block" : "none",
+								}}
+							>
+								<h4>{error}</h4>
+							</div>
 							<label>Account Email Address:</label>
 							<input
 								type="email"
@@ -94,15 +107,20 @@ const Login: React.FC = () => {
 								maxLength={50}
 								required
 							/>
-							<button type="button">
-								<Link href="/signup">
+							<Link href="/signup">
+								<button type="button">
 									<a>Need an account?</a>
-								</Link>
-							</button>
+								</button>
+							</Link>
 							<button type="reset" onClick={handleClear}>
 								Clear Fields
 							</button>
-							<button type="submit">Link Start!</button>
+							<button type="submit">
+								<Link href="/" hidden>
+									<a hidden></a>
+								</Link>
+								Link Start
+							</button>
 						</form>
 					</div>
 				</div>

@@ -1,9 +1,28 @@
-import jwt from "jsonwebtoken";
-export function generateAccessToken(user: {}) {
-	return jwt.sign({user}, process.env.ACCESS_TOKEN_SECRET as string, {
-		expiresIn: "10m",
+import * as jose from "jose";
+
+export function generateAccessToken(user: {}): Promise<string> {
+	return new Promise(async (resolve) => {
+		const accessToken = await new jose.SignJWT({ user })
+			.setProtectedHeader({ alg: "HS256" })
+			.setExpirationTime("10m")
+			.sign(new TextEncoder().encode(process.env.ACCESS_TOKEN_SECRET));
+		return resolve(accessToken);
 	});
 }
-export function generateRefreshToken(user: {}) {
-    return jwt.sign({user}, process.env.REFRESH_TOKEN_SECRET as string)
+export function generateRefreshToken(user: {}): Promise<string> {
+	return new Promise(async (resolve) => {
+		const refreshToken = await new jose.SignJWT({ user })
+			.setProtectedHeader({ alg: "HS256" })
+			.sign(new TextEncoder().encode(process.env.REFRESH_TOKEN_SECRET));
+		return resolve(refreshToken);
+	});
+}
+export function verifyRefreshToken(token: string) {
+	return new Promise(async (resolve) => {
+		const { payload: newToken } = await jose.jwtVerify(
+			token,
+			new TextEncoder().encode(process.env.REFRESH_TOKEN_SECRET)
+		);
+		return resolve(newToken);
+	});
 }

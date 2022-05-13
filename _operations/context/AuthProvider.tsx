@@ -7,14 +7,12 @@ interface User {
 	userSectionId: number;
 }
 interface IAuthContext {
-	login: (xUser: User, xToken: string) => void;
+	login: (xUser: User) => void;
 	user: null | undefined | User;
-	token: null | undefined | string;
 }
 const AuthContext = React.createContext<IAuthContext>({
-	login: (_xUser: {}, _xToken: string) => void 0,
+	login: (_xUser: {}) => void 0,
 	user: null,
-	token: null,
 });
 export default AuthContext;
 
@@ -24,11 +22,9 @@ interface Props {
 
 export const AuthProvider: React.FC<Props> = ({ children }) => {
 	const [user, setUser] = useState<null | undefined | User>(null);
-	const [token, setToken] = useState<null | undefined | string>(null);
 
-	function login(xUser: User, xToken: string): void {
+	function login(xUser: User): void {
 		setUser(xUser);
-		setToken(xToken);
 		return void 0;
 	}
 	return (
@@ -36,7 +32,6 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
 			value={{
 				login,
 				user,
-				token,
 			}}
 		>
 			{children}

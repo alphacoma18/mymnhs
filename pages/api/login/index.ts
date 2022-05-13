@@ -1,6 +1,9 @@
 import { serialize } from "cookie";
 import connection from "../../../_operations/db/db";
-import { generateAccessToken, generateRefreshToken } from "../../../_operations/jwt/jwt";
+import {
+	generateAccessToken,
+	generateRefreshToken,
+} from "../../../_operations/jwt/jwt";
 export default async function (req: any, res: any): Promise<void> {
 	function getAndCheck(): Promise<{}> {
 		return new Promise((resolve, reject) => {
@@ -28,9 +31,9 @@ export default async function (req: any, res: any): Promise<void> {
 		});
 	}
 	function generateToken(user: {}): Promise<string[]> {
-		return new Promise((resolve) => {
-			const accessToken: string = generateAccessToken(user);
-			const refreshToken: string = generateRefreshToken(user);
+		return new Promise(async (resolve) => {
+			const accessToken: any = await generateAccessToken(user);
+			const refreshToken: any = await generateRefreshToken(user);
 			return resolve([accessToken, refreshToken]);
 		});
 	}
@@ -40,17 +43,23 @@ export default async function (req: any, res: any): Promise<void> {
 		let token: string[] = await generateToken(user);
 
 		return res
-			.setHeader(
-				"Set-Cookie",
+			.setHeader("Set-Cookie", [
 				serialize("refresh_token_extreme", token[1], {
 					httpOnly: true,
 					secure: true,
 					sameSite: "strict",
-					expires: new Date(Date.now() + 60 * 60 * 1000 * 24 * 7), // 7 days
 					path: "/",
-				})
-			)
-			.json({ user, access_token_extreme: token[0] });
+					expires: new Date(Date.now() + 60 * 1000 * 60 * 24 * 7), // 7 days
+				}),
+				serialize("access_token_extreme", token[0], {
+					httpOnly: true,
+					secure: true,
+					sameSite: "strict",
+					path: "/",
+					expires: new Date(Date.now() + 60 * 1000 * 10), // 10 minutes
+				}),
+			])
+			.json({ user });
 	} catch (error: any) {
 		return res.status(error.status).json({ message: error.message });
 	}
