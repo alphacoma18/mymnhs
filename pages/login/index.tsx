@@ -58,7 +58,11 @@ const Login: React.FC = () => {
 			<section className={styles.outermostLogin}>
 				<div className={styles.loginFill}>
 					<div className={styles.loginFormat}>
-						<form method="post" onSubmit={handleLogin}>
+						<form
+							method="post"
+							onSubmit={handleLogin}
+							className={styles.formStyle}
+						>
 							<MnhsLogo />
 
 							<h2>School Platform Login&nbsp;Form</h2>
@@ -98,17 +102,17 @@ const Login: React.FC = () => {
 								maxLength={50}
 								required
 							/>
-							<Link href="/signup">
-								<button type="button">
-									<a>Need an account?</a>
+							<div>
+								<Link href="/signup">
+									<button type="button">
+										<a>Need an account?</a>
+									</button>
+								</Link>
+								<button type="reset" onClick={handleClear}>
+									Clear Fields
 								</button>
-							</Link>
-							<button type="reset" onClick={handleClear}>
-								Clear Fields
-							</button>
-							<button type="submit">
-								Link Start
-							</button>
+								<button type="submit">Link Start</button>
+							</div>
 						</form>
 					</div>
 				</div>

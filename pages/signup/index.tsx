@@ -174,6 +174,8 @@ const Signup: React.FC = () => {
 									autoComplete="off"
 									autoCorrect="off"
 									minLength={2}
+									maxLength={30}
+									required
 								/>
 								<label className={styles.loginLabel}>
 									Email Address
