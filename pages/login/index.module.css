@@ -5,17 +5,17 @@
     background-repeat: no-repeat;
 }
 .loginFill {
-    background-color: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
 	width: 100vw;
-	height: 100vh;
+	min-height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 .loginFormat {
-	background-color: rgba(0, 0, 0, 0.4);
+	background: rgba(0, 0, 0, 0.4);
 	color: var(--primary-text-color-whitesmoke);
-	width: clamp(0px, 72%, 500px);
+	width: clamp(0px, 75%, 500px);
 	min-height: 350px;
 	display: flex;
 	justify-content: center;
@@ -27,10 +27,6 @@
 .loginFormat form *{
 	margin: auto;
 	display: block;
-}
-div.imagePositioner {
-	display: flex;
-	justify-content: center;
 }
 .loginFormat form h2 {
 	text-align: center;

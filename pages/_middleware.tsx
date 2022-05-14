@@ -8,7 +8,6 @@ export default async function (
 		url?: any;
 		cookies?: any;
 	},
-	res: any
 ): Promise<NextResponse | void> {
 	const { cookies } = req;
 	const url: string = req.url;
@@ -24,6 +23,7 @@ export default async function (
 		`${baseUrl}/vercel.svg`,
 		`${baseUrl}/_next/webpack-hmr`,
 		`${baseUrl}/attachables/campus-images/image1.jpg`,
+		`${baseUrl}/attachables/campus-images/image10.jpg`,
 		`${baseUrl}/attachables/mnhs-images/logos/login_logo.png`,
 		`${baseUrl}/attachables/mnhs-images/logos/mnhs_favicon_og.ico`,
 	];
@@ -34,8 +34,8 @@ export default async function (
 	if (!accessToken && !refreshToken)
 		return NextResponse.redirect(`${baseUrl}/login`);
 	if (!accessToken && refreshToken) {
-		const verifiedToken = await verifyRefreshToken(refreshToken);
-		const newToken = await generateAccessToken(verifiedToken as any);
+		const verifiedToken: any = await verifyRefreshToken(refreshToken);
+		const newToken: string = await generateAccessToken(verifiedToken);
 		return NextResponse.next().cookie("access_token_extreme", newToken, {
 			httpOnly: true,
 			secure: true,

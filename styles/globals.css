@@ -60,7 +60,6 @@ html {
 body {
 	line-height: 1.8em;
 	height: auto;
-	overflow-y: hidden;
 }
 .mnhsLogo {
 	width: clamp(0px, 100%, 120px);

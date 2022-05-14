@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import styles from "./index.module.css";
-import Image from "next/image";
+import MnhsLogo from "../../components/mnhsLogo";
 import Meta from "../../components/meta";
 import Link from "next/link";
 import { axios } from "../../_operations/axios/axios";
@@ -19,7 +19,7 @@ const Login: React.FC = () => {
 	): Promise<boolean | void> {
 		e.preventDefault();
 		try {
-			let res = await axios.post("/login", {
+			let res: any = await axios.post("/login", {
 				email,
 				password,
 			});
@@ -59,18 +59,9 @@ const Login: React.FC = () => {
 				<div className={styles.loginFill}>
 					<div className={styles.loginFormat}>
 						<form method="post" onSubmit={handleLogin}>
-							<div className={styles.imagePositioner}>
-								<Image
-									src={
-										"/attachables/mnhs-images/logos/login_logo.png"
-									}
-									height={120}
-									width={120}
-									alt="MNHS Logo"
-									title="The Meycauayan National High School Logo"
-								/>
-							</div>
-							<h2>Student Log In Form</h2>
+							<MnhsLogo />
+
+							<h2>School Platform Login&nbsp;Form</h2>
 							<hr className={"horizontalRule"} />
 							<div
 								className={styles.errorDiv}
