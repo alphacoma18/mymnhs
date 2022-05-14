@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "./index.module.css";
 import Link from "next/link";
-import MnhsLogo from "../../components/mnhsLogo";
-import Meta from "../../components/meta";
-import sectionGetter from "../../components/section";
+import MnhsLogo from "../../components/_mnhsLogo";
+import Meta from "../../components/_meta";
+import sectionGetter from "../../components/signup";
+import Map from "../../components/signup/map";
 const Signup: React.FC = () => {
 	const [firstShow, setFirstShow] = useState<boolean>(true);
 	const [secondShow, setSecondShow] = useState<boolean>(false);
@@ -287,24 +288,7 @@ const Signup: React.FC = () => {
 											}}
 											value={section}
 										>
-											<option value="">
-												Select Section
-											</option>
-											{sectionList?.map(
-												(
-													section: string,
-													index: number
-												) => {
-													return (
-														<option
-															key={index}
-															value={section}
-														>
-															{section}
-														</option>
-													);
-												}
-											)}
+											<Map list={sectionList} />
 										</select>
 									</div>
 								</div>

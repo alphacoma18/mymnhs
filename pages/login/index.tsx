@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import styles from "./index.module.css";
-import MnhsLogo from "../../components/mnhsLogo";
-import Meta from "../../components/meta";
+import MnhsLogo from "../../components/_mnhsLogo";
+import Meta from "../../components/_meta";
 import Link from "next/link";
 import { axios } from "../../_operations/axios/axios";
 import { useRouter } from "next/router";
@@ -107,9 +107,6 @@ const Login: React.FC = () => {
 								Clear Fields
 							</button>
 							<button type="submit">
-								<Link href="/" hidden>
-									<a hidden></a>
-								</Link>
 								Link Start
 							</button>
 						</form>

@@ -13,10 +13,12 @@ export function generateRefreshToken(user: {}): Promise<string> {
 	return new Promise(async (resolve) => {
 		const refreshToken = await new jose.SignJWT({ user })
 			.setProtectedHeader({ alg: "HS256" })
+			.setExpirationTime("7d")
 			.sign(new TextEncoder().encode(process.env.REFRESH_TOKEN_SECRET));
 		return resolve(refreshToken);
 	});
 }
+
 export function verifyRefreshToken(token: string) {
 	return new Promise(async (resolve) => {
 		const { payload: newToken } = await jose.jwtVerify(

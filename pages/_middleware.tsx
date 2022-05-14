@@ -3,12 +3,10 @@ import {
 	generateAccessToken,
 	verifyRefreshToken,
 } from "../_operations/jwt/jwt";
-export default async function (
-	req: {
-		url?: any;
-		cookies?: any;
-	},
-): Promise<NextResponse | void> {
+export default async function (req: {
+	url?: any;
+	cookies?: any;
+}): Promise<NextResponse | void> {
 	const { cookies } = req;
 	const url: string = req.url;
 	const refreshToken: string | undefined = cookies?.refresh_token_extreme;
@@ -27,8 +25,8 @@ export default async function (
 		`${baseUrl}/attachables/mnhs-images/logos/login_logo.png`,
 		`${baseUrl}/attachables/mnhs-images/logos/mnhs_favicon_og.ico`,
 	];
-
-	if (unprotectedPaths.includes(url)) return void 0;
+	
+	if (!refreshToken && unprotectedPaths.includes(url)) return void 0;
 	if (!refreshToken && url === `${baseUrl}/api/login`)
 		return NextResponse.next();
 	if (!accessToken && !refreshToken)

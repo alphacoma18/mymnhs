@@ -52,5 +52,4 @@ function sectionGetter(
 	}
 	return gradeList[grade as keyof GradeList][strand as keyof Strand];
 }
-sectionGetter("11", "ICT");
 export default sectionGetter;
