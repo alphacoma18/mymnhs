@@ -1,30 +1,32 @@
 import * as jose from "jose";
 
-export function generateAccessToken(user: {}): Promise<string> {
-	return new Promise(async (resolve) => {
-		const accessToken = await new jose.SignJWT({ user })
-			.setProtectedHeader({ alg: "HS256" })
-			.setExpirationTime("10m")
-			.sign(new TextEncoder().encode(process.env.ACCESS_TOKEN_SECRET));
-		return resolve(accessToken);
-	});
+export async function generateAccessToken(user: {}): Promise<string> {
+	const accessToken = await new jose.SignJWT({ user })
+		.setProtectedHeader({ alg: "HS256" })
+		.setExpirationTime("10m")
+		.sign(new TextEncoder().encode(process.env.ACCESS_TOKEN_SECRET));
+	return accessToken;
 }
-export function generateRefreshToken(user: {}): Promise<string> {
-	return new Promise(async (resolve) => {
-		const refreshToken = await new jose.SignJWT({ user })
-			.setProtectedHeader({ alg: "HS256" })
-			.setExpirationTime("7d")
-			.sign(new TextEncoder().encode(process.env.REFRESH_TOKEN_SECRET));
-		return resolve(refreshToken);
-	});
+export async function generateRefreshToken(user: {}): Promise<string> {
+	const refreshToken = await new jose.SignJWT({ user })
+		.setProtectedHeader({ alg: "HS256" })
+		.setExpirationTime("7d")
+		.sign(new TextEncoder().encode(process.env.REFRESH_TOKEN_SECRET));
+	return refreshToken;
 }
 
-export function verifyRefreshToken(token: string) {
-	return new Promise(async (resolve) => {
-		const { payload: newToken } = await jose.jwtVerify(
-			token,
-			new TextEncoder().encode(process.env.REFRESH_TOKEN_SECRET)
-		);
-		return resolve(newToken);
-	});
+export async function verifyRefreshToken(token: string): Promise<{}> {
+	const { payload: verifiedToken } = await jose.jwtVerify(
+		token,
+		new TextEncoder().encode(process.env.REFRESH_TOKEN_SECRET)
+	);
+	return verifiedToken;
+}
+
+export async function generateVerificationToken(user: {}): Promise<string> {
+	const verificationToken = await new jose.SignJWT({ user })
+		.setProtectedHeader({ alg: "HS256" })
+		.setExpirationTime("1d")
+		.sign(new TextEncoder().encode(process.env.VERIFICATION_TOKEN_SECRET));
+	return verificationToken;
 }

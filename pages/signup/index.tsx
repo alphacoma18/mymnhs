@@ -5,10 +5,14 @@ import MnhsLogo from "../../components/_mnhsLogo";
 import Meta from "../../components/_meta";
 import sectionGetter from "../../components/signup";
 import Map from "../../components/signup/map";
+import { axios } from "../../_operations/axios/axios";
+import { useRouter } from "next/router";
 const Signup: React.FC = () => {
+	const router = useRouter();
 	const [firstShow, setFirstShow] = useState<boolean>(true);
 	const [secondShow, setSecondShow] = useState<boolean>(false);
 	const [thirdShow, setThirdShow] = useState<boolean>(false);
+	const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
 
 	function handleFirst(): void {
 		setFirstShow((e) => !e);
@@ -36,18 +40,23 @@ const Signup: React.FC = () => {
 		return void 0;
 	}, [grade, strand]);
 
-	function handleSubmit(e: { preventDefault: () => void }): void {
+	async function handleSubmit(
+		e: React.FormEvent<HTMLFormElement>
+	): Promise<boolean | void> {
 		e.preventDefault();
-		console.log(
-			firstName,
-			lastName,
-			email,
-			password,
-			grade,
-			strand,
-			section
-		);
-		return void 0;
+		setFormSubmitted((e) => !e);
+		try {
+			await axios.post("/signup", {
+				firstName,
+				lastName,
+				email,
+				password,
+				section,
+			});
+			return router.push("/login");
+		} catch (e: any) {
+			alert(e.response.data.message);
+		}
 	}
 
 	return (
@@ -305,7 +314,10 @@ const Signup: React.FC = () => {
 									>
 										Prev Page
 									</button>
-									<button type="submit">
+									<button
+										type="submit"
+										disabled={formSubmitted ? true : false}
+									>
 										Send verification
 									</button>
 								</div>

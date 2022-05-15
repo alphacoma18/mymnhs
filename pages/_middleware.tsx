@@ -13,7 +13,7 @@ export default async function (req: {
 	const accessToken: string | undefined = cookies?.access_token_extreme;
 	const baseUrl: string = "http://localhost:3000";
 
-	// vercel.svg is used in /login
+	// unprotected routes are used for login and signup
 	const unprotectedPaths: string[] = [
 		`${baseUrl}/login`,
 		`${baseUrl}/signup`,
@@ -25,12 +25,23 @@ export default async function (req: {
 		`${baseUrl}/attachables/mnhs-images/logos/login_logo.png`,
 		`${baseUrl}/attachables/mnhs-images/logos/mnhs_favicon_og.ico`,
 	];
-	
-	if (!refreshToken && unprotectedPaths.includes(url)) return void 0;
-	if (!refreshToken && url === `${baseUrl}/api/login`)
+	if (url === `${baseUrl}/api/login` || url === `${baseUrl}/api/signup`) 
 		return NextResponse.next();
+
+	if (!refreshToken && unprotectedPaths.includes(url)) return void 0;
 	if (!accessToken && !refreshToken)
 		return NextResponse.redirect(`${baseUrl}/login`);
+	if (!accessToken && refreshToken && unprotectedPaths.includes(url)) {
+		const verifiedToken: any = await verifyRefreshToken(refreshToken);
+		const newToken: string = await generateAccessToken(verifiedToken);
+		return NextResponse.redirect(`${baseUrl}`).cookie("access_token_extreme", newToken, {
+			httpOnly: true,
+			secure: true,
+			sameSite: "strict",
+			path: "/",
+			expires: new Date(Date.now() + 60 * 1000 * 10), // 10 minutes
+		});
+	}
 	if (!accessToken && refreshToken) {
 		const verifiedToken: any = await verifyRefreshToken(refreshToken);
 		const newToken: string = await generateAccessToken(verifiedToken);

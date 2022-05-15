@@ -24,7 +24,7 @@ const Login: React.FC = () => {
 				password,
 			});
 			login(res.data.user);
-			return router.replace("/");
+			return router.push("/");
 		} catch (error: any) {
 			let status: number = error.response.status;
 			let message: string = error.response.data.message;
