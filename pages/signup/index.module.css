@@ -1,0 +1,93 @@
+.outermostSignup {
+    background-image: url("/attachables/campus-images/image10.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.signupFill {
+    background: rgba(0, 0, 0, 0.2);
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.signupFormat {
+    background: rgba(0, 0, 0, 0.4);
+	color: var(--primary-text-color-whitesmoke);
+	width: clamp(0px, 75%, 500px);
+	min-height: 350px;
+	animation: first-sight-appear 2s ease-in-out 1 0s normal;
+	padding: 20px;
+	animation: mnhs-logo-glow 2s linear 0s infinite normal
+}
+.formStyle {
+	display: flex;
+	flex-direction: column;
+	width: clamp(0px, 100%, 400px);
+	margin: auto;
+}
+
+.changeItem {
+	min-height: inherit;
+	text-align: center;
+}
+/*Buttons start*/
+/*Buttons start*/
+.buttonDiv {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+.buttonDiv button, .buttonItem{
+	padding: 5px;
+}
+/*Buttons end*/
+/*Buttons end*/
+
+.changeItem label {
+	display: block;
+	width: 100%;
+	text-align: start;
+	font-weight: bold;
+	margin: auto;
+}
+label.sectionLabel {
+	text-align: center;
+}
+.changeNone {
+	display: none;
+}
+.changeItem input {
+	display: block;
+	padding: 5px;
+}
+.sectionOuterDiv {
+	gap: 10px;
+	width: 100%;
+	display: flex;
+	justify-content:center;
+}
+.sectionOuterDiv *{
+	width: 100%;
+}
+
+
+
+@keyframes mnhs-logo-glow {
+	0% {
+		box-shadow: 0px 0px 20px 5px var(--primary-color-yellow);
+	}
+	25% {
+		box-shadow: 0px 0px 20px 10px var(--primary-color-yellow);
+	}
+	50% {
+		box-shadow: 0px 0px 20px 15px var(--primary-color-yellow);
+	}
+	75% {
+		box-shadow: 0px 0px 20px 10px var(--primary-color-yellow);
+	}
+	100% {
+		box-shadow: 0px 0px 20px 5px var(--primary-color-yellow);
+	}
+}

@@ -5,17 +5,17 @@
     background-repeat: no-repeat;
 }
 .loginFill {
-    background-color: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
 	width: 100vw;
-	height: 100vh;
+	min-height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 .loginFormat {
-	background-color: rgba(0, 0, 0, 0.4);
+	background: rgba(0, 0, 0, 0.4);
 	color: var(--primary-text-color-whitesmoke);
-	width: clamp(0px, 72%, 500px);
+	width: clamp(0px, 75%, 500px);
 	min-height: 350px;
 	display: flex;
 	justify-content: center;
@@ -24,19 +24,16 @@
 	animation: mnhs-logo-glow 2s linear 0s infinite normal,
 		show-login-form 1000ms ease-in-out 0s 1 normal;
 }
-.loginFormat form *{
-	margin: auto;
-	display: block;
-}
-div.imagePositioner {
+.formStyle {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	width: clamp(0px, 100%, 320px);
+	margin: auto;
 }
 .loginFormat form h2 {
 	text-align: center;
 }
 .loginFormat form input {
-	width: 100%;
 	padding: 5px;
 }
 .loginFormat form button {
@@ -44,6 +41,16 @@ div.imagePositioner {
 	margin: 5px;
 	display: inline;
 	padding: 5px;
+}
+.errorDiv {
+	display: none;
+	background: var(--error-color);
+	margin: auto;
+	padding: 4px;
+	text-align: center;
+}
+.hiddenHome {
+	display: none;
 }
 @keyframes mnhs-logo-glow {
 	0% {

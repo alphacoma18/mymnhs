@@ -1,27 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styles from "./index.module.css";
-import Image from "next/image";
-import Meta from "../../components/meta";
-import { axios } from "../../axios/axios";
+import MnhsLogo from "../../components/_mnhsLogo";
+import Meta from "../../components/_meta";
+import Link from "next/link";
+import { axios } from "../../_operations/axios/axios";
 import { useRouter } from "next/router";
+import AuthContext from "../../_operations/context/AuthProvider";
 const Login: React.FC = () => {
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const [error, setError] = useState<string>("");
-	const router = useRouter();
+	const [showError, setShowError] = useState<boolean>(false);
+	const router: any = useRouter();
+	const { login } = useContext(AuthContext);
 
-	async function handleLogin(e: React.FormEvent<HTMLFormElement>): Promise<boolean | void> {
-		e.preventDefault();		
-		let res = await axios.post('/login', {
-			email,
-			password
-		})
-		
-		
-		if (res.data.error) return setError(res.data.error);
-		
-		return router.replace('/');
+	async function handleLogin(
+		e: React.FormEvent<HTMLFormElement>
+	): Promise<boolean | void> {
+		e.preventDefault();
+		try {
+			let res: any = await axios.post("/login", {
+				email,
+				password,
+			});
+			login(res.data.user);
+			return router.push("/");
+		} catch (error: any) {
+			let status: number = error.response.status;
+			let message: string = error.response.data.message;
+
+			if (status === 401) return setError(message), setShowError(true);
+			if (status === 403) return setError(message), setShowError(true);
+			if (status === 500) return setError(message), setShowError(true);
+		}
 	}
+	function handleClear(): void {
+		setEmail("");
+		setPassword("");
+		return void 0;
+	}
+	useEffect((): void => {
+		setShowError(false);
+		return void 0;
+	}, [email, password]);
+
 	return (
 		<>
 			<Meta
@@ -36,21 +58,23 @@ const Login: React.FC = () => {
 			<section className={styles.outermostLogin}>
 				<div className={styles.loginFill}>
 					<div className={styles.loginFormat}>
-						<form method="post" onSubmit={handleLogin}>
-							<div className={styles.imagePositioner}>
-								<Image
-									src={
-										"/attachables/mnhs-images/logos/login_logo.png"
-									}
-									height={120}
-									width={120}
-									alt="MNHS Logo"
-									title="The Meycauayan National High School Logo"
-								/>
-							</div>
-							<h2>Student Log In Form</h2>
+						<form
+							method="post"
+							onSubmit={handleLogin}
+							className={styles.formStyle}
+						>
+							<MnhsLogo />
+
+							<h2>School Platform Login&nbsp;Form</h2>
 							<hr className={"horizontalRule"} />
-							{error}
+							<div
+								className={styles.errorDiv}
+								style={{
+									display: showError ? "block" : "none",
+								}}
+							>
+								<h4>{error}</h4>
+							</div>
 							<label>Account Email Address:</label>
 							<input
 								type="email"
@@ -78,9 +102,17 @@ const Login: React.FC = () => {
 								maxLength={50}
 								required
 							/>
-							<button type="button">Need an account?</button>
-							<button type="reset">Clear Fields</button>
-							<button type="submit">Link Start!</button>
+							<div>
+								<Link href="/signup">
+									<button type="button">
+										<a>Need an account?</a>
+									</button>
+								</Link>
+								<button type="reset" onClick={handleClear}>
+									Clear Fields
+								</button>
+								<button type="submit">Link Start</button>
+							</div>
 						</form>
 					</div>
 				</div>
