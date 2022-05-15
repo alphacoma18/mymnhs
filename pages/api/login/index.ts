@@ -4,6 +4,12 @@ import {
 	generateAccessToken,
 	generateRefreshToken,
 } from "../../../_operations/jwt/jwt";
+/**
+ * Flow of the code
+ * 1. Get incoming data from the request
+ * 2. Check if the account exists using given email and password
+ * 3. If the account exists, generate access token and refresh token
+ */
 export default async function (req: any, res: any) {
 	try {
 		const { email, password }: { email: string; password: string } =

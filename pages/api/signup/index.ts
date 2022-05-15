@@ -20,14 +20,22 @@ interface MailOptions {
 	subject: string;
 	html: string;
 }
-export default async function (req: any, res: any) {	
+/**
+ * Flow of the code
+ * 1. Get incoming data from the request
+ * 2. Hash both email and password
+ * 3. Insert into the verify_user_table
+ * 4. Generate a verfification token
+ * 5. Send the verification token to the user's email
+ */
+export default async function (req: any, res: any) {
 	try {
 		const { firstName, lastName, email, password, section }: IUser =
 			req.body;
 		const sectionId: number | void = sectionIdGetter(section);
 		const hashedEmail: string = await bycrypt.hash(email, 10);
 		const hashedPass: string = await bycrypt.hash(password, 10);
-		
+
 		const sql: string = `INSERT INTO verify_user_table (verify_first_name, verify_last_name, verify_email, verify_password, verify_section_id)
         VALUES (?, ?, ?, ?, ?)`;
 		await connection.query(sql, [
@@ -36,13 +44,10 @@ export default async function (req: any, res: any) {
 			hashedEmail,
 			hashedPass,
 			sectionId,
-		]); 
-		
+		]);
 
-
-		
 		const verificationToken: string = await generateVerificationToken({
-			email,
+			hashedEmail
 		});
 		const transporter: any = nodeMailer.createTransport({
 			service: "gmail",
@@ -52,7 +57,7 @@ export default async function (req: any, res: any) {
 			},
 		});
 
-		const URL: string = `${process.env.SITE_URL}/verification/${verificationToken}`;
+		const URL: string = `${process.env.SITE_URL}/api/verification/${verificationToken}`;
 		const mailOptions: MailOptions = {
 			from: process.env.EMAIL_USER,
 			to: email,
@@ -74,9 +79,9 @@ export default async function (req: any, res: any) {
 `,
 		};
 		await transporter.sendMail(mailOptions);
-		res.status(200).send();
+		return res.status(200).send();
 	} catch (error) {
-		console.log(error);
+		// show error page
+		return console.log(error);
 	}
 }
-
