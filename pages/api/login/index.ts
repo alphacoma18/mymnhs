@@ -4,6 +4,7 @@ import {
 	generateAccessToken,
 	generateRefreshToken,
 } from "../../../_operations/jwt/jwt";
+import bycrypt from "bcrypt";
 /**
  * Flow of the code
  * 1. Get incoming data from the request
@@ -14,8 +15,11 @@ export default async function (req: any, res: any) {
 	try {
 		const { email, password }: { email: string; password: string } =
 			req.body;
+		bycrypt
 		let sql: string = `SELECT account_id, account_first_name, account_last_name, account_section_id FROM account_table WHERE account_email = ? AND account_password = ?`;
 		let [user] = await connection.execute(sql, [email, password]);
+		console.log(user);
+		
 		
 		const accessToken: string = await generateAccessToken(user);
 		const refreshToken: string = await generateRefreshToken(user);

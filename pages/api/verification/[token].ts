@@ -32,7 +32,6 @@ export default async function (req: any, res: any) {
 		const verifiedToken: VerifiedToken = await verifyVerificationToken(
 			token
 		);
-        console.log(token);
         
 		const { hashedEmail } = verifiedToken.user || {};
 		let sql: string = `
@@ -58,7 +57,8 @@ export default async function (req: any, res: any) {
 		await connection.query(sql2, [verify_id]);
 		let sql3: string = `
             INSERT INTO account_table (account_first_name, account_last_name, account_email, account_password, account_section_id)
-            VALUES (?, ?, ?, ?, ?)`;
+            VALUES (?, ?, ?, ?, ?)
+		`;
 		await connection.query(sql3, [
 			verify_first_name,
 			verify_last_name,
@@ -68,7 +68,6 @@ export default async function (req: any, res: any) {
 		]);
 		return res.status(200).redirect("http://localhost:3000/login");
 	} catch (error: any) {
-		console.log(error);
 
 		// redirect to error page
 		return res.status(401).redirect("http://localhost:3000/login");

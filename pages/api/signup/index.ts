@@ -57,7 +57,7 @@ export default async function (req: any, res: any) {
 			},
 		});
 
-		const URL: string = `${process.env.SITE_URL}/api/verification/${verificationToken}`;
+		const URL: string = `${process.env.CLIENT_URL}/api/verification/${verificationToken}`;
 		const mailOptions: MailOptions = {
 			from: process.env.EMAIL_USER,
 			to: email,
@@ -82,6 +82,6 @@ export default async function (req: any, res: any) {
 		return res.status(200).send();
 	} catch (error) {
 		// show error page
-		return console.log(error);
+		return res.status(500).send();
 	}
 }

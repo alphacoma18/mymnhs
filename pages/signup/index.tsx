@@ -281,11 +281,12 @@ const Signup: React.FC = () => {
 										<label
 											htmlFor="section"
 											className={styles.sectionLabel}
-										>
+											>
 											Section:
 										</label>
 										<select
 											id="section"
+											name="section"
 											required
 											disabled={
 												grade && strand ? false : true
