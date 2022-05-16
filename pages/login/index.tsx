@@ -34,15 +34,11 @@ const Login: React.FC = () => {
 			if (status === 500) return setError(message), setShowError(true);
 		}
 	}
-	function handleClear(): void {
-		setEmail("");
-		setPassword("");
-		return void 0;
-	}
 	useEffect((): void => {
 		setShowError(false);
 		return void 0;
 	}, [email, password]);
+
 
 	return (
 		<>
@@ -108,10 +104,12 @@ const Login: React.FC = () => {
 										<a>Need an account?</a>
 									</button>
 								</Link>
-								<button type="reset" onClick={handleClear}>
-									Clear Fields
-								</button>
-								<button type="submit">Link Start</button>
+								<Link href="/forgotPassword">
+									<button type="button">
+										<a>Forgot password?</a>
+									</button>
+								</Link>
+								<button type="submit">Link Start!</button>
 							</div>
 						</form>
 					</div>

@@ -1,9 +1,9 @@
 import { verifyVerificationToken } from "../../../_operations/jwt/jwt";
 import connection from "../../../_operations/db/db";
 
-interface VerifiedToken {
+interface UserInfo {
 	user?: {
-		hashedEmail?: string | undefined;
+		email?: string | undefined;
 		exp?: number | undefined;
 	};
 }
@@ -15,33 +15,32 @@ interface InData {
 	verify_password: string;
 	verify_section_id: number;
 }
-type Data = InData[];
+type ObjData = InData[];
 /**
  * Flow of the code
- * 1. Get the encrypted token from the request
- * 2. Both the token in db and req are encrypted so just compare
- * 3. Parse the token to an object
- * 4. Delete the token from the verify_user_table
- * 5. Add the user to the user_table
+ * 1. Get the jwt token from the request which contains the email
+ * 2. Verify the token
+ * 3. Search db for matching email
+ * 4. Convert sql data to js object
+ * 5. Insert the user to the account_table
  * 6. redirect user to the login page
  */
 
 export default async function (req: any, res: any) {
 	try {
 		const { token }: { token: string } = req.query;
-		const verifiedToken: VerifiedToken = await verifyVerificationToken(
-			token
-		);
-        console.log(token);
-        
-		const { hashedEmail } = verifiedToken.user || {};
-		let sql: string = `
+		const userInfo: UserInfo = await verifyVerificationToken(token);
+
+		const sql: string = `
             SELECT * FROM verify_user_table
             WHERE verify_email = ?
             LIMIT 1
         `;
-		let [jsonData] = await connection.execute(sql, [hashedEmail]);
-		let objData: Data = JSON.parse(JSON.stringify(jsonData));
+		const [jsonData] = await connection.execute(sql, [
+			userInfo.user?.email,
+		]);
+
+		const objData: ObjData = JSON.parse(JSON.stringify(jsonData));
 		const {
 			verify_id,
 			verify_first_name,
@@ -51,15 +50,17 @@ export default async function (req: any, res: any) {
 			verify_section_id,
 		} = objData[0];
 
-		let sql2: string = `
+		const sql2: string = `
             DELETE FROM verify_user_table
             WHERE verify_id = ?
+			LIMIT 1
         `;
-		await connection.query(sql2, [verify_id]);
-		let sql3: string = `
+		await connection.execute(sql2, [verify_id]);
+		const sql3: string = `
             INSERT INTO account_table (account_first_name, account_last_name, account_email, account_password, account_section_id)
-            VALUES (?, ?, ?, ?, ?)`;
-		await connection.query(sql3, [
+            VALUES (?, ?, ?, ?, ?)
+		`;
+		await connection.execute(sql3, [
 			verify_first_name,
 			verify_last_name,
 			verify_email,
@@ -68,8 +69,6 @@ export default async function (req: any, res: any) {
 		]);
 		return res.status(200).redirect("http://localhost:3000/login");
 	} catch (error: any) {
-		console.log(error);
-
 		// redirect to error page
 		return res.status(401).redirect("http://localhost:3000/login");
 	}

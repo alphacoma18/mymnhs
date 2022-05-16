@@ -3,7 +3,7 @@ import bycrypt from "bcrypt";
 import { generateVerificationToken } from "../../../_operations/jwt/jwt";
 import connection from "../../../_operations/db/db";
 import sectionIdGetter from "../../../_operations/sectionIdGetter/index";
-
+import NodeMailer69 from "../../../_operations/nodeMailer/index";
 interface IUser {
 	firstName: string;
 	lastName: string;
@@ -23,47 +23,39 @@ interface MailOptions {
 /**
  * Flow of the code
  * 1. Get incoming data from the request
- * 2. Hash both email and password
+ * 2. Hash both password
  * 3. Insert into the verify_user_table
- * 4. Generate a verfification token
+ * 4. Generate a verification token
  * 5. Send the verification token to the user's email
  */
 export default async function (req: any, res: any) {
+	console.log("req.body");
+	
 	try {
 		const { firstName, lastName, email, password, section }: IUser =
 			req.body;
 		const sectionId: number | void = sectionIdGetter(section);
-		const hashedEmail: string = await bycrypt.hash(email, 10);
 		const hashedPass: string = await bycrypt.hash(password, 10);
 
-		const sql: string = `INSERT INTO verify_user_table (verify_first_name, verify_last_name, verify_email, verify_password, verify_section_id)
-        VALUES (?, ?, ?, ?, ?)`;
-		await connection.query(sql, [
+		const sql: string = `
+			INSERT INTO verify_user_table (verify_first_name, verify_last_name, verify_email, verify_password, verify_section_id)
+	        VALUES (?, ?, ?, ?, ?)
+		`;
+		await connection.execute(sql, [
 			firstName,
 			lastName,
-			hashedEmail,
+			email,
 			hashedPass,
 			sectionId,
 		]);
 
 		const verificationToken: string = await generateVerificationToken({
-			hashedEmail
+			email,
 		});
-		const transporter: any = nodeMailer.createTransport({
-			service: "gmail",
-			auth: {
-				user: process.env.EMAIL_USER,
-				pass: process.env.EMAIL_PASSWORD,
-			},
-		});
-
-		const URL: string = `${process.env.SITE_URL}/api/verification/${verificationToken}`;
-		const mailOptions: MailOptions = {
-			from: process.env.EMAIL_USER,
-			to: email,
-			subject:
-				"<No-Reply> MNHS-SHS: Click to cerify your email and access the platform!",
-			html: `
+		const URL: string = `${process.env.CLIENT_URL}/api/verification/${verificationToken}`;
+		const subject =
+			"<No-Reply> MNHS-SHS: Click to cerify your email and access the platform!";
+		const html = `
 <div style="background-color: lightgoldenrodyellow; border: 3px solid black; width: 90%; max-width: 520px; padding: 20px; margin: auto; line-height: 1.6em">
 <h1 style="text-align: center;">Meycauayan National High School</h1>
 <h2 style="text-align: center;">-- The Unofficial Website --</h2>
@@ -76,12 +68,17 @@ export default async function (req: any, res: any) {
 <p><a href="${URL}">${URL}</a></p>
 <p>Important Note: This link will expire <b>1 day from now</b></p>
 </div>
-`,
-		};
-		await transporter.sendMail(mailOptions);
+`;
+
+		await NodeMailer69(email, subject, html);		
+		console.log("Email sent!");
+		
+		
 		return res.status(200).send();
 	} catch (error) {
 		// show error page
-		return console.log(error);
+		console.log(error);
+		
+		return res.status(500).send();
 	}
 }

@@ -30,6 +30,7 @@ export async function generateVerificationToken(user: {}): Promise<string> {
 		.sign(new TextEncoder().encode(process.env.VERIFICATION_TOKEN_SECRET));
 	return verificationToken;
 }
+
 export async function verifyVerificationToken(token: string): Promise<{}> {
 	const { payload: verifiedToken } = await jose.jwtVerify(
 		token,

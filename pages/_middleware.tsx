@@ -23,18 +23,20 @@ export default async function (req: {
 	const unprotectedPaths: string[] = [
 		`${baseUrl}/login`,
 		`${baseUrl}/signup`,
+		`${baseUrl}/forgotPassword`,
 		`${baseUrl}/favicon.ico`,
 		`${baseUrl}/vercel.svg`,
 		`${baseUrl}/_next/webpack-hmr`,
 		`${baseUrl}/attachables/campus-images/image1.jpg`,
 		`${baseUrl}/attachables/campus-images/image10.jpg`,
+		`${baseUrl}/attachables/campus-images/image15.jpg`,
 		`${baseUrl}/attachables/mnhs-images/logos/login_logo.png`,
 		`${baseUrl}/attachables/mnhs-images/logos/mnhs_favicon_og.ico`,
 	];
 
 	if (url.includes(`${baseUrl}/api/verification/`))
 		return NextResponse.next();
-	if (url === `${baseUrl}/api/login` || url === `${baseUrl}/api/signup`)
+	if (url === `${baseUrl}/api/login` || url === `${baseUrl}/api/signup` || url === `${baseUrl}/api/forgotPassword`)
 		return NextResponse.next();
 	if (!refreshToken && unprotectedPaths.includes(url)) return void 0;
 	if (!accessToken && !refreshToken)
