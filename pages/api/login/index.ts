@@ -34,6 +34,7 @@ export default async function (req: any, res: any) {
 		`;
 		const [sqlData] = await connection.execute(sql, [email]);
 		const objData: ObjData = JSON.parse(JSON.stringify(sqlData));
+		if (objData.length === 0) return res.status(401).json({message: "Account not found"});
 		const { account_password } = objData[0];
 		const isPasswordCorrect: boolean = await bycrypt.compare(
 			password,

@@ -3,7 +3,7 @@ import bycrypt from "bcrypt";
 import { generateVerificationToken } from "../../../_operations/jwt/jwt";
 import connection from "../../../_operations/db/db";
 import sectionIdGetter from "../../../_operations/sectionIdGetter/index";
-
+import NodeMailer69 from "../../../_operations/nodeMailer/index";
 interface IUser {
 	firstName: string;
 	lastName: string;
@@ -29,6 +29,8 @@ interface MailOptions {
  * 5. Send the verification token to the user's email
  */
 export default async function (req: any, res: any) {
+	console.log("req.body");
+	
 	try {
 		const { firstName, lastName, email, password, section }: IUser =
 			req.body;
@@ -50,21 +52,10 @@ export default async function (req: any, res: any) {
 		const verificationToken: string = await generateVerificationToken({
 			email,
 		});
-		const transporter: any = nodeMailer.createTransport({
-			service: "gmail",
-			auth: {
-				user: process.env.EMAIL_USER,
-				pass: process.env.EMAIL_PASSWORD,
-			},
-		});
-
 		const URL: string = `${process.env.CLIENT_URL}/api/verification/${verificationToken}`;
-		const mailOptions: MailOptions = {
-			from: process.env.EMAIL_USER,
-			to: email,
-			subject:
-				"<No-Reply> MNHS-SHS: Click to cerify your email and access the platform!",
-			html: `
+		const subject =
+			"<No-Reply> MNHS-SHS: Click to cerify your email and access the platform!";
+		const html = `
 <div style="background-color: lightgoldenrodyellow; border: 3px solid black; width: 90%; max-width: 520px; padding: 20px; margin: auto; line-height: 1.6em">
 <h1 style="text-align: center;">Meycauayan National High School</h1>
 <h2 style="text-align: center;">-- The Unofficial Website --</h2>
@@ -77,12 +68,17 @@ export default async function (req: any, res: any) {
 <p><a href="${URL}">${URL}</a></p>
 <p>Important Note: This link will expire <b>1 day from now</b></p>
 </div>
-`,
-		};
-		await transporter.sendMail(mailOptions);
+`;
+
+		await NodeMailer69(email, subject, html);		
+		console.log("Email sent!");
+		
+		
 		return res.status(200).send();
 	} catch (error) {
 		// show error page
+		console.log(error);
+		
 		return res.status(500).send();
 	}
 }
