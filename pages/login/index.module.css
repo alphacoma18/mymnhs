@@ -1,11 +1,11 @@
 .outermostLogin {
-    background-image: url("/attachables/campus-images/image1.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+	background-image: url("/attachables/campus-images/image1.jpg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 .loginFill {
-    background: rgba(0, 0, 0, 0.2);
+	background: rgba(0, 0, 0, 0.2);
 	width: 100vw;
 	min-height: 100vh;
 	display: flex;

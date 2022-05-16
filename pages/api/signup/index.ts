@@ -23,9 +23,9 @@ interface MailOptions {
 /**
  * Flow of the code
  * 1. Get incoming data from the request
- * 2. Hash both email and password
+ * 2. Hash both password
  * 3. Insert into the verify_user_table
- * 4. Generate a verfification token
+ * 4. Generate a verification token
  * 5. Send the verification token to the user's email
  */
 export default async function (req: any, res: any) {
@@ -33,21 +33,22 @@ export default async function (req: any, res: any) {
 		const { firstName, lastName, email, password, section }: IUser =
 			req.body;
 		const sectionId: number | void = sectionIdGetter(section);
-		const hashedEmail: string = await bycrypt.hash(email, 10);
 		const hashedPass: string = await bycrypt.hash(password, 10);
 
-		const sql: string = `INSERT INTO verify_user_table (verify_first_name, verify_last_name, verify_email, verify_password, verify_section_id)
-        VALUES (?, ?, ?, ?, ?)`;
-		await connection.query(sql, [
+		const sql: string = `
+			INSERT INTO verify_user_table (verify_first_name, verify_last_name, verify_email, verify_password, verify_section_id)
+	        VALUES (?, ?, ?, ?, ?)
+		`;
+		await connection.execute(sql, [
 			firstName,
 			lastName,
-			hashedEmail,
+			email,
 			hashedPass,
 			sectionId,
 		]);
 
 		const verificationToken: string = await generateVerificationToken({
-			hashedEmail
+			email,
 		});
 		const transporter: any = nodeMailer.createTransport({
 			service: "gmail",

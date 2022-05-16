@@ -4,26 +4,49 @@ import {
 	generateAccessToken,
 	generateRefreshToken,
 } from "../../../_operations/jwt/jwt";
+interface InData {
+	account_id: number;
+	account_first_name: string;
+	account_last_name: string;
+	account_email: string;
+	account_password: string;
+	account_section_id: number;
+}
+type ObjData = InData[];
 import bycrypt from "bcrypt";
 /**
  * Flow of the code
  * 1. Get incoming data from the request
- * 2. Check if the account exists using given email and password
- * 3. If the account exists, generate access token and refresh token
+ * 2. Check if the account exists using given email
+ * 3. If the account exists, check if the password is correct
+ * 4. Generate the access token and refresh token
+ * 5. Set the cookie with the access token and refresh token
  */
 export default async function (req: any, res: any) {
 	try {
 		const { email, password }: { email: string; password: string } =
 			req.body;
-		bycrypt
-		let sql: string = `SELECT account_id, account_first_name, account_last_name, account_section_id FROM account_table WHERE account_email = ? AND account_password = ?`;
-		let [user] = await connection.execute(sql, [email, password]);
-		console.log(user);
-		
-		
-		const accessToken: string = await generateAccessToken(user);
-		const refreshToken: string = await generateRefreshToken(user);
-		
+		const sql: string = `
+			SELECT account_id, account_first_name, account_last_name, account_section_id, account_password
+			FROM account_table
+			WHERE account_email = ?
+			LIMIT 1
+		`;
+		const [sqlData] = await connection.execute(sql, [email]);
+		const objData: ObjData = JSON.parse(JSON.stringify(sqlData));
+		const { account_password } = objData[0];
+		const isPasswordCorrect: boolean = await bycrypt.compare(
+			password,
+			account_password
+		);
+		if (!isPasswordCorrect)
+			return res
+				.status(401)
+				.json({ message: "Email or password is incorrect" });
+
+		const accessToken: string = await generateAccessToken(objData);
+		const refreshToken: string = await generateRefreshToken(objData);
+
 		return res
 			.setHeader("Set-Cookie", [
 				serialize("refresh_token_extreme", refreshToken, {
@@ -41,8 +64,8 @@ export default async function (req: any, res: any) {
 					expires: new Date(Date.now() + 60 * 1000 * 10), // 10 minutes
 				}),
 			])
-			.json({ user });
+			.json({ user: objData });
 	} catch (error: any) {
-		return res.status(error.status).json({ message: error.message });
+		return res.status(500).json({ message: "Internal Server Error" });
 	}
 }
