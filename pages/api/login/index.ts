@@ -13,7 +13,7 @@ interface InData {
 	account_section_id: number;
 }
 type ObjData = InData[];
-import bycrypt from "bcrypt";
+import bcrypt from "bcrypt";
 /**
  * Flow of the code
  * 1. Get incoming data from the request
@@ -36,7 +36,7 @@ export default async function (req: any, res: any) {
 		const objData: ObjData = JSON.parse(JSON.stringify(sqlData));
 		if (objData.length === 0) return res.status(401).json({message: "Account not found"});
 		const { account_password } = objData[0];
-		const isPasswordCorrect: boolean = await bycrypt.compare(
+		const isPasswordCorrect: boolean = await bcrypt.compare(
 			password,
 			account_password
 		);

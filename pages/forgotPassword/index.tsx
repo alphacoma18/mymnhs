@@ -4,7 +4,9 @@ import MnhsLogo from "../../components/_mnhsLogo";
 import Meta from "../../components/_meta";
 import Link from "next/link";
 import { axios } from "../../_operations/axios/axios";
+import { useRouter } from "next/router";
 const ForgotPassword: React.FC = () => {
+	const router = useRouter();
 	const [email, setEmail] = useState<string>("");
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     try {
@@ -12,7 +14,10 @@ const ForgotPassword: React.FC = () => {
       await axios.post("/forgotPassword", {
         email,
       });
+	  return router.push("/login");
     } catch (error) {
+		console.log(error);
+		
       // TODO: Handle error
     }
 	}
@@ -40,7 +45,7 @@ const ForgotPassword: React.FC = () => {
 							<p>
 								Forgot your password? No worries! Enter your
 								email address below and we'll send you a link to
-								reset your password.
+								reset your password via gmail.
 							</p>
 							<label>Account Email Address:</label>
 							<input
