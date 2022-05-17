@@ -38,3 +38,19 @@ export async function verifyVerificationToken(token: string): Promise<{}> {
 	);
 	return verifiedToken;
 }
+
+export async function generateResetPasswordToken(user: {}): Promise<string> {
+	const resetPasswordToken = await new jose.SignJWT({ user })
+		.setProtectedHeader({ alg: "HS256" })
+		.setExpirationTime("1d")
+		.sign(new TextEncoder().encode(process.env.PASSWORD_RESET_TOKEN_SECRET));
+	return resetPasswordToken;
+}
+
+export async function verifyResetPasswordToken(token: string): Promise<{}> {
+	const { payload: verifiedToken } = await jose.jwtVerify(
+		token,
+		new TextEncoder().encode(process.env.PASSWORD_RESET_TOKEN_SECRET)
+	);
+	return verifiedToken;
+}
