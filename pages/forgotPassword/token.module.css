@@ -1,11 +1,11 @@
 .outermostResetPass {
-    background-image: url("/attachables/campus-images/image10.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+	background-image: url("/attachables/campus-images/image10.jpg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 .resetPassFill {
-    background: rgba(0, 0, 0, 0.2);
+	background: rgba(0, 0, 0, 0.2);
 	width: 100vw;
 	min-height: 100vh;
 	display: flex;
@@ -13,7 +13,7 @@
 	align-items: center;
 }
 .resetPassFormat {
-    background: rgba(0, 0, 0, 0.4);
+	background: rgba(0, 0, 0, 0.4);
 	color: var(--primary-text-color-whitesmoke);
 	width: clamp(0px, 75%, 500px);
 	min-height: 350px;
@@ -25,10 +25,10 @@
 		show-login-form 1000ms ease-in-out 0s 1 normal;
 }
 .formStyle {
-    display: flex;
-    flex-direction: column;
-    width: clamp(0px, 100%, 320px);
-    margin: auto;
+	display: flex;
+	flex-direction: column;
+	width: clamp(0px, 100%, 320px);
+	margin: auto;
 }
 .resetPassFormat form h2 {
 	text-align: center;
@@ -37,7 +37,7 @@
 	padding: 5px;
 }
 .resetPassFormat button {
-    padding: 5px;
+	padding: 5px;
 }
 @keyframes mnhs-logo-glow {
 	0% {

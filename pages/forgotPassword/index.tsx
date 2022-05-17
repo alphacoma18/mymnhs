@@ -9,15 +9,15 @@ const ForgotPassword: React.FC = () => {
 	const router = useRouter();
 	const [email, setEmail] = useState<string>("");
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    try {
-      e.preventDefault();
-      await axios.post("/forgotPassword", {
-        email,
-      });
-	  return router.push("/login");
-    } catch (error) {
-		return console.log(error);
-    }
+		try {
+			e.preventDefault();
+			await axios.post("/forgotPassword", {
+				email,
+			});
+			return router.push("/login");
+		} catch (error) {
+			return console.log(error);
+		}
 	}
 	return (
 		<>

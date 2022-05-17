@@ -12,7 +12,6 @@ export default async function NodeMailer69(
 	html: string
 ): Promise<void> {
 	try {
-		
 		const transporter: any = nodeMailer.createTransport({
 			service: "gmail",
 			auth: {
@@ -28,6 +27,6 @@ export default async function NodeMailer69(
 		};
 		return await transporter.sendMail(mailOptions);
 	} catch (error) {
-		console.log(error);
+		return console.log(error);
 	}
 }

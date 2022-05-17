@@ -41,12 +41,15 @@ export default async function (req: {
 	const url: string = req.url;
 	const refreshToken: string | undefined = cookies?.refresh_token_extreme;
 	const accessToken: string | undefined = cookies?.access_token_extreme;
-	
+
 	if (openApiPaths.has(url)) return NextResponse.next();
-	if (url.includes(openDynamicApiPaths[0]) || url.includes(openDynamicApiPaths[1])) return NextResponse.next();
+	if (
+		url.includes(openDynamicApiPaths[0]) ||
+		url.includes(openDynamicApiPaths[1])
+	)
+		return NextResponse.next();
 	if (url.includes(openDynamicPaths[0])) return NextResponse.next();
 	if (!refreshToken && openPaths.has(url)) return void 0;
-
 
 	if (!accessToken && !refreshToken)
 		return NextResponse.redirect(`${baseUrl}/login`);

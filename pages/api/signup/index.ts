@@ -44,9 +44,9 @@ export default async function (req: any, res: any) {
 			email,
 		});
 		const URL: string = `${process.env.CLIENT_URL}/api/verification/${verificationToken}`;
-		const subject =
+		const subject: string =
 			"<No-Reply> MNHS-SHS: Click to verify your email and access the platform!";
-		const html = `
+		const html: string = `
 <div style="background-color: lightgoldenrodyellow; border: 3px solid black; width: 90%; max-width: 520px; padding: 20px; margin: auto; line-height: 1.6em; border-radius: 20px">
 <h1 style="text-align: center;">Meycauayan National High School</h1>
 <h2 style="text-align: center;">-- The Unofficial Platform --</h2>
@@ -63,12 +63,11 @@ export default async function (req: any, res: any) {
 </div>
 `;
 
-		await NodeMailer69(email, subject, html);		
+		await NodeMailer69(email, subject, html);
 		return res.status(200).send();
 	} catch (error) {
 		// show error page
 		console.log(error);
-		
 		return res.status(500).send();
 	}
 }
