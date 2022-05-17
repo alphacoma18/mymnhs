@@ -16,9 +16,7 @@ const ForgotPassword: React.FC = () => {
       });
 	  return router.push("/login");
     } catch (error) {
-		console.log(error);
-		
-      // TODO: Handle error
+		return console.log(error);
     }
 	}
 	return (
