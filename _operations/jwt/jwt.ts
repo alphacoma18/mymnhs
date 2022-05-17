@@ -43,7 +43,9 @@ export async function generateResetPasswordToken(user: {}): Promise<string> {
 	const resetPasswordToken = await new jose.SignJWT({ user })
 		.setProtectedHeader({ alg: "HS256" })
 		.setExpirationTime("1d")
-		.sign(new TextEncoder().encode(process.env.PASSWORD_RESET_TOKEN_SECRET));
+		.sign(
+			new TextEncoder().encode(process.env.PASSWORD_RESET_TOKEN_SECRET)
+		);
 	return resetPasswordToken;
 }
 

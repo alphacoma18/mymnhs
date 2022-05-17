@@ -11,11 +11,19 @@ interface InData {
 	reset_email: string;
 	reset_account_id: number;
 }
+/**
+ * Flow of the code
+ * 1. Get incoming token from the request query
+ * 2. Get new password from the request
+ * 3. Verify the token
+ * 4. Check if the account exists using given email in the database
+ * 5. If the account exists, update the password
+ */
 type ObjData = InData[];
 export default async function (req: any, res: any) {
 	try {
 		const { token }: { token: string } = req.query;
-        const { newPassword }: { newPassword: string } = req.body;
+		const { newPassword }: { newPassword: string } = req.body;
 		const verifiedToken: VerifiedToken = await verifyResetPasswordToken(
 			token
 		);
@@ -34,14 +42,14 @@ export default async function (req: any, res: any) {
 		const { reset_email, reset_account_id } = objData[0];
 		if (reset_email !== email)
 			return res.status(401).json({ message: "Invalid token" });
-        const hashedPass = await bcrypt.hash(newPassword, 10)
+		const hashedPass: string = await bcrypt.hash(newPassword, 10);
 		const sql2: string = `
             UPDATE account_table
             SET account_password = ?
             WHERE account_id = ?
         `;
-        await connection.execute(sql2, [hashedPass, reset_account_id]);
-        return res.status(200).send();
+		await connection.execute(sql2, [hashedPass, reset_account_id]);
+		return res.status(200).send();
 	} catch (error) {
 		return console.log(error);
 	}

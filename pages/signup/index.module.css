@@ -1,25 +1,25 @@
 .outermostSignup {
-    background-image: url("/attachables/campus-images/image15.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+	background-image: url("/attachables/campus-images/image15.jpg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 .signupFill {
-    background: rgba(0, 0, 0, 0.4);
-    width: 100vw;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	background: rgba(0, 0, 0, 0.4);
+	width: 100vw;
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .signupFormat {
-    background: rgba(0, 0, 0, 0.6);
+	background: rgba(0, 0, 0, 0.6);
 	color: var(--primary-text-color-whitesmoke);
 	width: clamp(0px, 75%, 500px);
 	min-height: 350px;
 	animation: first-sight-appear 2s ease-in-out 1 0s normal;
 	padding: 20px;
-	animation: mnhs-logo-glow 2s linear 0s infinite normal
+	animation: mnhs-logo-glow 2s linear 0s infinite normal;
 }
 .formStyle {
 	display: flex;
@@ -39,7 +39,8 @@
 	display: flex;
 	justify-content: space-between;
 }
-.buttonDiv button, .buttonItem{
+.buttonDiv button,
+.buttonItem {
 	padding: 5px;
 }
 /*Buttons end*/
@@ -66,13 +67,11 @@ label.sectionLabel {
 	gap: 10px;
 	width: 100%;
 	display: flex;
-	justify-content:center;
+	justify-content: center;
 }
-.sectionOuterDiv *{
+.sectionOuterDiv * {
 	width: 100%;
 }
-
-
 
 @keyframes mnhs-logo-glow {
 	0% {

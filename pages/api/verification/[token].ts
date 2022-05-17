@@ -27,8 +27,6 @@ type ObjData = InData[];
  */
 
 export default async function (req: any, res: any) {
-	console.log("I AM HERE");
-	
 	try {
 		const { token }: { token: string } = req.query;
 		const userInfo: UserInfo = await verifyVerificationToken(token);

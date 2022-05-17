@@ -39,7 +39,6 @@ const Login: React.FC = () => {
 		return void 0;
 	}, [email, password]);
 
-
 	return (
 		<>
 			<Meta
