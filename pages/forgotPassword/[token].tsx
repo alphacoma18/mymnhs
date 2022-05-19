@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./token.module.css";
 import Meta from "../../components/_meta";
 import MnhsLogo from "../../components/_mnhsLogo";
@@ -9,12 +9,13 @@ const Reset: React.FC = () => {
 	const [newPassword, setNewPassword] = useState<string>("");
 	const [confirmPassword, setConfirmPassword] = useState<string>("");
 	const [error, setError] = useState<string>("");
+	const [showError, setShowError] = useState<boolean>(false);
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		try {
 			e.preventDefault();
 			if (newPassword !== confirmPassword)
-				return setError("Passwords do not match.");
+				return setError("Passwords do not match."), setShowError(true);
 			const url: string = router.asPath;
 			const token: string = url.split("/")[2];
 
@@ -22,19 +23,30 @@ const Reset: React.FC = () => {
 				newPassword,
 			});
 			return router.push("/login");
-		} catch (error) {
-			return console.log(error);
+		} catch (error: any) {
+			let status: number = error.response.status;
+			let message: string = error.response.data.message;
+
+			if (status === 401) return setError(message), setShowError(true);
+			if (status === 500) return setError(message), setShowError(true);
 		}
 	}
+	useEffect((): void => {
+		setShowError(false);
+		return void 0;
+	}, [newPassword, confirmPassword]);
 	return (
 		<>
 			<Meta
-				title="MNHS | Reset Password"
+				title="Reset Password | MyMNHS"
 				description="Welcome back! Enter your new password below."
-				ogTitle="MNHS | Reset Password"
+				url="/forgotPassword/[token]"
+				ogTitle="Reset Password | MyMNHS"
 				ogDescription="Welcome back! Enter your new password below."
-				twitterTitle="MNHS | Reset Password"
+				ogUrl="/forgotPassword/[token]"
+				twitterTitle="Reset Password | MyMNHS"
 				twitterDescription="Welcome back! Enter your new password below."
+				twitterUrl="/forgotPassword/[token]"
 			/>
 			<section className={styles.outermostResetPass}>
 				<div className={styles.resetPassFill}>
@@ -47,6 +59,14 @@ const Reset: React.FC = () => {
 							<MnhsLogo />
 							<h2>Password Reset Form</h2>
 							<hr className="horizontalRule" />
+							<div
+								className="errorDiv"
+								style={{
+									display: showError ? "block" : "none",
+								}}
+							>
+								<h4>{error}</h4>
+							</div>
 							<p>Welcome back! Enter your new password below </p>
 							<label>New Password:</label>
 							<input

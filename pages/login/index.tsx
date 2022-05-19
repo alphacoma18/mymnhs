@@ -42,12 +42,15 @@ const Login: React.FC = () => {
 	return (
 		<>
 			<Meta
-				title="MNHS | Login Page"
-				description="Login to the school platform and seamlessly converse with fellow students at blazingly fast speeds!"
-				ogTitle="MNHS | Login Page"
-				ogDescription="Login to the school platform and seamlessly converse with fellow students at blazingly fast speeds!"
-				twitterTitle="MNHS | Login Page"
-				twitterDescription="Login to the school platform and seamlessly converse with fellow students at blazingly fast speeds!"
+				title="Login Page | MyMNHS"
+				description="Welcome to the official school platform of Meycauayan National High School. Login to your account to access your account. Be the best, choose MNHS!"
+				url="/login"
+				ogTitle="Login Page | MyMNHS"
+				ogDescription="Welcome to the official school platform of Meycauayan National High School. Login to your account to access your account. Be the best, choose MNHS!"
+				ogUrl="/login"
+				twitterTitle="Login Page | MyMNHS"
+				twitterDescription="Welcome to the official school platform of Meycauayan National High School. Login to your account to access your account. Be the best, choose MNHS!"
+				twitterUrl="/login"
 			/>
 
 			<section className={styles.outermostLogin}>
@@ -63,7 +66,7 @@ const Login: React.FC = () => {
 							<h2>School Platform Login&nbsp;Form</h2>
 							<hr className={"horizontalRule"} />
 							<div
-								className={styles.errorDiv}
+								className="errorDiv"
 								style={{
 									display: showError ? "block" : "none",
 								}}

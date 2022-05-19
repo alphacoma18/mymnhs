@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import MnhsLogo from "../../components/_mnhsLogo";
 import Meta from "../../components/_meta";
@@ -8,6 +8,9 @@ import { useRouter } from "next/router";
 const ForgotPassword: React.FC = () => {
 	const router = useRouter();
 	const [email, setEmail] = useState<string>("");
+	const [error, setError] = useState<string>("");
+	const [showError, setShowError] = useState<boolean>(false);
+
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		try {
 			e.preventDefault();
@@ -15,19 +18,30 @@ const ForgotPassword: React.FC = () => {
 				email,
 			});
 			return router.push("/login");
-		} catch (error) {
-			return console.log(error);
+		} catch (error: any) {
+			let status: number = error.response.status;
+			let message: string = error.response.data.message;
+
+			if (status === 401) return setError(message), setShowError(true);
+			if (status === 500) return setError(message), setShowError(true);
 		}
 	}
+	useEffect((): void => {
+		setShowError(false);
+		return void 0;
+	}, [email]);
 	return (
 		<>
 			<Meta
-				title="MNHS | Forgot Password"
+				title="Forgot Password | MyMNHS"
 				description="Forgot your password? No worries! We'll send you a link to reset your password."
-				ogTitle="MNHS | Forgot Password"
+				url="/forgotPassword"
+				ogTitle="Forgot Password | MyMNHS"
 				ogDescription="Forgot your password? No worries! We'll send you a link to reset your password."
-				twitterTitle="MNHS | Forgot Password"
+				ogUrl="/forgotPassword"
+				twitterTitle="Forgot Password | MyMNHS"
 				twitterDescription="Forgot your password? No worries! We'll send you a link to reset your password."
+				twitterUrl="/forgotPassword"
 			/>
 			<section className={styles.outermostForgot}>
 				<div className={styles.forgotFill}>
@@ -40,6 +54,14 @@ const ForgotPassword: React.FC = () => {
 							<MnhsLogo />
 							<h2>Forgot Password Form</h2>
 							<hr className="horizontalRule" />
+							<div
+								className="errorDiv"
+								style={{
+									display: showError ? "block" : "none",
+								}}
+							>
+								<h4>{error}</h4>
+							</div>
 							<p>
 								Forgot your password? No worries! Enter your
 								email address below and we'll send you a link to

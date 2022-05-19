@@ -66,7 +66,6 @@ export default async function (req: any, res: any) {
 		await NodeMailer69(email, subject, html);
 		return res.status(200).send();
 	} catch (error) {
-		// show error page
 		console.log(error);
 		return res.status(500).send();
 	}

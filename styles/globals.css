@@ -98,3 +98,12 @@ body {
 	border: var(--border-2px-solid-black);
 	border-radius: 10px;
 }
+.errorDiv {
+	width: 100%;
+	display: none;
+	background: var(--error-color);
+	border-radius: 50px;
+	margin: auto;
+	padding: 4px;
+	text-align: center;
+}

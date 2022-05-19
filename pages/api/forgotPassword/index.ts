@@ -26,7 +26,6 @@ export default async function (req: any, res: any) {
 		const objData: ObjData = JSON.parse(JSON.stringify(sqlData));
 		if (objData.length === 0)
 			return res.status(401).json({ message: "Account not found" });
-
 		const sql2: string = `
             INSERT INTO reset_password_table(reset_email, reset_timestamp, reset_account_id)
             VALUES(?, ?, ?)
@@ -60,7 +59,7 @@ export default async function (req: any, res: any) {
 
 		await NodeMailer69(email, subject, html);
 		return res.status(200).send();
-	} catch (error) {
-		return console.log(error);
+	} catch (error: any) {
+		return res.status(500).json({ message: "Internal Server Error" });
 	}
 }
