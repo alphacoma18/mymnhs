@@ -42,15 +42,6 @@
 	display: inline;
 	padding: 5px;
 }
-.errorDiv {
-	width: 100%;
-	display: none;
-	background: var(--error-color);
-	border-radius: 50px;
-	margin: auto;
-	padding: 4px;
-	text-align: center;
-}
 .hiddenHome {
 	display: none;
 }

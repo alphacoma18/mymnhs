@@ -1,10 +1,10 @@
-.outermostForgot {
-	background-image: url("/attachables/campus-images/image10.jpg");
+.outermostNotFound {
+	background-image: url("/attachables/campus-images/image1.jpg");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 }
-.forgotFill {
+.notFoundFill {
 	background: rgba(0, 0, 0, 0.2);
 	width: 100vw;
 	min-height: 100vh;
@@ -12,7 +12,7 @@
 	justify-content: center;
 	align-items: center;
 }
-.forgotFormat {
+.notFoundFormat {
 	background: rgba(0, 0, 0, 0.4);
 	color: var(--primary-text-color-whitesmoke);
 	width: clamp(0px, 75%, 500px);
@@ -24,25 +24,20 @@
 	animation: mnhs-logo-glow 2s linear 0s infinite normal,
 		show-login-form 1000ms ease-in-out 0s 1 normal;
 }
-.formStyle {
+.notFoundStyle {
 	display: flex;
 	flex-direction: column;
 	width: clamp(0px, 100%, 320px);
 	margin: auto;
 }
-.forgotFormat form h2 {
+.notFoundFormat h2 {
 	text-align: center;
 }
-.forgotFormat form input {
-	padding: 5px;
+.linkStyle:visited, .linkStyle:link {
+    color: var(--primary-text-color-whitesmoke);
 }
-.buttonDiv {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-}
-.buttonDiv button {
-	padding: 5px;
+.linkStyle:visited:hover, .linkStyle:visited:active, .linkStyle:visited:focus {
+    color: var(--primary-color-yellow);
 }
 
 @keyframes mnhs-logo-glow {

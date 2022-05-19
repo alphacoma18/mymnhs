@@ -39,6 +39,7 @@
 .resetPassFormat button {
 	padding: 5px;
 }
+
 @keyframes mnhs-logo-glow {
 	0% {
 		box-shadow: 0px 0px 20px 5px var(--primary-color-yellow);

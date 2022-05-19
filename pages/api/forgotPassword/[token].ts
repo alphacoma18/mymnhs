@@ -50,7 +50,7 @@ export default async function (req: any, res: any) {
         `;
 		await connection.execute(sql2, [hashedPass, reset_account_id]);
 		return res.status(200).send();
-	} catch (error) {
-		return console.log(error);
+	} catch (error: any) {
+		return res.status(500).json({ message: "Internal Server Error" });
 	}
 }

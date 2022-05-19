@@ -62,12 +62,15 @@ const Signup: React.FC = () => {
 	return (
 		<>
 			<Meta
-				title="MNHS | Signup Page"
+				title="MyMNHS | Signup Page"
 				description="Signup to the school platform and seamlessly converse with fellow students at blazingly fast speeds!"
-				ogTitle="MNHS | Signup Page"
+				url={"/signup"}
+				ogTitle="MyMNHS | Signup Page"
 				ogDescription="Signup to the school platform and seamlessly converse with fellow students at blazingly fast speeds!"
-				twitterTitle="MNHS | Signup Page"
+				ogUrl={"/signup"}
+				twitterTitle="MyMNHS | Signup Page"
 				twitterDescription="Signup to the school platform and seamlessly converse with fellow students at blazingly fast speeds!"
+				twitterUrl={"/signup"}
 			/>
 			<section className={styles.outermostSignup}>
 				<div className={styles.signupFill}>
