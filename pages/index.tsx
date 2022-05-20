@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import AuthContext from "../_operations/context/AuthProvider";
 import Meta from "../components/_meta";
+import Nav from "../components/_nav";
 const Index: React.FC = () => {
 	return (
 		<>
@@ -17,6 +18,7 @@ const Index: React.FC = () => {
 			/>
 
 			<div>
+				<Nav />
 				<h1>this is the home page</h1>
 			</div>
 		</>

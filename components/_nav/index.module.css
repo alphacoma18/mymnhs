@@ -1,0 +1,41 @@
+.topNavigation {
+	background: var(--primary-color-darkgreen);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	z-index: 2;
+	border-bottom: var(--border-3px-solid-black);
+}
+.middleNavDiv {
+	display: flex;
+	height: auto;
+}
+.navLink {
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	color: var(--primary-text-color-whitesmoke);
+	padding: 16px;
+	text-decoration: none;
+	font-weight: bold;
+	transition: var(--transition-hover-250ms-ease-in-out);
+}
+.navLink i {
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+		sans-serif;
+	font-style: normal;
+}
+.navLink:hover,
+.navLink:focus,
+.navLink:active {
+	color: var(--primary-text-color-yellow);
+	background: var(--primary-color-green);
+}
+
+@media (max-width: 900px) {
+	.middleNavDiv {
+		display: none;
+	}
+}
