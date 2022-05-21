@@ -11,19 +11,23 @@ const ForgotPassword: React.FC = () => {
 	const [error, setError] = useState<string>("");
 	const [showError, setShowError] = useState<boolean>(false);
 
-	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+	async function handleSubmit(
+		e: React.FormEvent<HTMLFormElement>
+	): Promise<void> {
 		try {
 			e.preventDefault();
 			await axios.post("/forgotPassword", {
 				email,
 			});
-			return router.push("/login");
+			router.push("/login");
+			return void 0;
 		} catch (error: any) {
 			let status: number = error.response.status;
 			let message: string = error.response.data.message;
 
 			if (status === 401) return setError(message), setShowError(true);
 			if (status === 500) return setError(message), setShowError(true);
+			return void 0;
 		}
 	}
 	useEffect((): void => {
