@@ -33,11 +33,14 @@
 .notFoundFormat h2 {
 	text-align: center;
 }
-.linkStyle:visited, .linkStyle:link {
-    color: var(--primary-text-color-whitesmoke);
+.linkStyle:visited,
+.linkStyle:link {
+	color: var(--primary-text-color-whitesmoke);
 }
-.linkStyle:visited:hover, .linkStyle:visited:active, .linkStyle:visited:focus {
-    color: var(--primary-color-yellow);
+.linkStyle:visited:hover,
+.linkStyle:visited:active,
+.linkStyle:visited:focus {
+	color: var(--primary-color-yellow);
 }
 
 @keyframes mnhs-logo-glow {

@@ -29,7 +29,7 @@ const IndexPage = () => {
 		<>
 			<Layout page={<Index />} />
 		</>
-	)
-}
+	);
+};
 
 export default IndexPage;

@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import "../public/attachables/fontello-alpha/fontello-fba870b0/css/fontello.css"
+import "../public/attachables/fontello-alpha/fontello-fba870b0/css/fontello.css";
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { AuthProvider } from "../_operations/context/AuthProvider";
@@ -49,7 +49,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 					content="https://mymnhs.vercel.app/attachables/campus-images/image1.jpg"
 				/>
 				<meta property="og:image:type" content="image/jpg" />
-				<meta property="og:image:alt" content="Meycauayan National High School Campus Picture" />
+				<meta
+					property="og:image:alt"
+					content="Meycauayan National High School Campus Picture"
+				/>
 				<meta property="og:url" content="https://mymnhs.vercel.app" />
 				<meta property="og:locale" content="en_US" />
 				<meta property="site_name" content="MyMNHS | School Platform" />
