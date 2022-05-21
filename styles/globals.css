@@ -29,15 +29,11 @@
 	height: 1vh;
 }
 ::-webkit-scrollbar-track {
-	background: var(--primary-color-darkgreen);
-	border-left: var(--border-2px-solid-black);
+	background: var(--primary-color-whitesmoke);
 }
 ::-webkit-scrollbar-thumb {
-	border-radius: var(--border-radius-full-round);
+	border-radius: 10px;
 	background: var(--primary-color-yellow);
-	border-left: var(--border-2px-solid-black);
-	border-top: var(--border-2px-solid-black);
-	border-bottom: var(--border-2px-solid-black);
 }
 ::-webkit-scrollbar-thumb:hover {
 	background: var(--primary-color-yellow);
@@ -53,13 +49,13 @@ html {
 	padding: 0px;
 	scroll-behavior: smooth;
 	scrollbar-width: thin;
-	scrollbar-color: var(--primary-color-yellow) var(--primary-color-darkgreen);
+	scrollbar-color: var(--primary-color-yellow) var(--primary-color-whitesmoke);
 	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
 		sans-serif;
 }
 body {
 	line-height: 1.6em;
-	height: auto;
+	background: var(--primary-color-whitesmoke);
 }
 .mnhsLogo {
 	width: clamp(0px, 100%, 120px);
