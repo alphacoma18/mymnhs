@@ -7,10 +7,10 @@ import { useRouter } from "next/router";
 import AuthContext from "../../../_operations/context/AuthProvider";
 const LeftMenu: React.FC = () => {
 	const router = useRouter();
-	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const [show, setShow] = useState<boolean>(false);
 
 	const toggleStyle: { width: string } = {
-		width: isOpen ? "275px" : "0px",
+		width: show ? "275px" : "0px",
 	};
 	async function handleLogout(): Promise<void> {
 		try {
@@ -29,7 +29,7 @@ const LeftMenu: React.FC = () => {
 					type="button"
 					className={styles.menuContainer}
 					title="Toggle Right Side Menu"
-					onClick={() => setIsOpen(!isOpen)}
+					onClick={() => setShow(!show)}
 				>
 					<div className={styles.menuLines}></div>
 					<div className={styles.menuLines}></div>
@@ -39,7 +39,7 @@ const LeftMenu: React.FC = () => {
 			<div className={styles.outerLeftMenu} style={toggleStyle}>
 				<a
 					className={styles.closeMenu}
-					onClick={() => setIsOpen(!isOpen)}
+					onClick={() => setShow(!show)}
 				>
 					&times;
 				</a>

@@ -1,19 +1,29 @@
 import React from "react";
 import styles from "./index.module.css";
 import Link from "next/link";
-import LeftMenu from "./left";
-import RightMenu from "./right";
-import MobileMiddle from "./mobileMid";
-const Nav: React.FC = () => {
+const MobileMiddle: React.FC = () => {
+	const [show, setShow] = React.useState<boolean>(false);
+	const toggleStyle: { height: string } = {
+		height: show ? "100%" : "0",
+	};
 	return (
 		<>
-			<nav className={styles.topNavigation}>
-				<LeftMenu />
-			<div>
-
-			<MobileMiddle />
-			</div>
-				<div className={styles.middleNavDiv}>
+			<button
+				type="button"
+				title="Toggle Page Routes"
+				className={styles.toggleButton}
+				onClick={() => setShow(!show)}
+			>
+				Toggle Pages
+			</button>
+			<div className={styles.outermostToggle} style={toggleStyle}>
+				<a className={styles.closeMenu} onClick={() => setShow(!show)}>
+					&times;
+				</a>
+				<div className={styles.mainToggle}>
+					<div className={styles.itemHorizontalRule}>
+						<hr className={"horizontalRuleYellow"} />
+					</div>
 					<Link href={"/"}>
 						<a className={styles.navLink}>
 							<i className="icon-home">
@@ -49,11 +59,18 @@ const Nav: React.FC = () => {
 							</i>
 						</a>
 					</Link>
+					<div className={styles.itemHorizontalRule}>
+						<hr className={"horizontalRuleYellow"} />
+					</div>
+					<div>
+						<p>Copyright &copy; 2022.</p>
+						<p>Meycauayan National High School</p>
+						<p>All Rights Reserved</p>
+					</div>
 				</div>
-				<RightMenu />
-			</nav>
+			</div>
 		</>
 	);
 };
 
-export default Nav;
+export default MobileMiddle;
