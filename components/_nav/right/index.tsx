@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import MnhsLogo from "../../_mnhsLogo";
 import styles from "./index.module.css";
-import Link from "next/link";
 const RightMenu: React.FC = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 

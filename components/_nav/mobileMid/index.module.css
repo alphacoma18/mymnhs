@@ -1,9 +1,13 @@
 .toggleButton {
-    display: none;
-    padding: 16px;
+	display: none;
+	padding: 25px;
+	border: none;
+	background: url("/attachables/mnhs-images/logos/login_logo.png");
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 .outermostToggle {
-    height: 0;
+	height: 0;
 	position: fixed;
 	width: 0px;
 	z-index: 2;
@@ -29,21 +33,27 @@
 	transition: var(--transition-hover-250ms-ease-in-out);
 }
 .mainToggle {
-    margin: 10% 0;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    text-align: center;
+	margin: 10% 0;
+	width: 100%;
+	text-align: center;
+	color: var(--primary-text-color-whitesmoke);
+	display: flex;
+	flex-wrap: wrap;
+}
+.mainToggle  p {
+	font-weight: bold;
+	width: 100%;
 }
 .navLink {
-    display: block;
+	display: block;
 	font-weight: bold;
-    width: 100%;
-    padding: 10px;
-    color: var(--primary-text-color-whitesmoke);
-    font-size: 24px;
-    text-align: start;
-    text-decoration: none;
+	width: 100%;
+	padding: 5px 20px;
+	color: var(--primary-text-color-whitesmoke);
+	font-size: 24px;
+	text-align: start;
+	text-decoration: none;
+	transition: var(--transition-hover-250ms-ease-in-out);
 }
 .navLink:hover,
 .navLink:focus,
@@ -51,11 +61,8 @@
 	background: var(--primary-color-green);
 	color: var(--primary-text-color-yellow);
 }
-.itemHorizontalRule {
-    width: 100%;
-}
 @media screen and (max-width: 480px) {
-    .toggleButton {
-        display: block;
-    }
+	.toggleButton {
+		display: block;
+	}
 }

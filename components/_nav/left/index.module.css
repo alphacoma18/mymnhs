@@ -41,18 +41,24 @@
 	width: 100%;
 	text-align: center;
 	color: var(--primary-text-color-whitesmoke);
+	display: flex;
+	flex-wrap: wrap;
 }
-.mainLeftMenu p {
+.mainLeftMenu p,
+.mainLeftMenu q {
 	font-weight: bold;
+	width: 100%;
 }
 .mainLeftMenu a {
 	display: block;
 	font-weight: bold;
-	text-align: start;
+	width: 100%;
 	padding: 5px 20px;
-	transition: var(--transition-hover-250ms-ease-in-out);
-	text-decoration: none;
 	color: var(--primary-text-color-whitesmoke);
+	font-size: 24px;
+	text-align: start;
+	text-decoration: none;
+	transition: var(--transition-hover-250ms-ease-in-out);
 }
 .mainLeftMenu a i {
 	font-size: 24px;

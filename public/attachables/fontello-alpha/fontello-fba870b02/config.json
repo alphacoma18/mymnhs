@@ -221,60 +221,6 @@
       "css": "block",
       "code": 59410,
       "src": "fontawesome"
-    },
-    {
-      "uid": "80b02191b84eb4ea4516adc83330d7b3",
-      "css": "first-order",
-      "code": 62128,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "0ece9a12de796b8411f868d582bee678",
-      "css": "github-squared",
-      "code": 62208,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "906348dc798a0d42715cc97c875e3ac6",
-      "css": "twitter-squared",
-      "code": 62212,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "e331ff486a299c6bdf0056426c8fac53",
-      "css": "youtube-squared",
-      "code": 61798,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "4743b088aa95d6f3b6b990e770d3b647",
-      "css": "facebook-squared",
-      "code": 62216,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "197375a3cea8cb90b02d06e4ddf1433d",
-      "css": "globe",
-      "code": 59411,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "e1597911f34fea0a188ae51fe4a2d9a9",
-      "css": "stackoverflow",
-      "code": 61804,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "a41cabcd11152063a37f2407048c5494",
-      "css": "wpforms",
-      "code": 62104,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "c53415fbd2695033bd7180d7a9ed4934",
-      "css": "rebel",
-      "code": 61904,
-      "src": "fontawesome"
     }
   ]
 }

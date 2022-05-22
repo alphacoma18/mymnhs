@@ -9,10 +9,7 @@ const Nav: React.FC = () => {
 		<>
 			<nav className={styles.topNavigation}>
 				<LeftMenu />
-			<div>
-
-			<MobileMiddle />
-			</div>
+				<MobileMiddle />
 				<div className={styles.middleNavDiv}>
 					<Link href={"/"}>
 						<a className={styles.navLink}>
@@ -44,7 +41,7 @@ const Nav: React.FC = () => {
 					</Link>
 					<Link href={"/schoolSurveys"}>
 						<a className={styles.navLink}>
-							<i className="icon-info-circled">
+							<i className="icon-wpforms">
 								<span>Forms and surveys</span>
 							</i>
 						</a>

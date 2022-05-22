@@ -1,10 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import MnhsLogo from "../../_mnhsLogo";
 import styles from "./index.module.css";
 import Link from "next/link";
 import { axios } from "../../../_operations/axios/axios";
 import { useRouter } from "next/router";
-import AuthContext from "../../../_operations/context/AuthProvider";
+import FlexHRule from "../../_flexHRule";
 const LeftMenu: React.FC = () => {
 	const router = useRouter();
 	const [show, setShow] = useState<boolean>(false);
@@ -37,10 +37,7 @@ const LeftMenu: React.FC = () => {
 				</button>
 			</section>
 			<div className={styles.outerLeftMenu} style={toggleStyle}>
-				<a
-					className={styles.closeMenu}
-					onClick={() => setShow(!show)}
-				>
+				<a className={styles.closeMenu} onClick={() => setShow(!show)}>
 					&times;
 				</a>
 				<div className={styles.mainLeftMenu}>
@@ -48,7 +45,7 @@ const LeftMenu: React.FC = () => {
 					<p>Meycauayan National High School</p>
 					<p>The Unofficial Website</p>
 					<q>Be the best, choose MNHS!</q>
-					<hr className="horizontalRuleYellow" />
+					<FlexHRule />
 					<Link href={"/profile"}>
 						<a>
 							<i className="icon-user"> Profile</i>
@@ -83,8 +80,8 @@ const LeftMenu: React.FC = () => {
 							<i className="icon-logout"> Logout</i>
 						</a>
 					</button>
-					<hr className={"horizontalRuleYellow"} />
-					<Link href={"/abouUs"}>
+					<FlexHRule />
+					<Link href={"/aboutUs"}>
 						<a>
 							<i className="icon-bank"> About Us</i>
 						</a>
@@ -109,7 +106,7 @@ const LeftMenu: React.FC = () => {
 							<i className="icon-mail-alt"> Contact Us</i>
 						</a>
 					</Link>
-					<hr className={"horizontalRuleYellow"} />
+					<FlexHRule />
 					<p>Copyright &copy; 2022.</p>
 					<p>Meycauayan National High School</p>
 					<p>All Rights Reserved</p>
