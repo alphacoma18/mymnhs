@@ -13,7 +13,7 @@ const Reset: React.FC = () => {
 
 	async function handleSubmit(
 		e: React.FormEvent<HTMLFormElement>
-	): Promise<void> {
+	): Promise<boolean | void> {
 		try {
 			e.preventDefault();
 			if (newPassword !== confirmPassword)
@@ -24,8 +24,7 @@ const Reset: React.FC = () => {
 			await axios.post(`/forgotPassword/${token}`, {
 				newPassword,
 			});
-			router.push("/login");
-			return void 0;
+			return router.push("/login");
 		} catch (error: any) {
 			let status: number = error.response.status;
 			let message: string = error.response.data.message;

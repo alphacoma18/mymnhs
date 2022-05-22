@@ -12,11 +12,10 @@ const LeftMenu: React.FC = () => {
 	const toggleStyle: { width: string } = {
 		width: show ? "275px" : "0px",
 	};
-	async function handleLogout(): Promise<void> {
+	async function handleLogout(): Promise<boolean| void> {
 		try {
 			await axios.post("/logout");
-			router.push("/login");
-			return void 0;
+			return router.push("/login");
 		} catch (error) {
 			console.log(error);
 			return void 0;

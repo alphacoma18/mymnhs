@@ -62,32 +62,50 @@ const MobileMiddle: React.FC = () => {
 							<span>MNHS School Blog</span>
 						</i>
 					</a>
-					<a className={styles.navLink} href="https://mnhs-shs.github.io/unofficial-site/">
+					<a
+						className={styles.navLink}
+						href="https://mnhs-shs.github.io/unofficial-site/"
+					>
 						<i className="icon-globe">
 							<span>MNHS Public Webpage</span>
 						</i>
 					</a>
-					<a className={styles.navLink} href="https://www.facebook.com/ssgovt">
+					<a
+						className={styles.navLink}
+						href="https://www.facebook.com/ssgovt"
+					>
 						<i className="icon-first-order">
 							<span>MNHS Student Council</span>
 						</i>
 					</a>
-					<a className={styles.navLink} href="https://www.facebook.com/meycauayannationalhsseniorhigh">
+					<a
+						className={styles.navLink}
+						href="https://www.facebook.com/meycauayannationalhsseniorhigh"
+					>
 						<i className="icon-facebook-squared">
 							<span>MNHS Facebook</span>
 						</i>
 					</a>
-					<a className={styles.navLink} href="https://www.youtube.com/channel/UCC3ek2xens8AVd60PvNix1Q/videos">
+					<a
+						className={styles.navLink}
+						href="https://www.youtube.com/channel/UCC3ek2xens8AVd60PvNix1Q/videos"
+					>
 						<i className="icon-youtube-squared">
 							<span>MNHS YouTube</span>
 						</i>
 					</a>
-					<a className={styles.navLink} href="https://twitter.com/meycauayannhs">
+					<a
+						className={styles.navLink}
+						href="https://twitter.com/meycauayannhs"
+					>
 						<i className="icon-twitter-squared">
 							<span>MNHS Twitter</span>
 						</i>
 					</a>
-					<a className={styles.navLink} href="https://github.com/mnhs-shs">
+					<a
+						className={styles.navLink}
+						href="https://github.com/mnhs-shs"
+					>
 						<i className="icon-github-squared">
 							<span>MNHS Github</span>
 						</i>

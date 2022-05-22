@@ -16,7 +16,7 @@ const Login: React.FC = () => {
 
 	async function handleLogin(
 		e: React.FormEvent<HTMLFormElement>
-	): Promise<void> {
+	): Promise<boolean | void> {
 		e.preventDefault();
 		try {
 			let res: any = await axios.post("/login", {
@@ -24,8 +24,7 @@ const Login: React.FC = () => {
 				password,
 			});
 			login(res.data.user);
-			router.push("/");
-			return void 0;
+			return router.push("/");
 		} catch (error: any) {
 			let status: number = error.response.status;
 			let message: string = error.response.data.message;
