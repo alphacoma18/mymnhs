@@ -42,7 +42,7 @@ const Signup: React.FC = () => {
 
 	async function handleSubmit(
 		e: React.FormEvent<HTMLFormElement>
-	): Promise<void> {
+	): Promise<boolean | void> {
 		e.preventDefault();
 		setFormSubmitted((e) => !e);
 		try {
@@ -53,8 +53,7 @@ const Signup: React.FC = () => {
 				password,
 				section,
 			});
-			router.push("/login");
-			return void 0;
+			return router.push("/login");
 		} catch (error: any) {
 			alert(error.response.data.message);
 			return void 0;

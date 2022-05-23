@@ -1,0 +1,65 @@
+.toggleButton {
+	display: none;
+	border: none;
+	background: none;
+}
+.outermostToggle {
+	height: 0;
+	position: fixed;
+	width: 0px;
+	z-index: 2;
+	top: 0;
+	width: 100%;
+	left: 0;
+	background: var(--primary-color-darkgreen);
+	overflow-x: hidden;
+	transition: var(--transition-hover-250ms-ease-in-out);
+}
+.closeMenu {
+	position: absolute;
+	right: 0;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	padding: 16px;
+	color: var(--primary-text-color-whitesmoke);
+	font-weight: bold;
+	transition: var(--transition-hover-250ms-ease-in-out);
+}
+.mainToggle {
+	margin: 10% 0;
+	width: 100%;
+	text-align: center;
+	color: var(--primary-text-color-whitesmoke);
+	display: flex;
+	flex-wrap: wrap;
+}
+.mainToggle p {
+	font-weight: bold;
+	width: 100%;
+}
+.navLink {
+	display: block;
+	font-weight: bold;
+	width: 100%;
+	padding: 5px 20px;
+	color: var(--primary-text-color-whitesmoke);
+	font-size: 24px;
+	text-align: start;
+	text-decoration: none;
+	transition: var(--transition-hover-250ms-ease-in-out);
+}
+.navLink:hover,
+.navLink:focus,
+.navLink:active {
+	background: var(--primary-color-green);
+	color: var(--primary-text-color-yellow);
+}
+@media screen and (max-width: 480px) {
+	.toggleButton {
+		display: block;
+	}
+}

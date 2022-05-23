@@ -13,7 +13,7 @@ const baseUrl: string = "http://localhost:3000";
 const openPaths: Set<string> = new Set([
 	`${baseUrl}/login`,
 	`${baseUrl}/signup`,
-	`${baseUrl}/forgotPassword`,
+	`${baseUrl}/forgot-password`,
 	`${baseUrl}/favicon.ico`,
 	`${baseUrl}/vercel.svg`,
 	`${baseUrl}/_next/webpack-hmr`,
@@ -26,12 +26,12 @@ const openPaths: Set<string> = new Set([
 const openApiPaths: Set<string> = new Set([
 	`${baseUrl}/api/login`,
 	`${baseUrl}/api/signup`,
-	`${baseUrl}/api/forgotPassword`,
+	`${baseUrl}/api/forgot-password`,
 ]);
-const openDynamicPaths: string[] = [`${baseUrl}/forgotPassword/`];
+const openDynamicPaths: string[] = [`${baseUrl}/forgot-password/`];
 const openDynamicApiPaths: string[] = [
 	`${baseUrl}/api/verification/`,
-	`${baseUrl}/api/forgotPassword/`,
+	`${baseUrl}/api/forgot-password/`,
 ];
 export default async function (req: {
 	url?: any;

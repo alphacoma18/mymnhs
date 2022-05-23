@@ -1,7 +1,7 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import NodeMailer69 from "../../../_operations/nodeMailer";
-import connection from "../../../_operations/db/db";
+import dbExecute from "../../../_operations/db/db";
 import { generateResetPasswordToken } from "../../../_operations/jwt/jwt";
-
 interface InData {
 	account_id: number;
 	account_email: string;
@@ -14,7 +14,7 @@ type ObjData = InData[];
  * 3. If the account exists, generate the reset password token
  * 4. Send the reset password token to the email with the reset password link
  */
-export default async function (req: any, res: any) {
+export default async function (req: NextApiRequest, res: NextApiResponse) {
 	try {
 		const { email }: { email: string } = req.body;
 		const sql: string = `
@@ -22,23 +22,18 @@ export default async function (req: any, res: any) {
             FROM account_table
             WHERE account_email = ?
         `;
-		const [sqlData] = await connection.execute(sql, [email]);
-		const objData: ObjData = JSON.parse(JSON.stringify(sqlData));
+		const objData: ObjData = await dbExecute(sql, [email]);
 		if (objData.length === 0)
 			return res.status(401).json({ message: "Account not found" });
 		const sql2: string = `
             INSERT INTO reset_password_table(reset_email, reset_timestamp, reset_account_id)
             VALUES(?, ?, ?)
         `;
-		await connection.execute(sql2, [
-			email,
-			new Date(),
-			objData[0].account_id,
-		]);
+		await dbExecute(sql2, [email, new Date(), objData[0].account_id]);
 		const resetPasswordToken: string = await generateResetPasswordToken({
 			email,
 		});
-		const URL: string = `${process.env.CLIENT_URL}/forgotPassword/${resetPasswordToken}`;
+		const URL: string = `${process.env.CLIENT_URL}/forgot-password/${resetPasswordToken}`;
 		const subject: string =
 			"<No-Reply> MNHS-SHS: Password reset request for school platform account.";
 		const html: string = `
@@ -58,7 +53,7 @@ export default async function (req: any, res: any) {
         `;
 
 		await NodeMailer69(email, subject, html);
-		return res.status(200).send();
+		return res.status(200).send("");
 	} catch (error: any) {
 		return res.status(500).json({ message: "Internal Server Error" });
 	}

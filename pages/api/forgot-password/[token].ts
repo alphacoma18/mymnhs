@@ -1,5 +1,6 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import { verifyResetPasswordToken } from "../../../_operations/jwt/jwt";
-import connection from "../../../_operations/db/db";
+import dbExecute from "../../../_operations/db/db";
 import bcrypt from "bcrypt";
 interface VerifiedToken {
 	user?: {
@@ -20,9 +21,9 @@ interface InData {
  * 5. If the account exists, update the password
  */
 type ObjData = InData[];
-export default async function (req: any, res: any) {
+export default async function (req: NextApiRequest, res: NextApiResponse) {
 	try {
-		const { token }: { token: string } = req.query;
+		const { token }: any = req.query;
 		const { newPassword }: { newPassword: string } = req.body;
 		const verifiedToken: VerifiedToken = await verifyResetPasswordToken(
 			token
@@ -35,8 +36,7 @@ export default async function (req: any, res: any) {
             FROM reset_password_table
             WHERE reset_email = ?
         `;
-		const [sqlData] = await connection.execute(sql, [email]);
-		const objData: ObjData = JSON.parse(JSON.stringify(sqlData));
+		const objData: ObjData = await dbExecute(sql, [email]);
 		if (objData.length === 0)
 			return res.status(401).json({ message: "Invalid token" });
 		const { reset_email, reset_account_id } = objData[0];
@@ -48,8 +48,8 @@ export default async function (req: any, res: any) {
             SET account_password = ?
             WHERE account_id = ?
         `;
-		await connection.execute(sql2, [hashedPass, reset_account_id]);
-		return res.status(200).send();
+		await dbExecute(sql2, [hashedPass, reset_account_id]);
+		return res.status(200).send("");
 	} catch (error: any) {
 		return res.status(500).json({ message: "Internal Server Error" });
 	}

@@ -1,5 +1,6 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import { serialize } from "cookie";
-export default async function (req: any, res: any) {
+export default async function (req: NextApiRequest, res: NextApiResponse) {
 	try {
 		return res
 			.setHeader("Set-Cookie", [

@@ -1,6 +1,7 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcrypt";
 import { generateVerificationToken } from "../../../_operations/jwt/jwt";
-import connection from "../../../_operations/db/db";
+import dbExecute from "../../../_operations/db/db";
 import sectionIdGetter from "../../../_operations/sectionIdGetter/index";
 import NodeMailer69 from "../../../_operations/nodeMailer/index";
 interface IUser {
@@ -21,7 +22,7 @@ interface IUser {
  * 4. Generate a verification token
  * 5. Send the verification token to the user's email
  */
-export default async function (req: any, res: any) {
+export default async function (req: NextApiRequest, res: NextApiResponse) {
 	try {
 		const { firstName, lastName, email, password, section }: IUser =
 			req.body;
@@ -32,7 +33,8 @@ export default async function (req: any, res: any) {
 			INSERT INTO verify_user_table (verify_first_name, verify_last_name, verify_email, verify_password, verify_section_id)
 	        VALUES (?, ?, ?, ?, ?)
 		`;
-		await connection.execute(sql, [
+
+		await dbExecute(sql, [
 			firstName,
 			lastName,
 			email,
@@ -64,9 +66,9 @@ export default async function (req: any, res: any) {
 `;
 
 		await NodeMailer69(email, subject, html);
-		return res.status(200).send();
+		return res.status(200).send("");
 	} catch (error) {
 		console.log(error);
-		return res.status(500).send();
+		return res.status(500).send("");
 	}
 }

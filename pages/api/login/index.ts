@@ -1,5 +1,6 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import { serialize } from "cookie";
-import connection from "../../../_operations/db/db";
+import dbExecute from "../../../_operations/db/db";
 import bcrypt from "bcrypt";
 import {
 	generateAccessToken,
@@ -22,7 +23,7 @@ type ObjData = InData[];
  * 4. Generate the access token and refresh token
  * 5. Set the cookie with the access token and refresh token
  */
-export default async function (req: any, res: any) {
+export default async function (req: NextApiRequest, res: NextApiResponse) {
 	try {
 		const { email, password }: { email: string; password: string } =
 			req.body;
@@ -32,8 +33,7 @@ export default async function (req: any, res: any) {
 			WHERE account_email = ?
 			LIMIT 1
 		`;
-		const [sqlData] = await connection.execute(sql, [email]);
-		const objData: ObjData = JSON.parse(JSON.stringify(sqlData));
+		const objData: ObjData = await dbExecute(sql, [email]);
 		if (objData.length === 0)
 			return res.status(401).json({ message: "Account not found" });
 		const { account_password } = objData[0];
@@ -48,7 +48,7 @@ export default async function (req: any, res: any) {
 
 		const accessToken: string = await generateAccessToken(objData);
 		const refreshToken: string = await generateRefreshToken(objData);
-
+		// obj data contains the password, so we need to remove it
 		return res
 			.setHeader("Set-Cookie", [
 				serialize("refresh_token_extreme", refreshToken, {
