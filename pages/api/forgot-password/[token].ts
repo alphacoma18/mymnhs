@@ -1,4 +1,4 @@
-import {NextApiRequest, NextApiResponse} from "next";
+import { NextApiRequest, NextApiResponse } from "next";
 import { verifyResetPasswordToken } from "../../../_operations/jwt/jwt";
 import dbExecute from "../../../_operations/db/db";
 import bcrypt from "bcrypt";
@@ -36,8 +36,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             FROM reset_password_table
             WHERE reset_email = ?
         `;
-		const [sqlData] = await dbExecute(sql, [email]);
-		const objData: ObjData = JSON.parse(JSON.stringify(sqlData));
+		const objData: ObjData = await dbExecute(sql, [email]);
 		if (objData.length === 0)
 			return res.status(401).json({ message: "Invalid token" });
 		const { reset_email, reset_account_id } = objData[0];

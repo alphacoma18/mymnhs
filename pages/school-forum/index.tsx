@@ -50,10 +50,7 @@ const SchoolForumPage: React.FC<Props2> = ({ data }) => {
 };
 export default SchoolForumPage;
 
-export const getStaticProps: GetStaticProps = async (context) => {
-	const { params } = context;
-	console.log(params);
-	
+export const getStaticProps: GetStaticProps = async () => {
 	const sql: string = `
 			SELECT question_id, question_header, question_body, question_timestamp, account_first_name, account_last_name, section_grade, section_strand FROM forum_question_table
 			JOIN account_table
@@ -61,12 +58,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
 			JOIN section_table
 			ON account_table.account_section_id = section_table.section_id
 			ORDER BY question_timestamp DESC`;
-	const [sqlData]: Props[] = await dbExecute(sql);
-	const data = JSON.parse(JSON.stringify(sqlData));
+	const data: Props[] = await dbExecute(sql);
 
 	return {
 		props: {
 			data,
 		},
+		revalidate: 60,
 	};
 };

@@ -1,5 +1,5 @@
 .outermostMain {
-	background: url('/attachables/mnhs-images/main_background.jpg');
+	background: url("/attachables/mnhs-images/main_background.jpg");
 	background-attachment: fixed;
 }
 .pageFormatter {

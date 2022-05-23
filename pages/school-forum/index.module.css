@@ -1,12 +1,12 @@
 .outermostForumSection {
-    width: 100%;
-    min-height: 100%;
-    display: grid;
-    grid-template-columns: 1fr 75%;
+	width: 100%;
+	min-height: 100%;
+	display: grid;
+	grid-template-columns: 1fr 75%;
 }
 
 @media screen and (max-width: 1024px) {
-    .outermostForumSection {
-        grid-template-columns: 1fr;
-    }
+	.outermostForumSection {
+		grid-template-columns: 1fr;
+	}
 }

@@ -66,9 +66,9 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 `;
 
 		await NodeMailer69(email, subject, html);
-		return res.status(200).send();
+		return res.status(200).send("");
 	} catch (error) {
 		console.log(error);
-		return res.status(500).send();
+		return res.status(500).send("");
 	}
 }

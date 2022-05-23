@@ -1,4 +1,4 @@
-import {NextApiRequest, NextApiResponse} from "next";
+import { NextApiRequest, NextApiResponse } from "next";
 import NodeMailer69 from "../../../_operations/nodeMailer";
 import dbExecute from "../../../_operations/db/db";
 import { generateResetPasswordToken } from "../../../_operations/jwt/jwt";
@@ -22,8 +22,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             FROM account_table
             WHERE account_email = ?
         `;
-		const [sqlData] = await dbExecute(sql, [email]);
-		const objData: ObjData = JSON.parse(JSON.stringify(sqlData));
+		const objData: ObjData = await dbExecute(sql, [email]);
 		if (objData.length === 0)
 			return res.status(401).json({ message: "Account not found" });
 		const sql2: string = `

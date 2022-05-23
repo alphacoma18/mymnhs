@@ -1,4 +1,4 @@
-import {NextApiRequest, NextApiResponse} from "next";
+import { NextApiRequest, NextApiResponse } from "next";
 import { serialize } from "cookie";
 import dbExecute from "../../../_operations/db/db";
 import bcrypt from "bcrypt";
@@ -33,8 +33,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 			WHERE account_email = ?
 			LIMIT 1
 		`;
-		const [sqlData] = await dbExecute(sql, [email]);
-		const objData: ObjData = JSON.parse(JSON.stringify(sqlData));
+		const objData: ObjData = await dbExecute(sql, [email]);
 		if (objData.length === 0)
 			return res.status(401).json({ message: "Account not found" });
 		const { account_password } = objData[0];

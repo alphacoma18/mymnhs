@@ -37,7 +37,7 @@
 	display: flex;
 	flex-wrap: wrap;
 }
-.mainToggle  p {
+.mainToggle p {
 	font-weight: bold;
 	width: 100%;
 }

@@ -38,9 +38,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             LIMIT 1
         `;
 
-		const [jsonData] = await dbExecute(sql, [userInfo.user?.email]);
-
-		const objData: ObjData = JSON.parse(JSON.stringify(jsonData));
+		const objData: ObjData = await dbExecute(sql, [userInfo.user?.email]);
 		const {
 			verify_id,
 			verify_first_name,

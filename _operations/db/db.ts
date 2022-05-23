@@ -8,6 +8,7 @@ const connection = mysql.createPool({
 });
 
 async function dbExecute(query: string, params?: any[]): Promise<any> {
-	return await connection.execute(query, params);
+	const [data] = await connection.execute(query, params);
+	return JSON.parse(JSON.stringify(data));
 }
 export default dbExecute;
