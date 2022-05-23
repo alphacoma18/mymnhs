@@ -55,12 +55,12 @@ const LeftMenu: React.FC = () => {
 							<i className="icon-bookmark"> Bookmarks</i>
 						</a>
 					</Link>
-					<Link href={"/toDoList"}>
+					<Link href={"/to-do-list"}>
 						<a>
 							<i className="icon-th-list"> To Do List</i>
 						</a>
 					</Link>
-					<Link href={"/wordProcess"}>
+					<Link href={"/word-process"}>
 						<a>
 							<i className="icon-doc-text-inv"> Word Process</i>
 						</a>
@@ -80,27 +80,27 @@ const LeftMenu: React.FC = () => {
 						</a>
 					</button>
 					<FlexHRule />
-					<Link href={"/aboutUs"}>
+					<Link href={"/about-us"}>
 						<a>
 							<i className="icon-bank"> About Us</i>
 						</a>
 					</Link>
-					<Link href={"/siteUpdates"}>
+					<Link href={"/site-updates"}>
 						<a>
 							<i className="icon-code"> Site Updates</i>
 						</a>
 					</Link>
-					<Link href={"/privacyPolicy"}>
+					<Link href={"/privacy-policy"}>
 						<a>
 							<i className="icon-shield"> Privacy Policy</i>
 						</a>
 					</Link>
-					<Link href={"/usageTutorial"}>
+					<Link href={"/usage-tutorial"}>
 						<a>
 							<i className="icon-desktop"> Usage Tutorial</i>
 						</a>
 					</Link>
-					<Link href={"/contactUs"}>
+					<Link href={"/contact-us"}>
 						<a>
 							<i className="icon-mail-alt"> Contact Us</i>
 						</a>

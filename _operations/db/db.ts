@@ -6,4 +6,8 @@ const connection = mysql.createPool({
 	password: process.env.DB_PASSWORD,
 	database: process.env.DB_DATABASE,
 });
-export default connection;
+
+async function dbExecute(query: string, params?: any[]): Promise<any> {
+	return await connection.execute(query, params);
+}
+export default dbExecute;

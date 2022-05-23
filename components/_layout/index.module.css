@@ -1,8 +1,9 @@
 .outermostMain {
-	background: whitesmoke;
+	background: url('/attachables/mnhs-images/main_background.jpg');
+	background-attachment: fixed;
 }
 .pageFormatter {
 	width: 95vw;
 	margin: auto;
-	background: white;
+	background: var(--primary-color-whitesmoke);
 }

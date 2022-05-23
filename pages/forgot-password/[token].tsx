@@ -21,7 +21,7 @@ const Reset: React.FC = () => {
 			const url: string = router.asPath;
 			const token: string = url.split("/")[2];
 
-			await axios.post(`/forgotPassword/${token}`, {
+			await axios.post(`/forgot-password/${token}`, {
 				newPassword,
 			});
 			return router.push("/login");
@@ -43,13 +43,13 @@ const Reset: React.FC = () => {
 			<Meta
 				title="Reset Password | MyMNHS"
 				description="Welcome back! Enter your new password below."
-				url="/forgotPassword/[token]"
+				url="/forgot-password/[token]"
 				ogTitle="Reset Password | MyMNHS"
 				ogDescription="Welcome back! Enter your new password below."
-				ogUrl="/forgotPassword/[token]"
+				ogUrl="/forgot-password/[token]"
 				twitterTitle="Reset Password | MyMNHS"
 				twitterDescription="Welcome back! Enter your new password below."
-				twitterUrl="/forgotPassword/[token]"
+				twitterUrl="/forgot-password/[token]"
 			/>
 			<section className={styles.outermostResetPass}>
 				<div className={styles.resetPassFill}>

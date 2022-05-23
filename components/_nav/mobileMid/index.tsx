@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./index.module.css";
 import Link from "next/link";
 import FlexHRule from "../../_flexHRule";
+import Image from "next/image";
 const MobileMiddle: React.FC = () => {
 	const [show, setShow] = React.useState<boolean>(false);
 	const toggleStyle: { height: string } = {
@@ -14,7 +15,14 @@ const MobileMiddle: React.FC = () => {
 				title="Toggle Page Routes"
 				className={styles.toggleButton}
 				onClick={() => setShow(!show)}
-			></button>
+			>
+				<Image
+					src="/attachables/mnhs-images/logos/login_logo.png"
+					width={50}
+					height={50}
+					alt="MNHS Logo"
+				/>
+			</button>
 			<div className={styles.outermostToggle} style={toggleStyle}>
 				<a className={styles.closeMenu} onClick={() => setShow(!show)}>
 					&times;
@@ -30,26 +38,26 @@ const MobileMiddle: React.FC = () => {
 					</Link>
 					<Link href={"/messages"}>
 						<a className={styles.navLink}>
-							<i className="icon-chat">
-								<span>Messages</span>
+							<i className="icon-globe">
+								<span>Global Chat</span>
 							</i>
 						</a>
 					</Link>
-					<Link href={"/schoolForum"}>
+					<Link href={"/school-forum"}>
 						<a className={styles.navLink}>
 							<i className="icon-tasks">
 								<span>School Forum</span>
 							</i>
 						</a>
 					</Link>
-					<Link href={"/classSchedule"}>
+					<Link href={"/class-schedule"}>
 						<a className={styles.navLink}>
 							<i className="icon-calendar">
 								<span>Class Schedule</span>
 							</i>
 						</a>
 					</Link>
-					<Link href={"/schoolSurveys"}>
+					<Link href={"/school-surveys"}>
 						<a className={styles.navLink}>
 							<i className="icon-info-circled">
 								<span>Forms and surveys</span>
@@ -66,7 +74,7 @@ const MobileMiddle: React.FC = () => {
 						className={styles.navLink}
 						href="https://mnhs-shs.github.io/unofficial-site/"
 					>
-						<i className="icon-globe">
+						<i className="icon-newspaper">
 							<span>MNHS Public Webpage</span>
 						</i>
 					</a>

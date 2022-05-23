@@ -16,7 +16,7 @@ const ForgotPassword: React.FC = () => {
 	): Promise<boolean | void> {
 		try {
 			e.preventDefault();
-			await axios.post("/forgotPassword", {
+			await axios.post("/forgot-password", {
 				email,
 			});
 			return router.push("/login");
@@ -37,14 +37,14 @@ const ForgotPassword: React.FC = () => {
 		<>
 			<Meta
 				title="Forgot Password | MyMNHS"
-				description="Forgot your password? No worries! We&apos;ll send you a link to reset your password."
-				url="/forgotPassword"
+				description="Forgot your password? No worries! We'll send you a link to reset your password."
+				url="/forgot-password"
 				ogTitle="Forgot Password | MyMNHS"
-				ogDescription="Forgot your password? No worries! We&apos;ll send you a link to reset your password."
-				ogUrl="/forgotPassword"
+				ogDescription="Forgot your password? No worries! We'll send you a link to reset your password."
+				ogUrl="/forgot-password"
 				twitterTitle="Forgot Password | MyMNHS"
-				twitterDescription="Forgot your password? No worries! We&apos;ll send you a link to reset your password."
-				twitterUrl="/forgotPassword"
+				twitterDescription="Forgot your password? No worries! We'll send you a link to reset your password."
+				twitterUrl="/forgot-password"
 			/>
 			<section className={styles.outermostForgot}>
 				<div className={styles.forgotFill}>
@@ -67,8 +67,8 @@ const ForgotPassword: React.FC = () => {
 							</div>
 							<p>
 								Forgot your password? No worries! Enter your
-								email address below and we&apos;ll send you a link to
-								reset your password via gmail.
+								email address below and we&apos;ll send you a
+								link to reset your password via gmail.
 							</p>
 							<label>Account Email Address:</label>
 							<input

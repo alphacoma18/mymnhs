@@ -18,28 +18,28 @@ const Nav: React.FC = () => {
 							</i>
 						</a>
 					</Link>
-					<Link href={"/messages"}>
+					<Link href={"/global-chat"}>
 						<a className={styles.navLink}>
-							<i className="icon-chat">
-								<span>Messages</span>
+							<i className="icon-globe">
+								<span>Global Chat</span>
 							</i>
 						</a>
 					</Link>
-					<Link href={"/schoolForum"}>
+					<Link href={"/school-forum"}>
 						<a className={styles.navLink}>
 							<i className="icon-tasks">
 								<span>School Forum</span>
 							</i>
 						</a>
 					</Link>
-					<Link href={"/classSchedule"}>
+					<Link href={"/class-schedule"}>
 						<a className={styles.navLink}>
 							<i className="icon-calendar">
 								<span>Class Schedule</span>
 							</i>
 						</a>
 					</Link>
-					<Link href={"/schoolSurveys"}>
+					<Link href={"/school-surveys"}>
 						<a className={styles.navLink}>
 							<i className="icon-wpforms">
 								<span>Forms and surveys</span>
