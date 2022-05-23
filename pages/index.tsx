@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import AuthContext from "../_operations/context/AuthProvider";
 import Meta from "../components/_meta";
-import Nav from "../components/_nav";
 import Layout from "../components/_layout";
-import styles from "./index.module.css";
 const Index: React.FC = () => {
 	return (
 		<>

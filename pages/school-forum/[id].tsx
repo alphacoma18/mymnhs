@@ -3,7 +3,11 @@ import Layout from "../../components/_layout";
 import dbExecute from "../../_operations/db/db";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Meta from "../../components/_meta";
+import styles from "./id.module.css";
+import InnerForumAnswer from "../../components/school-forum/inside/answer";
+import InnerForumQuestion from "../../components/school-forum/inside/question";
 const IndiForum: React.FC<Props> = ({ forumData, answerData }) => {
+
 	return (
 		<>
 			<Meta
@@ -17,15 +21,20 @@ const IndiForum: React.FC<Props> = ({ forumData, answerData }) => {
 				twitterDescription={`${forumData.question_body} | MyMNHS`}
 				twitterUrl={`/school-forum/${forumData.question_id}`}
 			/>
-			<div>{forumData.account_last_name}</div>
+			<section className={styles.outermostForum}>
+				<div className={styles.secondOutermost}>
+					<InnerForumQuestion data={forumData} />
+					<InnerForumAnswer data={answerData} />
+				</div>
+			</section>
 		</>
 	);
 };
 interface Props {
-	forumData: ForumData;
-	answerData: AnswerData[];
+	forumData: IQuestionData;
+	answerData: IAnswerData[];
 }
-interface ForumData {
+export interface IQuestionData {
 	account_first_name: string;
 	account_last_name: string;
 	section_grade: number;
@@ -36,16 +45,15 @@ interface ForumData {
 	question_body: string;
 	question_timestamp: string;
 }
-interface AnswerData {
+export interface IAnswerData {
 	account_first_name: string;
 	account_last_name: string;
 	section_grade: number;
 	section_strand: string;
 	section_name: string;
-	question_id: number;
-	question_header: string;
-	question_body: string;
-	question_timestamp: string;
+	general_id: number;
+	answer_content: string;
+	answer_timestamp: string;
 }
 const IndiForumPage: React.FC<Props> = ({ forumData, answerData }) => {
 	return (
@@ -86,10 +94,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		ON forum_question_table.question_asker_id = account_table.account_id
 		JOIN section_table
 		ON account_table.account_section_id = section_table.section_id
-		WHERE forum_question_table.question_id = "1";`;
+		WHERE forum_question_table.question_id = ?;`;
 
-	const forumData: ForumData[] = await dbExecute(sql);
-	const _ForumData: ForumData = forumData[0];
+	const questionData: IQuestionData[] = await dbExecute(sql, [params?.id]);
+	const _questionData: IQuestionData = questionData[0];
 	const sql2: string = `
 		SELECT account_first_name, account_last_name, section_grade , section_strand, section_name, general_id, answer_content, answer_timestamp
 		FROM forum_answer_table
@@ -101,10 +109,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		ON account_table.account_section_id = section_table.section_id
 		WHERE forum_question_table.question_id = ?;`;
 
-	const answerData: AnswerData = await dbExecute(sql2, [params?.id]);
+	const answerData: IAnswerData = await dbExecute(sql2, [params?.id]);
 	return {
 		props: {
-			forumData: _ForumData,
+			forumData: _questionData,
 			answerData,
 		},
 		revalidate: 60,

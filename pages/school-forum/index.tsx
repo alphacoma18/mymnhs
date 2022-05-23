@@ -4,8 +4,8 @@ import Layout from "../../components/_layout";
 import Meta from "../../components/_meta";
 import { GetStaticProps } from "next";
 import dbExecute from "../../_operations/db/db";
-import OuterForumLeft from "../../components/school-forum/left";
-import OuterForumRight from "../../components/school-forum/right";
+import OuterForumLeft from "../../components/school-forum/outside/left";
+import OuterForumRight from "../../components/school-forum/outside/right";
 interface Props {
 	question_id: number;
 	question_header: string;
@@ -16,10 +16,10 @@ interface Props {
 	section_grade: number;
 	section_strand: string;
 }
-interface Props2 {
+export interface IForumList {
 	data: Props[];
 }
-export const SchoolForum: React.FC<Props2> = ({ data }) => {
+export const SchoolForum: React.FC<IForumList> = ({ data }) => {
 	return (
 		<>
 			<Meta
@@ -41,7 +41,7 @@ export const SchoolForum: React.FC<Props2> = ({ data }) => {
 	);
 };
 
-const SchoolForumPage: React.FC<Props2> = ({ data }) => {
+const SchoolForumPage: React.FC<IForumList> = ({ data }) => {
 	return (
 		<>
 			<Layout page={<SchoolForum data={data} />} />

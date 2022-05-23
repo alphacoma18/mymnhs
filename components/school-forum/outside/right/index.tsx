@@ -1,20 +1,8 @@
 import React from "react";
 import styles from "./index.module.css";
 import Link from "next/link";
-interface Props {
-	question_id: number;
-	question_header: string;
-	question_body: string;
-	question_timestamp: string;
-	account_first_name: string;
-	account_last_name: string;
-	section_grade: number;
-	section_strand: string;
-}
-interface ListProps {
-	data: Props[];
-}
-const OuterForumRight: React.FC<ListProps> = ({ data }) => {
+import { IForumList } from "../../../../pages/school-forum";
+const OuterForumRight: React.FC<IForumList> = ({ data }) => {
 	return (
 		<>
 			<section className={styles.outermostForum}>
