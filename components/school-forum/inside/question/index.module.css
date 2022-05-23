@@ -1,0 +1,32 @@
+.outermostQuestion {
+	width: 100%;
+}
+.secondOuter {
+	padding: 10px;
+	display: grid;
+	grid-template-rows: auto auto 1fr auto auto;
+	background: var(--primary-color-whitesmoke);
+	color: var(--primary-text-color-whitesmoke);
+}
+.questionHeader {
+	word-break: break-word;
+	border-radius: 10px;
+	background: var(--primary-color-darkgreen);
+	padding: 10px;
+}
+.header, .body, .meta, .qnaNumber{
+    word-break: break-word;
+    border-radius: 10px;
+    background: var(--primary-color-darkgreen);
+    padding: 10px;
+}
+.body {
+    white-space: pre-line;
+}
+/* .qnaNumber {
+    padding: 10px;
+    background: var(--primary-color-darkgreen);
+    text-align: center;
+    border-radius: 10px;
+	color: var(--primary-text-color-yellow);
+} */
