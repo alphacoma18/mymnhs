@@ -6,7 +6,20 @@ import { GetStaticProps } from "next";
 import dbExecute from "../../_operations/db/db";
 import OuterForumLeft from "../../components/school-forum/left";
 import OuterForumRight from "../../components/school-forum/right";
-const SchoolPlatForm: React.FC = ({data}) => {
+interface Props {
+	question_id: number;
+	question_header: string;
+	question_body: string;
+	question_timestamp: string;
+	account_first_name: string;
+	account_last_name: string;
+	section_grade: number;
+	section_strand: string;
+}
+interface Props2 {
+	data: Props[];
+}
+export const SchoolForum: React.FC<Props2> = ({ data }) => {
 	return (
 		<>
 			<Meta
@@ -20,25 +33,27 @@ const SchoolPlatForm: React.FC = ({data}) => {
 				twitterDescription="MyMNHS School Platform lets you connect with your classmates and teachers in the school community of Meycauayan National High School. Be the best, choose MNHS!"
 				twitterUrl="/schoolPlatform"
 			/>
-
 			<section className={styles.outermostForumSection}>
-				<OuterForumLeft />
-				<OuterForumRight />
+				<OuterForumLeft data={data} />
+				<OuterForumRight data={data} />
 			</section>
 		</>
 	);
 };
 
-const SchoolPlatFormPage: React.FC = () => {
+const SchoolForumPage: React.FC<Props2> = ({ data }) => {
 	return (
 		<>
-			<Layout page={<SchoolPlatForm />} />
+			<Layout page={<SchoolForum data={data} />} />
 		</>
 	);
 };
-export default SchoolPlatFormPage;
+export default SchoolForumPage;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async (context) => {
+	const { params } = context;
+	console.log(params);
+	
 	const sql: string = `
 			SELECT question_id, question_header, question_body, question_timestamp, account_first_name, account_last_name, section_grade, section_strand FROM forum_question_table
 			JOIN account_table
@@ -46,8 +61,9 @@ export const getStaticProps: GetStaticProps = async () => {
 			JOIN section_table
 			ON account_table.account_section_id = section_table.section_id
 			ORDER BY question_timestamp DESC`;
-	const [sqlData] = await dbExecute(sql);
-	const data: any = JSON.parse(JSON.stringify(sqlData));
+	const [sqlData]: Props[] = await dbExecute(sql);
+	const data = JSON.parse(JSON.stringify(sqlData));
+
 	return {
 		props: {
 			data,

@@ -18,7 +18,7 @@ const Index: React.FC = () => {
 				twitterDescription="Welcome to the MyMNHS website! Connect with your classmates and teachers in the school community of Meycauayan National High School. Be the best, choose MNHS!"
 				twitterUrl="/"
 			/>
-			<section className={styles.x}>
+			<section>
 				<h1>this is the home page</h1>
 			</section>
 		</>

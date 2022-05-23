@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import {NextApiRequest, NextApiResponse} from "next";
 import { serialize } from "cookie";
 import dbExecute from "../../../_operations/db/db";
 import bcrypt from "bcrypt";
@@ -49,7 +49,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
 		const accessToken: string = await generateAccessToken(objData);
 		const refreshToken: string = await generateRefreshToken(objData);
-
+		// obj data contains the password, so we need to remove it
 		return res
 			.setHeader("Set-Cookie", [
 				serialize("refresh_token_extreme", refreshToken, {
