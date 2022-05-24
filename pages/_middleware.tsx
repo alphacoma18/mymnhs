@@ -14,6 +14,7 @@ const openPaths: Set<string> = new Set([
 	`${baseUrl}/login`,
 	`${baseUrl}/signup`,
 	`${baseUrl}/forgot-password`,
+	`${baseUrl}/school-forum`,
 	`${baseUrl}/favicon.ico`,
 	`${baseUrl}/vercel.svg`,
 	`${baseUrl}/_next/webpack-hmr`,
@@ -28,7 +29,10 @@ const openApiPaths: Set<string> = new Set([
 	`${baseUrl}/api/signup`,
 	`${baseUrl}/api/forgot-password`,
 ]);
-const openDynamicPaths: string[] = [`${baseUrl}/forgot-password/`];
+const openDynamicPaths: string[] = [
+	`${baseUrl}/forgot-password/`,
+	`${baseUrl}/school-forum/`,
+];
 const openDynamicApiPaths: string[] = [
 	`${baseUrl}/api/verification/`,
 	`${baseUrl}/api/forgot-password/`,
@@ -48,7 +52,8 @@ export default async function (req: {
 		url.includes(openDynamicApiPaths[1])
 	)
 		return NextResponse.next();
-	if (url.includes(openDynamicPaths[0])) return NextResponse.next();
+	if (url.includes(openDynamicPaths[0]) || url.includes(openDynamicPaths[1]))
+		return NextResponse.next();
 	if (!refreshToken && openPaths.has(url)) return void 0;
 
 	if (!accessToken && !refreshToken)
