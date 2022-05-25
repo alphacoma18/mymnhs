@@ -9,11 +9,13 @@ interface Cookies {
 		access_token_extreme?: string;
 	};
 }
+import { ITokenValue } from "../interface/token";
 const baseUrl: string = "http://localhost:3000";
 const openPaths: Set<string> = new Set([
 	`${baseUrl}/login`,
 	`${baseUrl}/signup`,
 	`${baseUrl}/forgot-password`,
+	`${baseUrl}/school-forum`,
 	`${baseUrl}/favicon.ico`,
 	`${baseUrl}/vercel.svg`,
 	`${baseUrl}/_next/webpack-hmr`,
@@ -28,7 +30,10 @@ const openApiPaths: Set<string> = new Set([
 	`${baseUrl}/api/signup`,
 	`${baseUrl}/api/forgot-password`,
 ]);
-const openDynamicPaths: string[] = [`${baseUrl}/forgot-password/`];
+const openDynamicPaths: string[] = [
+	`${baseUrl}/forgot-password/`,
+	`${baseUrl}/school-forum/`,
+];
 const openDynamicApiPaths: string[] = [
 	`${baseUrl}/api/verification/`,
 	`${baseUrl}/api/forgot-password/`,
@@ -48,14 +53,19 @@ export default async function (req: {
 		url.includes(openDynamicApiPaths[1])
 	)
 		return NextResponse.next();
-	if (url.includes(openDynamicPaths[0])) return NextResponse.next();
+	if (url.includes(openDynamicPaths[0]) || url.includes(openDynamicPaths[1]))
+		return NextResponse.next();
 	if (!refreshToken && openPaths.has(url)) return void 0;
 
 	if (!accessToken && !refreshToken)
 		return NextResponse.redirect(`${baseUrl}/login`);
 	if (!accessToken && refreshToken && openPaths.has(url)) {
-		const verifiedToken: any = await verifyRefreshToken(refreshToken);
-		const newToken: string = await generateAccessToken(verifiedToken);
+		const verifiedToken: ITokenValue = await verifyRefreshToken(
+			refreshToken
+		);
+		const newToken: string = await generateAccessToken(
+			verifiedToken?.user ?? {}
+		);
 		return NextResponse.redirect(`${baseUrl}`).cookie(
 			"access_token_extreme",
 			newToken,
@@ -69,8 +79,12 @@ export default async function (req: {
 		);
 	}
 	if (!accessToken && refreshToken) {
-		const verifiedToken: any = await verifyRefreshToken(refreshToken);
-		const newToken: string = await generateAccessToken(verifiedToken);
+		const verifiedToken: ITokenValue = await verifyRefreshToken(
+			refreshToken
+		);
+		const newToken: string = await generateAccessToken(
+			verifiedToken?.user ?? {}
+		);
 		return NextResponse.next().cookie("access_token_extreme", newToken, {
 			httpOnly: true,
 			secure: true,

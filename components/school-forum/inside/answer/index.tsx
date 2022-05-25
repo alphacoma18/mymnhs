@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./index.module.css";
 import { IAnswerData } from "../../../../pages/school-forum/[id]";
-const InnerForumAnswer: React.FC<{data: IAnswerData[]}> = ({data}) => {
+const InnerForumAnswer: React.FC<{ data: IAnswerData[] }> = ({ data }) => {
 	return (
 		<>
 			<section className={styles.outerAnswer}>

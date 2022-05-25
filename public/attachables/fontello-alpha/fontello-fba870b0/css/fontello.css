@@ -53,6 +53,13 @@
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
+[class="icon-plus-circled"]:before, [class="icon-minus-circled"]:before {
+  display: block;
+  text-align: center;
+  font-size: 50px;
+  margin-left: 0;
+  margin-right: 0;
+}
 
 .icon-calendar:before { content: '\e800'; } /* '' */
 .icon-home:before { content: '\e801'; } /* '' */

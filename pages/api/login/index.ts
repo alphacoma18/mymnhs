@@ -36,7 +36,19 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 		const objData: ObjData = await dbExecute(sql, [email]);
 		if (objData.length === 0)
 			return res.status(401).json({ message: "Account not found" });
-		const { account_password } = objData[0];
+		const {
+			account_id,
+			account_first_name,
+			account_last_name,
+			account_section_id,
+			account_password,
+		} = objData[0];
+		const userData = {
+			account_id,
+			account_first_name,
+			account_last_name,
+			account_section_id,
+		};
 		const isPasswordCorrect: boolean = await bcrypt.compare(
 			password,
 			account_password
@@ -46,9 +58,8 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 				.status(401)
 				.json({ message: "Email or password is incorrect" });
 
-		const accessToken: string = await generateAccessToken(objData);
-		const refreshToken: string = await generateRefreshToken(objData);
-		// obj data contains the password, so we need to remove it
+		const accessToken: string = await generateAccessToken(userData);
+		const refreshToken: string = await generateRefreshToken(userData);
 		return res
 			.setHeader("Set-Cookie", [
 				serialize("refresh_token_extreme", refreshToken, {
@@ -67,7 +78,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 				}),
 			])
 			.json({ user: objData });
-	} catch (error: any) {
+	} catch (error: unknown) {
 		return res.status(500).json({ message: "Internal Server Error" });
 	}
 }

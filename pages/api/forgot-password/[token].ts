@@ -23,10 +23,10 @@ interface InData {
 type ObjData = InData[];
 export default async function (req: NextApiRequest, res: NextApiResponse) {
 	try {
-		const { token }: any = req.query;
+		const { token } = req.query;
 		const { newPassword }: { newPassword: string } = req.body;
 		const verifiedToken: VerifiedToken = await verifyResetPasswordToken(
-			token
+			token as string
 		);
 		if (!verifiedToken.user)
 			return res.status(401).json({ message: "Invalid token" });
@@ -50,7 +50,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         `;
 		await dbExecute(sql2, [hashedPass, reset_account_id]);
 		return res.status(200).send("");
-	} catch (error: any) {
+	} catch (error: unknown) {
 		return res.status(500).json({ message: "Internal Server Error" });
 	}
 }

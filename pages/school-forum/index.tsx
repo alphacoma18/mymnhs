@@ -4,8 +4,10 @@ import Layout from "../../components/_layout";
 import Meta from "../../components/_meta";
 import { GetStaticProps } from "next";
 import dbExecute from "../../_operations/db/db";
+
 import OuterForumLeft from "../../components/school-forum/outside/left";
 import OuterForumRight from "../../components/school-forum/outside/right";
+import NewForumQuestion from "../../components/school-forum/outside/newQuestion/index";
 interface Props {
 	question_id: number;
 	question_header: string;
@@ -37,6 +39,7 @@ export const SchoolForum: React.FC<IForumList> = ({ data }) => {
 				<OuterForumLeft data={data} />
 				<OuterForumRight data={data} />
 			</section>
+			<NewForumQuestion />
 		</>
 	);
 };
