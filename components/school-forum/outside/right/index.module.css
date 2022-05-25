@@ -14,12 +14,11 @@
 	padding: 10px;
 }
 .questionPositioner {
-	/* padding: 10px; */
 	height: 100%;
 	width: 100%;
 	display: grid;
 	gap: 5px;
-	grid-template-columns: 1fr 90%;
+	grid-template-columns: 1fr 88%;
 }
 .questionMeta {
 	display: flex;
@@ -51,7 +50,7 @@
 	width: 100%;
 	text-align: end;
 }
-@media (max-width: 880px) {
+@media screen and (max-width: 768px) {
 	.questionPositioner {
 		grid-template-columns: 1fr;
 		grid-template-rows: 1fr 5fr;

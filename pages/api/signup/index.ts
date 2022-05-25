@@ -26,7 +26,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 	try {
 		const { firstName, lastName, email, password, section }: IUser =
 			req.body;
-		const sectionId: number | void = sectionIdGetter(section);
+		const sectionId: number | void = await sectionIdGetter(section);
 		const hashedPass: string = await bcrypt.hash(password, 10);
 
 		const sql: string = `
@@ -67,7 +67,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
 		await NodeMailer69(email, subject, html);
 		return res.status(200).send("");
-	} catch (error) {
+	} catch (error: unknown) {
 		console.log(error);
 		return res.status(500).send("");
 	}

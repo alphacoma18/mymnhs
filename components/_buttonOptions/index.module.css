@@ -40,7 +40,6 @@
 .createButton {
 	bottom: 100px;
 	right: 100px;
-
 }
 
 .actionToggleButton:hover,
@@ -53,13 +52,13 @@
 .updateButton:focus,
 .updateButton:active,
 .createButton:hover,
-.createButton:focus,	
+.createButton:focus,
 .createButton:active {
 	color: var(--primary-text-color-yellow);
 	background: var(--primary-color-green);
 }
 .outerOptionsDivs {
-	height: 0;
+	height: 0px;
 	position: fixed;
 	width: 0px;
 	z-index: 1;
@@ -73,32 +72,36 @@
 	overflow-x: hidden;
 	transition: var(--transition-hover-250ms-ease-in-out);
 }
-.optionFormatter {
-
+.optionForms {
+	width: clamp(0px, 400px, 85%);
 }
-.questionTextAreaH, .questionTextAreaB {
-    width: 100%;
-    resize: vertical;
-    border-radius: 5px;
+.questionTextAreaH,
+.questionTextAreaB {
+	width: 100%;
+	resize: vertical;
+	border-radius: 5px;
 }
 .questionTextAreaH {
-    min-height: 80px;
+	min-height: 80px;
 }
 .questionTextAreaB {
-    min-height: 200px;
+	min-height: 200px;
 }
 .optionButtons {
 	width: 100%;
-    display: flex;
-    gap: 10px;
+	display: flex;
+	gap: 10px;
 }
 .optionButtons button {
-    cursor: pointer;
-    width: 100%;
-    padding: 5px;
-    font-weight: bold;
+	cursor: pointer;
+	width: 100%;
+	padding: 5px;
+	font-weight: bold;
 }
 .optionH2Header {
 	text-align: center;
+	color: var(--primary-text-color-whitesmoke);
+}
+.deleteMessage {
 	color: var(--primary-text-color-whitesmoke);
 }

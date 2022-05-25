@@ -7,7 +7,6 @@ import styles from "./id.module.css";
 import InnerForumAnswer from "../../components/school-forum/inside/answer";
 import InnerForumQuestion from "../../components/school-forum/inside/question";
 const IndiForum: React.FC<Props> = ({ forumData, answerData }) => {
-
 	return (
 		<>
 			<Meta

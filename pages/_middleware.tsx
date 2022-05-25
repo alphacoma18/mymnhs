@@ -9,6 +9,7 @@ interface Cookies {
 		access_token_extreme?: string;
 	};
 }
+import { ITokenValue } from "../interface/token";
 const baseUrl: string = "http://localhost:3000";
 const openPaths: Set<string> = new Set([
 	`${baseUrl}/login`,
@@ -59,8 +60,12 @@ export default async function (req: {
 	if (!accessToken && !refreshToken)
 		return NextResponse.redirect(`${baseUrl}/login`);
 	if (!accessToken && refreshToken && openPaths.has(url)) {
-		const verifiedToken: any = await verifyRefreshToken(refreshToken);
-		const newToken: string = await generateAccessToken(verifiedToken);
+		const verifiedToken: ITokenValue = await verifyRefreshToken(
+			refreshToken
+		);
+		const newToken: string = await generateAccessToken(
+			verifiedToken?.user ?? {}
+		);
 		return NextResponse.redirect(`${baseUrl}`).cookie(
 			"access_token_extreme",
 			newToken,
@@ -74,8 +79,12 @@ export default async function (req: {
 		);
 	}
 	if (!accessToken && refreshToken) {
-		const verifiedToken: any = await verifyRefreshToken(refreshToken);
-		const newToken: string = await generateAccessToken(verifiedToken);
+		const verifiedToken: ITokenValue = await verifyRefreshToken(
+			refreshToken
+		);
+		const newToken: string = await generateAccessToken(
+			verifiedToken?.user ?? {}
+		);
 		return NextResponse.next().cookie("access_token_extreme", newToken, {
 			httpOnly: true,
 			secure: true,

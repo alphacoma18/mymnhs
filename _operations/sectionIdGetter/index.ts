@@ -68,7 +68,9 @@ const sections: ISections = {
 	Morgan: 32,
 	Ford: 33,
 };
-export default function sectionIdGetter(section: string): number | void {
+export default async function sectionIdGetter(
+	section: string
+): Promise<number | void> {
 	if (section === "") return void 0;
 	return sections[section as keyof ISections];
 }

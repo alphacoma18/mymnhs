@@ -29,8 +29,10 @@ type ObjData = InData[];
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
 	try {
-		const { token }: any = req.query;
-		const userInfo: UserInfo = await verifyVerificationToken(token);
+		const { token } = req.query;
+		const userInfo: UserInfo = await verifyVerificationToken(
+			token as string
+		);
 
 		const sql: string = `
             SELECT * FROM verify_user_table
@@ -66,7 +68,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 			verify_section_id,
 		]);
 		return res.status(200).redirect("http://localhost:3000/login");
-	} catch (error: any) {
+	} catch (error: unknown) {
 		// redirect to error page
 		return res.status(401).redirect("http://localhost:3000/login");
 	}

@@ -15,6 +15,14 @@ export async function generateRefreshToken(user: {}): Promise<string> {
 	return refreshToken;
 }
 
+export async function verifyAccessToken(token: string): Promise<{}> {
+	const { payload: verifiedToken } = await jose.jwtVerify(
+		token,
+		new TextEncoder().encode(process.env.ACCESS_TOKEN_SECRET)
+	);
+	return verifiedToken;
+}
+
 export async function verifyRefreshToken(token: string): Promise<{}> {
 	const { payload: verifiedToken } = await jose.jwtVerify(
 		token,

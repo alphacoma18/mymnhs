@@ -16,7 +16,7 @@ const LeftMenu: React.FC = () => {
 		try {
 			await axios.post("/logout");
 			return router.push("/login");
-		} catch (error: any) {
+		} catch (error: unknown) {
 			console.log(error);
 			return void 0;
 		}

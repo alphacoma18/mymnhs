@@ -20,7 +20,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 				}),
 			])
 			.json({ message: "Logged out" });
-	} catch (error) {
+	} catch (error: unknown) {
 		return console.log(error);
 	}
 }
