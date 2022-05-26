@@ -67,9 +67,9 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 			verify_password,
 			verify_section_id,
 		]);
-		return res.status(200).redirect("http://localhost:3000/login");
+		return res.status(200).redirect("http://mymnhs.vercel.app/login");
 	} catch (error: unknown) {
 		// redirect to error page
-		return res.status(401).redirect("http://localhost:3000/login");
+		return res.status(401).redirect("http://mymnhs.vercel.app/login");
 	}
 }
