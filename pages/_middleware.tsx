@@ -11,7 +11,7 @@ interface Cookies {
 	};
 }
 import { ITokenValue } from "../interface/token";
-const baseUrl: string = "http://localhost:3000";
+const baseUrl: string = "https://mymnhs.vercel.app";
 const openPaths: Set<string> = new Set([
 	`${baseUrl}/login`,
 	`${baseUrl}/signup`,
