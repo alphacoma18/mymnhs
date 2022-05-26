@@ -75,7 +75,7 @@ export default async function (
 			{
 				httpOnly: true,
 				secure: true,
-				sameSite: "strict",
+				sameSite: "none",
 				domain: "mymnhs.vercel.app",
 				expires: new Date(Date.now() + 60 * 1000 * 10), // 10 minutes
 			}
@@ -91,7 +91,7 @@ export default async function (
 		return NextResponse.next().cookie("access_token_extreme", newToken, {
 			httpOnly: true,
 			secure: true,
-			sameSite: "strict",
+			sameSite: "none",
 			domain: "mymnhs.vercel.app",
 			expires: new Date(Date.now() + 60 * 1000 * 10), // 10 minutes
 		});

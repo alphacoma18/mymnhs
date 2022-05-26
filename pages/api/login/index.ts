@@ -65,14 +65,14 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 				serialize("refresh_token_extreme", refreshToken, {
 					httpOnly: true,
 					secure: true,
-					sameSite: "strict",
+					sameSite: "none",
 					domain: "mymnhs.vercel.app",
 					expires: new Date(Date.now() + 60 * 1000 * 60 * 24 * 7), // 7 days
 				}),
 				serialize("access_token_extreme", accessToken, {
 					httpOnly: true,
 					secure: true,
-					sameSite: "strict",
+					sameSite: "none",
 					domain: "mymnhs.vercel.app",
 					expires: new Date(Date.now() + 60 * 1000 * 10), // 10 minutes
 				}),
