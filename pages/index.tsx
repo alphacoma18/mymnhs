@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import AuthContext from "../_operations/context/AuthProvider";
+import React from "react";
 import Meta from "../components/_meta";
 import Layout from "../components/_layout";
 const Index: React.FC = () => {

@@ -1,3 +1,4 @@
+import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 import {
 	generateAccessToken,
@@ -38,28 +39,30 @@ const openDynamicApiPaths: string[] = [
 	`${baseUrl}/api/verification/`,
 	`${baseUrl}/api/forgot-password/`,
 ];
-export default async function (req: {
-	url?: any;
-	cookies?: any;
-}): Promise<NextResponse | void> {
+export default async function (
+	req: NextApiRequest
+): Promise<NextResponse | void> {
 	const { cookies }: Cookies = req;
-	const url: string = req.url;
+	const url: string | undefined = req.url;
 	const refreshToken: string | undefined = cookies?.refresh_token_extreme;
 	const accessToken: string | undefined = cookies?.access_token_extreme;
 
-	if (openApiPaths.has(url)) return NextResponse.next();
+	if (openApiPaths.has(url!)) return NextResponse.next();
 	if (
-		url.includes(openDynamicApiPaths[0]) ||
-		url.includes(openDynamicApiPaths[1])
+		url?.includes(openDynamicApiPaths[0]) ||
+		url?.includes(openDynamicApiPaths[1])
 	)
 		return NextResponse.next();
-	if (url.includes(openDynamicPaths[0]) || url.includes(openDynamicPaths[1]))
+	if (
+		url?.includes(openDynamicPaths[0]) ||
+		url?.includes(openDynamicPaths[1])
+	)
 		return NextResponse.next();
-	if (!refreshToken && openPaths.has(url)) return void 0;
+	if (!refreshToken && openPaths.has(url!)) return void 0;
 
 	if (!accessToken && !refreshToken)
 		return NextResponse.redirect(`${baseUrl}/login`);
-	if (!accessToken && refreshToken && openPaths.has(url)) {
+	if (!accessToken && refreshToken && openPaths.has(url!)) {
 		const verifiedToken: ITokenValue = await verifyRefreshToken(
 			refreshToken
 		);

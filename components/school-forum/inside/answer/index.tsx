@@ -14,8 +14,8 @@ const InnerForumAnswer: React.FC<{ data: IAnswerData[] }> = ({ data }) => {
 							<p>{response.answer_content}</p>
 							<p className={styles.meta}>
 								{response.section_grade}{" "}
-								{response.section_strand}{" "}
-								{response.section_strand} -{" "}
+								{response.section_strand}
+								{" - "}
 								{response.account_first_name}{" "}
 								{response.account_last_name}
 							</p>

@@ -37,7 +37,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 		const sql: string = `
             SELECT * FROM verify_user_table
             WHERE verify_email = ?
-            LIMIT 1
+            LIMIT 1;
         `;
 
 		const objData: ObjData = await dbExecute(sql, [userInfo.user?.email]);

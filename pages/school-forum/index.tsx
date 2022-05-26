@@ -36,7 +36,7 @@ export const SchoolForum: React.FC<IForumList> = ({ data }) => {
 				twitterUrl="/schoolPlatform"
 			/>
 			<section className={styles.outermostForumSection}>
-				<OuterForumLeft data={data} />
+				<OuterForumLeft />
 				<OuterForumRight data={data} />
 			</section>
 			<NewForumQuestion />
@@ -54,7 +54,7 @@ const SchoolForumPage: React.FC<IForumList> = ({ data }) => {
 export default SchoolForumPage;
 
 export const getStaticProps: GetStaticProps = async () => {
-	const sql: string = `
+	const sql: string = ` 
 			SELECT question_id, question_header, question_body, question_timestamp, account_first_name, account_last_name, section_grade, section_strand FROM forum_question_table
 			JOIN account_table
 			ON forum_question_table.question_asker_id = account_table.account_id
@@ -67,6 +67,6 @@ export const getStaticProps: GetStaticProps = async () => {
 		props: {
 			data,
 		},
-		revalidate: 60,
+		revalidate: 5,
 	};
 };
