@@ -19,7 +19,7 @@ const Index: React.FC = () => {
 				<h1>this is the home page</h1>
 			</section>
 		</>
-	);
+	); 
 };
 const IndexPage = () => {
 	return (
