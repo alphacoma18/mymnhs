@@ -8,14 +8,14 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 					httpOnly: true,
 					secure: true,
 					sameSite: "strict",
-					path: "/",
+					domain: "mymnhs.vercel.app",
 					expires: new Date(Date.now() - 60),
 				}),
 				serialize("access_token_extreme", "false", {
 					httpOnly: true,
 					secure: true,
 					sameSite: "strict",
-					path: "/",
+					domain: "mymnhs.vercel.app",
 					expires: new Date(Date.now() - 60),
 				}),
 			])
