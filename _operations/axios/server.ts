@@ -1,5 +1,5 @@
 import Axios from "axios";
 
 export const nodeServer = Axios.create({
-	baseURL: "http://localhost:9000/api",
+	baseURL: "https://localhost:9000/api",
 });
