@@ -6,7 +6,8 @@ import Meta from "../../components/_meta";
 import styles from "./id.module.css";
 import InnerForumAnswer from "../../components/school-forum/inside/answer";
 import InnerForumQuestion from "../../components/school-forum/inside/question";
-const IndiForum: React.FC<Props> = ({ forumData, answerData }) => {
+import NewForumAnswer from "../../components/school-forum/inside/newAnswer";
+const IndiForum: React.FC<Props> = ({ forumData, answerData, currentId }) => {
 	return (
 		<>
 			<Meta
@@ -25,6 +26,7 @@ const IndiForum: React.FC<Props> = ({ forumData, answerData }) => {
 					<InnerForumQuestion data={forumData} />
 					<InnerForumAnswer data={answerData} />
 				</div>
+				<NewForumAnswer currentId={currentId} />
 			</section>
 		</>
 	);
@@ -32,6 +34,7 @@ const IndiForum: React.FC<Props> = ({ forumData, answerData }) => {
 interface Props {
 	forumData: IQuestionData;
 	answerData: IAnswerData[];
+	currentId: string;
 }
 export interface IQuestionData {
 	account_first_name: string;
@@ -54,12 +57,20 @@ export interface IAnswerData {
 	answer_content: string;
 	answer_timestamp: string;
 }
-const IndiForumPage: React.FC<Props> = ({ forumData, answerData }) => {
+const IndiForumPage: React.FC<Props> = ({
+	forumData,
+	answerData,
+	currentId,
+}) => {
 	return (
 		<>
 			<Layout
 				page={
-					<IndiForum forumData={forumData} answerData={answerData} />
+					<IndiForum
+						forumData={forumData}
+						answerData={answerData}
+						currentId={currentId}
+					/>
 				}
 			/>
 		</>
@@ -109,10 +120,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		WHERE forum_question_table.question_id = ?;`;
 
 	const answerData: IAnswerData = await dbExecute(sql2, [params?.id]);
+
 	return {
 		props: {
 			forumData: _questionData,
 			answerData,
+			currentId: params?.id,
 		},
 		revalidate: 60,
 	};

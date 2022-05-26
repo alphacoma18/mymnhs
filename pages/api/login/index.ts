@@ -31,7 +31,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 			SELECT account_id, account_first_name, account_last_name, account_section_id, account_password
 			FROM account_table
 			WHERE account_email = ?
-			LIMIT 1
+			LIMIT 1;
 		`;
 		const objData: ObjData = await dbExecute(sql, [email]);
 		if (objData.length === 0)
@@ -77,7 +77,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 					expires: new Date(Date.now() + 60 * 1000 * 10), // 10 minutes
 				}),
 			])
-			.json({ user: objData });
+			.send("");
 	} catch (error: unknown) {
 		return res.status(500).json({ message: "Internal Server Error" });
 	}

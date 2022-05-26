@@ -52,6 +52,9 @@ const ButtonOptions: React.FC<Props> = ({
 		e.preventDefault();
 		await createExecutor(createBody, createHeader);
 		clearCreate();
+		setIsCreate(false);
+		setIsUpdate(false);
+		setIsDelete(false);
 		return void 0;
 	}
 

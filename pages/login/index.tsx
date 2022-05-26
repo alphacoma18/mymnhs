@@ -5,25 +5,22 @@ import Meta from "../../components/_meta";
 import Link from "next/link";
 import { axios } from "../../_operations/axios/axios";
 import { useRouter } from "next/router";
-import AuthContext from "../../_operations/context/AuthProvider";
 const Login: React.FC = () => {
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const [error, setError] = useState<string>("");
 	const [showError, setShowError] = useState<boolean>(false);
-	const router: any = useRouter();
-	const { login } = useContext(AuthContext);
+	const router = useRouter();
 
 	async function handleLogin(
 		e: React.FormEvent<HTMLFormElement>
 	): Promise<boolean | void> {
 		e.preventDefault();
 		try {
-			let res: any = await axios.post("/login", {
+			await axios.post("/login", {
 				email,
 				password,
 			});
-			login(res.data.user);
 			return router.push("/");
 		} catch (error: any) {
 			let status: number = error.response.status;

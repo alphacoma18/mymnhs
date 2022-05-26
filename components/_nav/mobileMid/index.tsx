@@ -6,7 +6,7 @@ import Image from "next/image";
 const MobileMiddle: React.FC = () => {
 	const [show, setShow] = React.useState<boolean>(false);
 	const toggleStyle: { height: string } = {
-		height: show ? "100%" : "0",
+		height: show ? "100%" : "0px",
 	};
 	return (
 		<>

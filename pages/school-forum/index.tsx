@@ -36,7 +36,7 @@ export const SchoolForum: React.FC<IForumList> = ({ data }) => {
 				twitterUrl="/schoolPlatform"
 			/>
 			<section className={styles.outermostForumSection}>
-				<OuterForumLeft data={data} />
+				{/* <OuterForumLeft data={data} /> */}
 				<OuterForumRight data={data} />
 			</section>
 			<NewForumQuestion />
