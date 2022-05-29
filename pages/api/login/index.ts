@@ -67,7 +67,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 					secure: true,
 					sameSite: "none",
 					path: "/",
-					// domain: "mymnhs.vercel.app",
 					expires: new Date(Date.now() + 60 * 1000 * 60 * 24 * 7), // 7 days
 				}),
 				serialize("access_token_extreme", accessToken, {
@@ -75,7 +74,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 					secure: true,
 					sameSite: "none",
 					path: "/",
-					// domain: "mymnhs.vercel.app",
 					expires: new Date(Date.now() + 60 * 1000 * 10), // 10 minutes
 				}),
 			])

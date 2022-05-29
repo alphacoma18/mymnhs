@@ -18,7 +18,7 @@ const LeftMenu: React.FC = () => {
 			return router.push("/login");
 		} catch (error: unknown) {
 			console.log(error);
-			return void 0;
+			return router.push("/500");
 		}
 	}
 	return (

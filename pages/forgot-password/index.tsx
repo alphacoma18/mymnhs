@@ -88,7 +88,7 @@ const ForgotPassword: React.FC = () => {
 								<br />
 							</div>
 							<div className={styles.buttonDiv}>
-								<Link href={"login"}>
+								<Link href={"/login"}>
 									<button
 										type="submit"
 										className={styles.submitButton}

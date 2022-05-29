@@ -9,7 +9,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 					secure: true,
 					sameSite: "none",
 					path: "/",
-					// domain: "mymnhs.vercel.app",
 					expires: new Date(Date.now() - 60),
 				}),
 				serialize("access_token_extreme", "false", {
@@ -17,12 +16,12 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 					secure: true,
 					sameSite: "none",
 					path: "/",
-					// domain: "mymnhs.vercel.app",
 					expires: new Date(Date.now() - 60),
 				}),
 			])
 			.json({ message: "Logged out" });
 	} catch (error: unknown) {
-		return console.log(error);
+		console.log(error);
+		res.status(500).redirect("https://mymnhs.vercel.app/500");
 	}
 }

@@ -4,7 +4,7 @@ import dbExecute from "../../../_operations/db/db";
 import bcrypt from "bcrypt";
 interface VerifiedToken {
 	user?: {
-		email?: string;
+		email: string;
 	};
 	exp?: number;
 }

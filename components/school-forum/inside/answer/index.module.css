@@ -1,15 +1,13 @@
 .outerAnswer {
 	padding: 10px;
-	min-height: 100%;
 	color: var(--primary-text-color-whitesmoke);
 }
 .IndiAnswer {
-	border-radius: 10px;
+	border-radius: 15px;
 	padding: 10px;
 	background: var(--primary-color-darkgreen);
 	margin: 10px;
 	word-wrap: break-word;
-	word-break: break-all;
 }
 .meta {
 	text-align: end;

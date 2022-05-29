@@ -26,7 +26,7 @@
 }
 .outerRightMenu {
 	height: 100%;
-	width: 0;
+	width: 0px;
 	position: fixed;
 	z-index: 3;
 	top: 0;
@@ -36,7 +36,7 @@
 	transition: var(--transition-hover-250ms-ease-in-out);
 }
 .mainRightMenu {
-	margin: 10% 0;
+	margin: 10% 0px;
 	width: 100%;
 	text-align: center;
 	color: var(--primary-text-color-whitesmoke);

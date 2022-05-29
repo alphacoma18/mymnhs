@@ -95,7 +95,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 				<meta name="msapplication-TileColor" content="#006400" />
 				<meta name="theme-color" content="#006400" />
-				<meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" /> 
 			</Head>
 			<AuthProvider>
 				<Component {...pageProps} />

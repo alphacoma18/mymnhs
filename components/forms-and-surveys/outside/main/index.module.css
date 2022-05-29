@@ -3,29 +3,16 @@
 	padding: 10px;
 	gap: 14px;
 	flex-direction: column;
-	min-height: calc(100% - 20px);
+	min-height: calc(90vh);
 	line-height: 1.4rem;
 }
-.individualQuestion {
+.individualSurvey {
 	border-radius: 15px;
 	background: var(--primary-color-darkgreen);
-	color: var(--primary-text-color-whitesmoke);
 	min-height: 100px;
 	padding: 10px;
 }
-.questionPositioner {
-	height: 100%;
-	width: 100%;
-	display: grid;
-	gap: 5px;
-	grid-template-columns: 1fr 88%;
-}
-.questionMeta {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-.questionData {
+.surveyData {
 	display: flex;
 	flex-wrap: wrap;
 	background: var(--primary-color-whitesmoke);
@@ -33,8 +20,8 @@
 	padding: 5px;
 	border-radius: 10px;
 }
-.questionBody,
-.questionHeader {
+.surveyBody,
+.surveyHeader {
 	white-space: pre-line;
 	word-break: break-word;
 	width: 100%;
@@ -45,20 +32,8 @@
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 }
-.questionAsker,
-.questionTimestamp {
+.surveyAsker,
+.surveyTimestamp {
 	width: 100%;
 	text-align: end;
-}
-@media screen and (max-width: 768px) {
-	.questionPositioner {
-		grid-template-columns: 1fr;
-		grid-template-rows: 1fr 5fr;
-	}
-	.questionMeta {
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-start;
-		gap: 10px;
-	}
 }

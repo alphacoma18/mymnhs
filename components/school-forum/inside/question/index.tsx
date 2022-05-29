@@ -1,7 +1,9 @@
 import React from "react";
 import styles from "./index.module.css";
-import { IQuestionData } from "../../../../pages/school-forum/[id]";
-const InnerForumQuestion: React.FC<{ data: IQuestionData }> = ({ data }) => {
+import { IInnerForumQuestionData } from "../../../../interface/school-forum/answer";
+const InnerForumQuestion: React.FC<{ data: IInnerForumQuestionData }> = ({
+	data,
+}) => {
 	return (
 		<>
 			<div className={styles.outermostQuestion}>

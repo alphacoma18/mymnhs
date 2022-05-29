@@ -69,6 +69,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 		return res.status(200).send("");
 	} catch (error: unknown) {
 		console.log(error);
-		return res.status(500).send("");
+		res.status(500).redirect("https://mymnhs.vercel.app/500");
 	}
 }

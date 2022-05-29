@@ -4,8 +4,8 @@ import dbExecute from "../../../_operations/db/db";
 
 interface UserInfo {
 	user?: {
-		email?: string | undefined;
-		exp?: number | undefined;
+		email: string | undefined;
+		exp: number | undefined;
 	};
 }
 interface InData {
@@ -69,7 +69,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 		]);
 		return res.status(200).redirect("https://mymnhs.vercel.app/login");
 	} catch (error: unknown) {
-		// redirect to error page
-		return res.status(401).redirect("https://mymnhs.vercel.app/login");
+		res.status(500).redirect("https://mymnhs.vercel.app/500");
 	}
 }

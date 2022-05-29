@@ -21,8 +21,7 @@
 	justify-content: center;
 	animation: first-sight-appear 2s ease-in-out 1 0s normal;
 	padding: 20px;
-	animation: mnhs-logo-glow 2s linear 0s infinite normal,
-		show-login-form 1000ms ease-in-out 0s 1 normal;
+	animation: mnhs-logo-glow 2s linear 0s infinite normal;
 }
 .formStyle {
 	display: flex;
@@ -33,16 +32,14 @@
 .forgotFormat form h2 {
 	text-align: center;
 }
-.forgotFormat form input {
+.forgotFormat form input,
+.buttonDiv button {
 	padding: 5px;
 }
 .buttonDiv {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
-}
-.buttonDiv button {
-	padding: 5px;
 }
 
 @keyframes mnhs-logo-glow {
