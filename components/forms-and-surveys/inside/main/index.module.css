@@ -1,0 +1,27 @@
+.outermostQuestion {
+	width: 100%;
+	color: var(--primary-text-color-whitesmoke);
+}
+.secondOuter {
+	padding: 10px;
+}
+.header,
+.body,
+.meta,
+.qnaNumber {
+	word-break: break-word;
+	border-radius: 10px;
+	background: var(--primary-color-darkgreen);
+	padding: 10px;
+}
+.body {
+	white-space: pre-line;
+}
+.qnaNumber {
+	text-align: center;
+}
+.urlLink {
+	color: var(--primary-text-color-yellow);
+	font-weight: bold;
+	text-decoration: none;
+}

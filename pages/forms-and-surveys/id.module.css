@@ -1,0 +1,6 @@
+.outermostSurvey {
+	min-height: 100%;
+	background: var(--primary-color-whitesmoke);
+	width: clamp(0px, 100%, 75ch);
+	margin: auto;
+}

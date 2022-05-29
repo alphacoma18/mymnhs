@@ -39,7 +39,7 @@ const Nav: React.FC = () => {
 							</i>
 						</a>
 					</Link>
-					<Link href={"/school-surveys"}>
+					<Link href={"/forms-and-surveys"}>
 						<a className={styles.navLink}>
 							<i className="icon-wpforms">
 								<span>Forms and surveys</span>

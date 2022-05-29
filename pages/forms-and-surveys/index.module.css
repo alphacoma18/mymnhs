@@ -1,0 +1,5 @@
+.outermostSurveySection {
+	width: clamp(35ch, 100%, 75ch);
+	min-height: 100%;
+	margin: auto;
+}

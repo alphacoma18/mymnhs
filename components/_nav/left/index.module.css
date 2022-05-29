@@ -22,7 +22,7 @@
 	width: 35px;
 	height: 6px;
 	background: var(--primary-color-whitesmoke);
-	margin: 4px 0;
+	margin: 4px 0px;
 }
 .outerLeftMenu {
 	height: 100%;
@@ -37,7 +37,7 @@
 	transition: var(--transition-hover-250ms-ease-in-out);
 }
 .mainLeftMenu {
-	margin: 10% 0;
+	margin: 10% 0px;
 	width: 100%;
 	text-align: center;
 	color: var(--primary-text-color-whitesmoke);

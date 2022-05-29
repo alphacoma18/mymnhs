@@ -7,76 +7,45 @@ import styles from "./id.module.css";
 import InnerForumAnswer from "../../components/school-forum/inside/answer";
 import InnerForumQuestion from "../../components/school-forum/inside/question";
 import NewForumAnswer from "../../components/school-forum/inside/newAnswer";
-const IndiForum: React.FC<Props> = ({ forumData, answerData, currentId }) => {
-	return (
-		<>
-			<Meta
-				title={`${forumData.question_header} | MyMNHS`}
-				description={`${forumData.question_body} | MyMNHS`}
-				url={`/school-forum/${forumData.question_id}`}
-				ogTitle={`${forumData.question_header} | MyMNHS`}
-				ogDescription={`${forumData.question_body} | MyMNHS`}
-				ogUrl={`/school-forum/${forumData.question_id}`}
-				twitterTitle={`${forumData.question_header} | MyMNHS`}
-				twitterDescription={`${forumData.question_body} | MyMNHS`}
-				twitterUrl={`/school-forum/${forumData.question_id}`}
-			/>
-			<section className={styles.outermostForum}>
-				<div className={styles.secondOutermost}>
-					<InnerForumQuestion data={forumData} />
-					<InnerForumAnswer data={answerData} />
-				</div>
-				<NewForumAnswer currentId={currentId} />
-			</section>
-		</>
-	);
-};
+import {
+	IInnerForumAnswerData,
+	IInnerForumQuestionData,
+} from "../../interface/school-forum/answer";
 interface Props {
-	forumData: IQuestionData;
-	answerData: IAnswerData[];
+	forumData: IInnerForumQuestionData;
+	answerData: IInnerForumAnswerData[];
 	currentId: string;
 }
-export interface IQuestionData {
-	account_first_name: string;
-	account_last_name: string;
-	section_grade: number;
-	section_strand: string;
-	section_name: string;
-	question_id: number;
-	question_header: string;
-	question_body: string;
-	question_timestamp: string;
-}
-export interface IAnswerData {
-	account_first_name: string;
-	account_last_name: string;
-	section_grade: number;
-	section_strand: string;
-	section_name: string;
-	general_id: number;
-	answer_content: string;
-	answer_timestamp: string;
-}
-const IndiForumPage: React.FC<Props> = ({
-	forumData,
-	answerData,
-	currentId,
-}) => {
+
+const IndiForum: React.FC<Props> = ({ forumData, answerData, currentId }) => {
 	return (
 		<>
 			<Layout
 				page={
-					<IndiForum
-						forumData={forumData}
-						answerData={answerData}
-						currentId={currentId}
-					/>
+					<>
+						<Meta
+							title={`${forumData.question_header} | MyMNHS`}
+							description={`${forumData.question_body} | MyMNHS`}
+							url={`/school-forum/${forumData.question_id}`}
+							ogTitle={`${forumData.question_header} | MyMNHS`}
+							ogDescription={`${forumData.question_body} | MyMNHS`}
+							ogUrl={`/school-forum/${forumData.question_id}`}
+							twitterTitle={`${forumData.question_header} | MyMNHS`}
+							twitterDescription={`${forumData.question_body} | MyMNHS`}
+							twitterUrl={`/school-forum/${forumData.question_id}`}
+						/>
+						<section className={styles.outermostForum}>
+							<InnerForumQuestion data={forumData} />
+							<InnerForumAnswer data={answerData} />
+							<NewForumAnswer currentId={currentId} />
+						</section>
+					</>
 				}
 			/>
 		</>
 	);
 };
-export default IndiForumPage;
+export default IndiForum;
 
 interface Data {
 	question_id: number;
@@ -97,6 +66,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
 	const { params } = context;
+	const id = params?.id;
 	const sql: string = `
 		SELECT account_first_name, account_last_name, section_grade, section_strand, section_name, question_id, question_header, question_body, question_timestamp
 		FROM forum_question_table
@@ -106,8 +76,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		ON account_table.account_section_id = section_table.section_id
 		WHERE forum_question_table.question_id = ?;`;
 
-	const questionData: IQuestionData[] = await dbExecute(sql, [params?.id]);
-	const _questionData: IQuestionData = questionData[0];
+	const questionData: IInnerForumAnswerData[] = await dbExecute(sql, [id]);
+	const _questionData: IInnerForumAnswerData = questionData[0];
+
 	const sql2: string = `
 		SELECT account_first_name, account_last_name, section_grade , section_strand, section_name, general_id, answer_content, answer_timestamp
 		FROM forum_answer_table
@@ -119,14 +90,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		ON account_table.account_section_id = section_table.section_id
 		WHERE forum_question_table.question_id = ?;`;
 
-	const answerData: IAnswerData = await dbExecute(sql2, [params?.id]);
+	const answerData: IInnerForumAnswerData = await dbExecute(sql2, [id]);
 
 	return {
 		props: {
 			forumData: _questionData,
 			answerData,
-			currentId: params?.id,
+			currentId: id,
 		},
-		revalidate: 5,	
+		revalidate: 5,
 	};
 };

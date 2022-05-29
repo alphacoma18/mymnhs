@@ -10,12 +10,13 @@ interface Cookies {
 		access_token_extreme?: string;
 	};
 }
-import { ITokenValue } from "../interface/token";
+import { ITokenValue } from "../interface/_token";
 const baseUrl: string = "https://mymnhs.vercel.app";
 const openPaths: Set<string> = new Set([
 	`${baseUrl}/login`,
 	`${baseUrl}/signup`,
 	`${baseUrl}/forgot-password`,
+	`${baseUrl}/500`,
 	`${baseUrl}/school-forum`,
 	`${baseUrl}/favicon.ico`,
 	`${baseUrl}/vercel.svg`,
@@ -77,7 +78,6 @@ export default async function (
 				secure: true,
 				sameSite: "none",
 				path: "/",
-				// domain: "mymnhs.vercel.app",
 				expires: new Date(Date.now() + 60 * 1000 * 10), // 10 minutes
 			}
 		);
@@ -92,9 +92,8 @@ export default async function (
 		return NextResponse.next().cookie("access_token_extreme", newToken, {
 			httpOnly: true,
 			secure: true,
-			path: "/",
 			sameSite: "none",
-			// domain: "mymnhs.vercel.app",
+			path: "/",
 			expires: new Date(Date.now() + 60 * 1000 * 10), // 10 minutes
 		});
 	}

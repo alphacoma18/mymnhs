@@ -21,6 +21,7 @@ const MobileMiddle: React.FC = () => {
 					width={50}
 					height={50}
 					alt="MNHS Logo"
+					title="Toggle Page Routes"
 				/>
 			</button>
 			<div className={styles.outermostToggle} style={toggleStyle}>
@@ -36,7 +37,7 @@ const MobileMiddle: React.FC = () => {
 							</i>
 						</a>
 					</Link>
-					<Link href={"/messages"}>
+					<Link href={"/global-chat"}>
 						<a className={styles.navLink}>
 							<i className="icon-globe">
 								<span>Global Chat</span>
@@ -57,7 +58,7 @@ const MobileMiddle: React.FC = () => {
 							</i>
 						</a>
 					</Link>
-					<Link href={"/school-surveys"}>
+					<Link href={"/forms-and-surveys"}>
 						<a className={styles.navLink}>
 							<i className="icon-info-circled">
 								<span>Forms and surveys</span>

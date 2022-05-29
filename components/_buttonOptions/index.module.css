@@ -73,10 +73,11 @@
 	transition: var(--transition-hover-250ms-ease-in-out);
 }
 .optionForms {
-	width: clamp(0px, 400px, 85%);
+	width: clamp(0px, 450px, 85%);
 }
 .questionTextAreaH,
-.questionTextAreaB {
+.questionTextAreaB,
+.questionURL {
 	width: 100%;
 	resize: vertical;
 	border-radius: 5px;
@@ -104,4 +105,15 @@
 }
 .deleteMessage {
 	color: var(--primary-text-color-whitesmoke);
+}
+@media screen and (max-width: 480px) {
+	.outerOptionsDivs {
+		z-index: 3;
+	}
+	.actionToggleButton,
+	.deleteButton,
+	.updateButton,
+	.createButton {
+		z-index: 4;
+	}
 }

@@ -21,6 +21,7 @@ export default async function (
 		await dbExecute(sql, [currentId, userId, body, NewDate()]);
 		return res.status(200).send("");
 	} catch (error: unknown) {
-		return console.log(error);
+		console.log(error);
+		res.status(500).redirect("https://mymnhs.vercel.app/500");
 	}
 }

@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import NodeMailer69 from "../../../_operations/nodeMailer";
 import dbExecute from "../../../_operations/db/db";
+import NewDate from "../../../_operations/_currentDate";
 import { generateResetPasswordToken } from "../../../_operations/jwt/jwt";
 interface InData {
 	account_id: number;
@@ -29,7 +30,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             INSERT INTO reset_password_table(reset_email, reset_timestamp, reset_account_id)
             VALUES(?, ?, ?)
         `;
-		await dbExecute(sql2, [email, new Date(), objData[0].account_id]);
+		await dbExecute(sql2, [email, NewDate(), objData[0].account_id]);
 		const resetPasswordToken: string = await generateResetPasswordToken({
 			email,
 		});

@@ -3,16 +3,7 @@
 }
 .secondOuter {
 	padding: 10px;
-	display: grid;
-	grid-template-rows: auto auto 1fr auto auto;
-	background: var(--primary-color-whitesmoke);
 	color: var(--primary-text-color-whitesmoke);
-}
-.questionHeader {
-	word-break: break-word;
-	border-radius: 10px;
-	background: var(--primary-color-darkgreen);
-	padding: 10px;
 }
 .header,
 .body,

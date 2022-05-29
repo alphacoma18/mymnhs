@@ -54,8 +54,7 @@ const Signup: React.FC = () => {
 				section,
 			});
 			return router.push("/login");
-		} catch (error: any) {
-			alert(error.response.data.message);
+		} catch (error: unknown) {
 			return void 0;
 		}
 	}

@@ -1,12 +1,5 @@
 .outermostForumSection {
-	width: 100%;
+	width: clamp(35ch, 100%, 75ch);
 	min-height: 100%;
-	display: grid;
-	grid-template-columns: 1fr 75%;
-}
-
-@media screen and (max-width: 1024px) {
-	.outermostForumSection {
-		grid-template-columns: 1fr;
-	}
+	margin: auto;
 }

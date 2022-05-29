@@ -5,53 +5,41 @@ import Meta from "../../components/_meta";
 import { GetStaticProps } from "next";
 import dbExecute from "../../_operations/db/db";
 
-import OuterForumLeft from "../../components/school-forum/outside/left";
-import OuterForumRight from "../../components/school-forum/outside/right";
+import OuterForumMain from "../../components/school-forum/outside/main";
 import NewForumQuestion from "../../components/school-forum/outside/newQuestion/index";
-interface Props {
-	question_id: number;
-	question_header: string;
-	question_body: string;
-	question_timestamp: string;
-	account_first_name: string;
-	account_last_name: string;
-	section_grade: number;
-	section_strand: string;
-}
-export interface IForumList {
-	data: Props[];
-}
-export const SchoolForum: React.FC<IForumList> = ({ data }) => {
-	return (
-		<>
-			<Meta
-				title="School Forum | MyMNHS"
-				description="MyMNHS School Platform lets you connect with your classmates and teachers in the school community of Meycauayan National High School. Be the best, choose MNHS!"
-				url="/schoolPlatform"
-				ogTitle="School Forum | MyMNHS"
-				ogDescription="MyMNHS School Platform lets you connect with your classmates and teachers in the school community of Meycauayan National High School. Be the best, choose MNHS!"
-				ogUrl="/schoolPlatform"
-				twitterTitle="School Forum | MyMNHS"
-				twitterDescription="MyMNHS School Platform lets you connect with your classmates and teachers in the school community of Meycauayan National High School. Be the best, choose MNHS!"
-				twitterUrl="/schoolPlatform"
-			/>
-			<section className={styles.outermostForumSection}>
-				<OuterForumLeft />
-				<OuterForumRight data={data} />
-			</section>
-			<NewForumQuestion />
-		</>
-	);
-};
+import {
+	IOuterForumQuestionData,
+	IOuterForumQuestionList,
+} from "../../interface/school-forum/question";
 
-const SchoolForumPage: React.FC<IForumList> = ({ data }) => {
+const SchoolForum: React.FC<IOuterForumQuestionList> = ({ data }) => {
 	return (
 		<>
-			<Layout page={<SchoolForum data={data} />} />
+			<Layout
+				page={
+					<>
+						<Meta
+							title="School Forum | MyMNHS"
+							description="MyMNHS School Platform lets you connect with your classmates and teachers in the school community of Meycauayan National High School. Be the best, choose MNHS!"
+							url="/schoolPlatform"
+							ogTitle="School Forum | MyMNHS"
+							ogDescription="MyMNHS School Platform lets you connect with your classmates and teachers in the school community of Meycauayan National High School. Be the best, choose MNHS!"
+							ogUrl="/schoolPlatform"
+							twitterTitle="School Forum | MyMNHS"
+							twitterDescription="MyMNHS School Platform lets you connect with your classmates and teachers in the school community of Meycauayan National High School. Be the best, choose MNHS!"
+							twitterUrl="/schoolPlatform"
+						/>
+						<section className={styles.outermostForumSection}>
+							<OuterForumMain data={data} />
+						</section>
+						<NewForumQuestion />
+					</>
+				}
+			/>
 		</>
 	);
 };
-export default SchoolForumPage;
+export default SchoolForum;
 
 export const getStaticProps: GetStaticProps = async () => {
 	const sql: string = ` 
@@ -61,11 +49,11 @@ export const getStaticProps: GetStaticProps = async () => {
 			JOIN section_table
 			ON account_table.account_section_id = section_table.section_id
 			ORDER BY question_timestamp DESC`;
-	const data: Props[] = await dbExecute(sql);
+	const data: IOuterForumQuestionData[] = await dbExecute(sql);
 
 	return {
 		props: {
-			data,
+			data: data,
 		},
 		revalidate: 5,
 	};

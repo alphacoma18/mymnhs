@@ -1,24 +1,32 @@
 import React, { useState, useEffect } from "react";
 import styles from "./index.module.css";
 interface Props {
-	createExecutor: (body?: string, header?: string) => Promise<boolean | void>;
+	createExecutor: (
+		body?: string,
+		header?: string,
+		url?: string
+	) => Promise<boolean | void>;
 	placeholderB?: string;
 	placeholderH?: string;
+	placeholderURL?: string;
 	createButton?: boolean;
 	deleteButton?: boolean;
 	updateButton?: boolean;
 	maxLengthB?: number;
 	maxLengthH?: number;
+	maxLengthURL?: number;
 }
 const ButtonOptions: React.FC<Props> = ({
 	createExecutor,
 	placeholderB,
 	placeholderH,
+	placeholderURL,
 	createButton,
 	deleteButton,
 	updateButton,
 	maxLengthB,
 	maxLengthH,
+	maxLengthURL,
 }) => {
 	const [isActive, setIsActive] = useState<boolean>(true);
 	const [isCreate, setIsCreate] = useState<boolean>(false);
@@ -27,8 +35,10 @@ const ButtonOptions: React.FC<Props> = ({
 
 	const [createBody, setCreateBody] = useState<string>("");
 	const [createHeader, setCreateHeader] = useState<string>("");
+	const [createURL, setCreateURL] = useState<string>("");
 	const [updateBody, setUpdateBody] = useState<string>("");
 	const [updateHeader, setUpdateHeader] = useState<string>("");
+	const [updateURL, setUpdateURL] = useState<string>("");
 
 	useEffect((): void => {
 		setIsActive(false);
@@ -50,7 +60,7 @@ const ButtonOptions: React.FC<Props> = ({
 		e: React.FormEvent<HTMLFormElement>
 	): Promise<void> {
 		e.preventDefault();
-		await createExecutor(createBody, createHeader);
+		await createExecutor(createBody, createHeader, createURL);
 		clearCreate();
 		setIsCreate(false);
 		setIsUpdate(false);
@@ -127,6 +137,18 @@ const ButtonOptions: React.FC<Props> = ({
 				>
 					<h2 className={styles.optionH2Header}>Option Create</h2>
 					<hr className="horizontalRuleYellow" />
+					{placeholderURL && (
+						<textarea
+							placeholder={placeholderURL}
+							minLength={10}
+							maxLength={maxLengthURL}
+							className={styles.questionURL}
+							onChange={(
+								e: React.ChangeEvent<HTMLTextAreaElement>
+							) => setCreateURL(e.currentTarget.value)}
+							value={createURL}
+						></textarea>
+					)}
 					{placeholderH && (
 						<textarea
 							placeholder={placeholderH}
@@ -165,16 +187,30 @@ const ButtonOptions: React.FC<Props> = ({
 				<form method="put" className={styles.optionForms}>
 					<h2 className={styles.optionH2Header}>Option Update</h2>
 					<hr className="horizontalRuleYellow" />
-					<textarea
-						placeholder={placeholderH}
-						minLength={10}
-						maxLength={maxLengthH}
-						className={styles.questionTextAreaH}
-						onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-							setUpdateHeader(e.currentTarget.value)
-						}
-						value={updateHeader}
-					></textarea>
+					{placeholderURL && (
+						<textarea
+							placeholder={placeholderURL}
+							minLength={10}
+							maxLength={maxLengthURL}
+							className={styles.questionURL}
+							onChange={(
+								e: React.ChangeEvent<HTMLTextAreaElement>
+							) => setUpdateURL(e.currentTarget.value)}
+							value={updateURL}
+						></textarea>
+					)}
+					{placeholderH && (
+						<textarea
+							placeholder={placeholderH}
+							minLength={10}
+							maxLength={maxLengthH}
+							className={styles.questionTextAreaH}
+							onChange={(
+								e: React.ChangeEvent<HTMLTextAreaElement>
+							) => setUpdateHeader(e.currentTarget.value)}
+							value={updateHeader}
+						></textarea>
+					)}
 					<textarea
 						placeholder={placeholderB}
 						minLength={10}
