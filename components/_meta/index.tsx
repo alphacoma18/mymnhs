@@ -41,6 +41,7 @@ const Meta: React.FC<Props> = (props) => {
 				property="twitter:url"
 				content={`https://mymnhs.vercel.app${twitterUrl}`}
 			/>
+			<link rel="canonical" href={`https://mymnhs.vercel.app${url}`} />
 		</Head>
 	);
 };
