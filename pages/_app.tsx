@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 		<>
 			<Head>
 				<meta charSet="utf-8" />
-				<title lang="en">MyMNHS | School Platform</title>
+				{/* <title lang="en">MyMNHS | School Platform</title> */}
 				<meta
 					name="viewport"
 					content="width=device-width, initial-scale=1"
@@ -33,11 +33,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 					content="MNHS, Mecauayan, Meycauayan National High School, School Platform, Official Website, Be the best, Choose MNHS, Senior High School"
 				/>
 				<meta name="Classification" content="Education" />
-				<meta name="url" content="https://mymnhs.vercel.app" />
-				<meta
+				{/* <meta name="url" content="https://mymnhs.vercel.app" /> */}
+				{/* <meta
 					name="identifier-URL"
 					content="https://mymnhs.vercel.app"
-				/>
+				/> */}
 				<meta name="language" content="EN" />
 				<meta name="coverage" content="Worldwide" />
 				<meta name="distribution" content="Global" />
@@ -60,15 +60,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 				{/* Open Graph Meta Tags */}
 				<meta property="fb:app_id" content="111960098045066" />
-				<meta property="og:title" content="MyMNHS | School Platform" />
+				{/* <meta property="og:title" content="MyMNHS | School Platform" /> */}
 				<meta
 					property="og:site_name"
 					content="MyMNHS | School Platform"
 				/>
-				<meta
+				{/* <meta
 					property="og:description"
 					content="The unofficial school platform of Meycauayan National High School - Senior High School! 'Be the Best, Choose MNHS!'"
-				/>
+				/> */}
 				<meta property="og:type" content="website" />
 				<meta
 					property="og:image"
@@ -79,7 +79,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 					property="og:image:alt"
 					content="Meycauayan National High School Campus Picture"
 				/>
-				<meta property="og:url" content="https://mymnhs.vercel.app" />
+				{/* <meta property="og:url" content="https://mymnhs.vercel.app" /> */}
 				<meta property="og:locale" content="en_US" />
 				<meta name="og:country-name" content="Philippines" />
 				<meta name="og:postal-code" content="3020" />
@@ -89,12 +89,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 				{/* Twitter Meta Tags */}
 				<meta name="twitter:card" content="summary_large_image" />
-				<meta name="twitter:title" content="MyMNHS | School Platform" />
+				{/* <meta name="twitter:title" content="MyMNHS | School Platform" /> */}
 				<meta name="twitter:app:country" content="EN" />
-				<meta
+				{/* <meta
 					name="twitter:description"
 					content="The unofficial school platform of Meycauayan National High School - Senior High School! 'Be the Best, Choose MNHS!'"
-				/>
+				/> */}
 				<meta
 					name="twitter:image"
 					content="https://mymnhs.vercel.app/attachables/campus-images/image1.jpg"
@@ -106,7 +106,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 				<meta name="twitter:site" content="@senodesuzo" />
 				<meta name="twitter:creator" content="@senodesuzo" />
-				<meta name="twitter:url" content="https://mymnhs.vercel.app" />
+				{/* <meta name="twitter:url" content="https://mymnhs.vercel.app" /> */}
 
 				{/* Internet Explorer Meta Tags */}
 				<meta
@@ -138,7 +138,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 					httpEquiv="Content-Security-Policy"
 					content="upgrade-insecure-requests"
 				/>
-				<link rel="canonical" href="https://mymnhs.vercel.app" />
+				{/* <link rel="canonical" href="https://mymnhs.vercel.app" /> */}
 			</Head>
 			<AuthProvider>
 				<Component {...pageProps} />
