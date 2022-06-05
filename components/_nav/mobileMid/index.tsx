@@ -5,16 +5,13 @@ import FlexHRule from "../../_flexHRule";
 import Image from "next/image";
 const MobileMiddle: React.FC = () => {
 	const [show, setShow] = React.useState<boolean>(false);
-	const toggleStyle: { height: string } = {
-		height: show ? "100%" : "0px",
-	};
 	return (
 		<>
 			<button
 				type="button"
 				title="Toggle Page Routes"
 				className={styles.toggleButton}
-				onClick={() => setShow(!show)}
+				onClick={() => setShow((prev) => !prev)}
 			>
 				<Image
 					src="/attachables/mnhs-images/logos/login_logo.png"
@@ -24,8 +21,15 @@ const MobileMiddle: React.FC = () => {
 					title="Toggle Page Routes"
 				/>
 			</button>
-			<div className={styles.outermostToggle} style={toggleStyle}>
-				<a className={styles.closeMenu} onClick={() => setShow(!show)}>
+			<div
+				className={
+					show ? styles.outermostToggleX : styles.outermostToggle
+				}
+			>
+				<a
+					className={styles.closeMenu}
+					onClick={() => setShow((prev) => !prev)}
+				>
 					&times;
 				</a>
 				<div className={styles.mainToggle}>

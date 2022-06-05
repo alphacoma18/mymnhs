@@ -10,6 +10,9 @@
 	padding: 16px;
 	color: var(--primary-text-color-whitesmoke);
 	font-weight: bold;
+	-o-transition: var(--transition-hover-250ms-ease-in-out);
+	-moz-transition: var(--transition-hover-250ms-ease-in-out);
+	-webkit-transition: var(--transition-hover-250ms-ease-in-out);
 	transition: var(--transition-hover-250ms-ease-in-out);
 }
 .menuContainer {
@@ -22,18 +25,28 @@
 	width: 35px;
 	height: 6px;
 	background: var(--primary-color-whitesmoke);
-	margin: 4px 0;
+	margin: 4px 0px;
 }
-.outerRightMenu {
+
+.outerRightMenu,
+.outerRightMenuX {
 	height: 100%;
-	width: 0px;
-	position: fixed;
 	z-index: 3;
 	top: 0;
 	right: 0;
+	position: fixed;
 	background: var(--primary-color-darkgreen);
 	overflow-x: hidden;
+	-o-transition: var(--transition-hover-250ms-ease-in-out);
+	-moz-transition: var(--transition-hover-250ms-ease-in-out);
+	-webkit-transition: var(--transition-hover-250ms-ease-in-out);
 	transition: var(--transition-hover-250ms-ease-in-out);
+}
+.outerRightMenu {
+	width: 0px;
+}
+.outerRightMenuX {
+	width: 275px;
 }
 .mainRightMenu {
 	margin: 10% 0px;

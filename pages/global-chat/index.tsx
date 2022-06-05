@@ -10,13 +10,13 @@ const Messages: React.FC = () => {
 				page={
 					<>
 						<Meta
-							title="Messages | MNHS"
+							title="Messages | MyMNHS"
 							description="MyMNHS Messages lets you chat with your classmates and teachers in real time!"
 							url="/messages"
-							ogTitle="Messages | MNHS"
+							ogTitle="Messages | MyMNHS"
 							ogDescription="MyMNHS Messages lets you chat with your classmates and teachers in real time!"
 							ogUrl="/messages"
-							twitterTitle="Messages | MNHS"
+							twitterTitle="Messages | MyMNHS"
 							twitterDescription="MyMNHS Messages lets you chat with your classmates and teachers in real time!"
 							twitterUrl="/messages"
 						/>

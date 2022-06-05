@@ -30,6 +30,7 @@
 }
 ::-webkit-scrollbar-track {
 	background: var(--primary-color-whitesmoke);
+	border-radius: 12px;
 }
 ::-webkit-scrollbar-thumb {
 	border-radius: 10px;
@@ -97,6 +98,15 @@ body {
 .errorDiv {
 	width: 100%;
 	display: none;
+	background: var(--error-color);
+	border-radius: 50px;
+	margin: auto;
+	padding: 4px;
+	text-align: center;
+}
+.errorDivX {
+	width: 100%;
+	display: block;
 	background: var(--error-color);
 	border-radius: 50px;
 	margin: auto;

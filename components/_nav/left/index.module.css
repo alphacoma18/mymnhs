@@ -10,6 +10,9 @@
 	padding: 16px;
 	color: var(--primary-text-color-whitesmoke);
 	font-weight: bold;
+	-o-transition: var(--transition-hover-250ms-ease-in-out);
+	-moz-transition: var(--transition-hover-250ms-ease-in-out);
+	-webkit-transition: var(--transition-hover-250ms-ease-in-out);
 	transition: var(--transition-hover-250ms-ease-in-out);
 }
 .menuContainer {
@@ -24,17 +27,25 @@
 	background: var(--primary-color-whitesmoke);
 	margin: 4px 0px;
 }
-.outerLeftMenu {
+.outerLeftMenu,
+.outerLeftMenuX {
 	height: 100%;
-	position: fixed;
-	width: 0px;
 	z-index: 4;
 	top: 0;
-	width: 275px;
 	left: 0;
+	position: fixed;
 	background: var(--primary-color-darkgreen);
 	overflow-x: hidden;
+	-o-transition: var(--transition-hover-250ms-ease-in-out);
+	-moz-transition: var(--transition-hover-250ms-ease-in-out);
+	-webkit-transition: var(--transition-hover-250ms-ease-in-out);
 	transition: var(--transition-hover-250ms-ease-in-out);
+}
+.outerLeftMenu {
+	width: 0px;
+}
+.outerLeftMenuX {
+	width: 275px;
 }
 .mainLeftMenu {
 	margin: 10% 0px;
@@ -58,6 +69,9 @@
 	font-size: 24px;
 	text-align: start;
 	text-decoration: none;
+	-o-transition: var(--transition-hover-250ms-ease-in-out);
+	-moz-transition: var(--transition-hover-250ms-ease-in-out);
+	-webkit-transition: var(--transition-hover-250ms-ease-in-out);
 	transition: var(--transition-hover-250ms-ease-in-out);
 }
 .mainLeftMenu a i {
@@ -68,6 +82,23 @@
 .mainLeftMenu a:active {
 	background: var(--primary-color-green);
 	color: var(--primary-text-color-yellow);
+}
+@-webkit-keyframes mnhs-logo-glow {
+	0% {
+		-webkit-box-shadow: 0px 0px 20px 5px var(--primary-color-yellow);
+	}
+	25% {
+		-webkit-box-shadow: 0px 0px 20px 10px var(--primary-color-yellow);
+	}
+	50% {
+		-webkit-box-shadow: 0px 0px 20px 15px var(--primary-color-yellow);
+	}
+	75% {
+		-webkit-box-shadow: 0px 0px 20px 10px var(--primary-color-yellow);
+	}
+	100% {
+		-webkit-box-shadow: 0px 0px 20px 5px var(--primary-color-yellow);
+	}
 }
 @keyframes mnhs-logo-glow {
 	0% {

@@ -23,5 +23,6 @@ export default async function (
 	} catch (error: unknown) {
 		console.log(error);
 		res.status(500).redirect("https://mymnhs.vercel.app/500");
+		return void 0;
 	}
 }

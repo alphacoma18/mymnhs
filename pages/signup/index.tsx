@@ -12,7 +12,7 @@ const Signup: React.FC = () => {
 	const [firstShow, setFirstShow] = useState<boolean>(true);
 	const [secondShow, setSecondShow] = useState<boolean>(false);
 	const [thirdShow, setThirdShow] = useState<boolean>(false);
-	const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
+	const [submitDisabled, setSubmitDisabled] = useState<boolean>(false);
 
 	function handleFirst(): void {
 		setFirstShow((e) => !e);
@@ -44,7 +44,7 @@ const Signup: React.FC = () => {
 		e: React.FormEvent<HTMLFormElement>
 	): Promise<boolean | void> {
 		e.preventDefault();
-		setFormSubmitted((e) => !e);
+		setSubmitDisabled((e) => !e);
 		try {
 			await axios.post("/signup", {
 				firstName,
@@ -53,7 +53,7 @@ const Signup: React.FC = () => {
 				password,
 				section,
 			});
-			return router.push("/login");
+			return await router.push("/login");
 		} catch (error: unknown) {
 			return void 0;
 		}
@@ -62,13 +62,13 @@ const Signup: React.FC = () => {
 	return (
 		<>
 			<Meta
-				title="MyMNHS | Signup Page"
+				title="Signup Page | MyMNHS"
 				description="Signup to the school platform and seamlessly converse with fellow students at blazingly fast speeds!"
 				url={"/signup"}
-				ogTitle="MyMNHS | Signup Page"
+				ogTitle="Signup Page | MyMNHS"
 				ogDescription="Signup to the school platform and seamlessly converse with fellow students at blazingly fast speeds!"
 				ogUrl={"/signup"}
-				twitterTitle="MyMNHS | Signup Page"
+				twitterTitle="Signup Page | MyMNHS"
 				twitterDescription="Signup to the school platform and seamlessly converse with fellow students at blazingly fast speeds!"
 				twitterUrl={"/signup"}
 			/>
@@ -320,7 +320,7 @@ const Signup: React.FC = () => {
 									</button>
 									<button
 										type="submit"
-										disabled={formSubmitted ? true : false}
+										disabled={submitDisabled}
 									>
 										Send verification
 									</button>

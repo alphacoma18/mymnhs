@@ -76,7 +76,7 @@ export default async function (
 			{
 				httpOnly: true,
 				secure: true,
-				sameSite: "none",
+				sameSite: "lax",
 				path: "/",
 				expires: new Date(Date.now() + 60 * 1000 * 10), // 10 minutes
 			}
@@ -92,7 +92,7 @@ export default async function (
 		return NextResponse.next().cookie("access_token_extreme", newToken, {
 			httpOnly: true,
 			secure: true,
-			sameSite: "none",
+			sameSite: "lax",
 			path: "/",
 			expires: new Date(Date.now() + 60 * 1000 * 10), // 10 minutes
 		});

@@ -17,7 +17,6 @@
 	color: var(--primary-text-color-whitesmoke);
 	width: clamp(0px, 75%, 500px);
 	min-height: 350px;
-	animation: first-sight-appear 2s ease-in-out 1 0s normal;
 	padding: 20px;
 	animation: mnhs-logo-glow 2s linear 0s infinite normal;
 }

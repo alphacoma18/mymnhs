@@ -16,6 +16,9 @@
 	align-items: center;
 	display: flex;
 	cursor: pointer;
+	-o-transition: var(--transition-hover-250ms-ease-in-out);
+	-moz-transition: var(--transition-hover-250ms-ease-in-out);
+	-webkit-transition: var(--transition-hover-250ms-ease-in-out);
 	transition: var(--transition-hover-250ms-ease-in-out);
 }
 .actionToggleButton {
@@ -57,10 +60,9 @@
 	color: var(--primary-text-color-yellow);
 	background: var(--primary-color-green);
 }
-.outerOptionsDivs {
-	height: 0px;
+.outerOptionsDivs,
+.outerOptionsDivsX {
 	position: fixed;
-	width: 0px;
 	z-index: 1;
 	display: flex;
 	justify-content: center;
@@ -70,7 +72,16 @@
 	left: 0;
 	background: var(--primary-color-darkgreen);
 	overflow-x: hidden;
+	-o-transition: var(--transition-hover-250ms-ease-in-out);
+	-moz-transition: var(--transition-hover-250ms-ease-in-out);
+	-webkit-transition: var(--transition-hover-250ms-ease-in-out);
 	transition: var(--transition-hover-250ms-ease-in-out);
+}
+.outerOptionsDivs {
+	height: 0px;
+}
+.outerOptionsDivsX {
+	height: 100%;
 }
 .optionForms {
 	width: clamp(0px, 450px, 85%);

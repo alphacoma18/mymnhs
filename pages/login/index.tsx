@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./index.module.css";
 import MnhsLogo from "../../components/_mnhsLogo";
 import Meta from "../../components/_meta";
@@ -6,26 +6,29 @@ import Link from "next/link";
 import { axios } from "../../_operations/axios/axios";
 import { useRouter } from "next/router";
 const Login: React.FC = () => {
+	const router = useRouter();
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const [error, setError] = useState<string>("");
 	const [showError, setShowError] = useState<boolean>(false);
-	const router = useRouter();
+	const [submitDisabled, setSubmitDisabled] = useState<boolean>(false);
 
 	async function handleLogin(
 		e: React.FormEvent<HTMLFormElement>
 	): Promise<boolean | void> {
 		e.preventDefault();
+		setSubmitDisabled((e) => !e);
 		try {
 			await axios.post("/login", {
 				email,
 				password,
 			});
-			return router.push("/");
+			await router.push("/");
+			return window.location.reload();
 		} catch (error: any) {
 			let status: number = error.response.status;
 			let message: string = error.response.data.message;
-
+			setSubmitDisabled((e) => !e);
 			if (status === 401) return setError(message), setShowError(true);
 			if (status === 403) return setError(message), setShowError(true);
 			if (status === 500) return setError(message), setShowError(true);
@@ -64,10 +67,7 @@ const Login: React.FC = () => {
 							<h2>School Platform Login&nbsp;Form</h2>
 							<hr className={"horizontalRule"} />
 							<div
-								className="errorDiv"
-								style={{
-									display: showError ? "block" : "none",
-								}}
+								className={showError ? "errorDivX" : "errorDiv"}
 							>
 								<h4>{error}</h4>
 							</div>
@@ -109,7 +109,9 @@ const Login: React.FC = () => {
 										<a>Forgot password?</a>
 									</button>
 								</Link>
-								<button type="submit">Link Start!</button>
+								<button type="submit" disabled={submitDisabled}>
+									Link Start!
+								</button>
 							</div>
 						</form>
 					</div>

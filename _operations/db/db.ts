@@ -5,10 +5,13 @@ const connection = mysql.createPool({
 	user: process.env.DB_USER,
 	password: process.env.DB_PASSWORD,
 	database: process.env.DB_DATABASE,
+	connectionLimit: 100,
 });
 
 async function dbExecute(query: string, params?: any[]): Promise<any> {
-	const [data] = await connection.execute(query, params);
+	const conn = await connection.getConnection();
+	const [data] = await conn.execute(query, params);
+	conn.release();
 	return JSON.parse(JSON.stringify(data));
 }
 export default dbExecute;

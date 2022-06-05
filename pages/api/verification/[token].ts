@@ -37,8 +37,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 		const sql: string = `
             SELECT * FROM verify_user_table
             WHERE verify_email = ?
-            LIMIT 1;
-        `;
+            LIMIT 1;`;
 
 		const objData: ObjData = await dbExecute(sql, [userInfo.user?.email]);
 		const {
@@ -53,13 +52,13 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 		const sql2: string = `
             DELETE FROM verify_user_table
             WHERE verify_id = ?
-			LIMIT 1
-        `;
+			LIMIT 1;`;
+
 		await dbExecute(sql2, [verify_id]);
 		const sql3: string = `
             INSERT INTO account_table (account_first_name, account_last_name, account_email, account_password, account_section_id)
-            VALUES (?, ?, ?, ?, ?)
-		`;
+            VALUES (?, ?, ?, ?, ?);`;
+
 		await dbExecute(sql3, [
 			verify_first_name,
 			verify_last_name,
@@ -69,6 +68,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 		]);
 		return res.status(200).redirect("https://mymnhs.vercel.app/login");
 	} catch (error: unknown) {
-		res.status(500).redirect("https://mymnhs.vercel.app/500");
+		return res.status(500).redirect("https://mymnhs.vercel.app/500");
 	}
 }

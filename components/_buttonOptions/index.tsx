@@ -74,7 +74,7 @@ const ButtonOptions: React.FC<Props> = ({
 				type="button"
 				title="Toggle Actions"
 				className={styles.actionToggleButton}
-				onClick={() => setIsActive(!isActive)}
+				onClick={() => setIsActive((prev) => !prev)}
 			>
 				<i
 					className="icon-minus-circled"
@@ -94,7 +94,7 @@ const ButtonOptions: React.FC<Props> = ({
 					type="button"
 					title="Toggle Create"
 					className={styles.createButton}
-					onClick={() => setIsCreate(!isCreate)}
+					onClick={() => setIsCreate((prev) => !prev)}
 				>
 					<i className="icon-paper-plane"></i>
 				</button>
@@ -105,7 +105,7 @@ const ButtonOptions: React.FC<Props> = ({
 					type="button"
 					title="Toggle Update"
 					className={styles.updateButton}
-					onClick={() => setIsUpdate(!isUpdate)}
+					onClick={() => setIsUpdate((prev) => !prev)}
 				>
 					<i className="icon-arrows-cw"></i>
 				</button>
@@ -116,7 +116,7 @@ const ButtonOptions: React.FC<Props> = ({
 					type="button"
 					title="Toggle Delete"
 					className={styles.deleteButton}
-					onClick={() => setIsDelete(!isDelete)}
+					onClick={() => setIsDelete((prev) => !prev)}
 				>
 					<i className="icon-trash"></i>
 				</button>
@@ -127,8 +127,11 @@ const ButtonOptions: React.FC<Props> = ({
 			{/* Options */}
 
 			<div
-				className={styles.outerOptionsDivs}
-				style={{ height: isCreate ? "100%" : "0px" }}
+				className={
+					isCreate
+						? styles.outerOptionsDivsX
+						: styles.outerOptionsDivs
+				}
 			>
 				<form
 					method="post"
@@ -181,8 +184,11 @@ const ButtonOptions: React.FC<Props> = ({
 			</div>
 
 			<div
-				className={styles.outerOptionsDivs}
-				style={{ height: isUpdate ? "100%" : "0px" }}
+				className={
+					isUpdate
+						? styles.outerOptionsDivsX
+						: styles.outerOptionsDivs
+				}
 			>
 				<form method="put" className={styles.optionForms}>
 					<h2 className={styles.optionH2Header}>Option Update</h2>
@@ -231,8 +237,11 @@ const ButtonOptions: React.FC<Props> = ({
 			</div>
 
 			<div
-				className={styles.outerOptionsDivs}
-				style={{ height: isDelete ? "100%" : "0px" }}
+				className={
+					isDelete
+						? styles.outerOptionsDivsX
+						: styles.outerOptionsDivs
+				}
 			>
 				<form method="delete" className={styles.optionForms}>
 					<h2 className={styles.optionH2Header}>Option Delete</h2>

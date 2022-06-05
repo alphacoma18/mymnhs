@@ -25,6 +25,9 @@
 	align-items: center;
 	text-decoration: none;
 	font-weight: bold;
+	-o-transition: var(--transition-hover-250ms-ease-in-out);
+	-moz-transition: var(--transition-hover-250ms-ease-in-out);
+	-webkit-transition: var(--transition-hover-250ms-ease-in-out);
 	transition: var(--transition-hover-250ms-ease-in-out);
 }
 .navLink i,

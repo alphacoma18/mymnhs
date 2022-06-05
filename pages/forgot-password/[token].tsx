@@ -10,12 +10,14 @@ const Reset: React.FC = () => {
 	const [confirmPassword, setConfirmPassword] = useState<string>("");
 	const [error, setError] = useState<string>("");
 	const [showError, setShowError] = useState<boolean>(false);
+	const [submitDisabled, setSubmitDisabled] = useState<boolean>(false);
 
 	async function handleSubmit(
 		e: React.FormEvent<HTMLFormElement>
 	): Promise<boolean | void> {
 		try {
 			e.preventDefault();
+			setSubmitDisabled((e) => !e);
 			if (newPassword !== confirmPassword)
 				return setError("Passwords do not match."), setShowError(true);
 			const url: string = router.asPath;
@@ -24,11 +26,11 @@ const Reset: React.FC = () => {
 			await axios.post(`/forgot-password/${token}`, {
 				newPassword,
 			});
-			return router.push("/login");
+			return await router.push("/login");
 		} catch (error: any) {
 			let status: number = error.response.status;
 			let message: string = error.response.data.message;
-
+			setSubmitDisabled((e) => !e);
 			if (status === 401) return setError(message), setShowError(true);
 			if (status === 500) return setError(message), setShowError(true);
 			return void 0;
@@ -63,10 +65,7 @@ const Reset: React.FC = () => {
 							<h2>Password Reset Form</h2>
 							<hr className="horizontalRule" />
 							<div
-								className="errorDiv"
-								style={{
-									display: showError ? "block" : "none",
-								}}
+								className={showError ? "errorDivX" : "errorDiv"}
 							>
 								<h4>{error}</h4>
 							</div>
@@ -101,7 +100,9 @@ const Reset: React.FC = () => {
 							<div>
 								<br />
 							</div>
-							<button type="submit">Reset Password</button>
+							<button type="submit" disabled={submitDisabled}>
+								Reset Password
+							</button>
 						</form>
 					</div>
 				</div>

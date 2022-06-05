@@ -7,14 +7,14 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 				serialize("refresh_token_extreme", "false", {
 					httpOnly: true,
 					secure: true,
-					sameSite: "none",
+					sameSite: "lax",
 					path: "/",
 					expires: new Date(Date.now() - 60),
 				}),
 				serialize("access_token_extreme", "false", {
 					httpOnly: true,
 					secure: true,
-					sameSite: "none",
+					sameSite: "lax",
 					path: "/",
 					expires: new Date(Date.now() - 60),
 				}),
@@ -22,6 +22,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 			.json({ message: "Logged out" });
 	} catch (error: unknown) {
 		console.log(error);
-		res.status(500).redirect("https://mymnhs.vercel.app/500");
+		return res.status(500).redirect("https://mymnhs.vercel.app/500");
 	}
 }

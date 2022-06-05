@@ -13,6 +13,9 @@ interface InData {
 	account_email: string;
 	account_password: string;
 	account_section_id: number;
+	section_grade: string;
+	section_strand: string;
+	section_name: string;
 }
 type ObjData = InData[];
 /**
@@ -28,8 +31,10 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 		const { email, password }: { email: string; password: string } =
 			req.body;
 		const sql: string = `
-			SELECT account_id, account_first_name, account_last_name, account_section_id, account_password
+			SELECT account_id, account_first_name, account_last_name, account_section_id, account_password, section_grade, section_strand, section_name
 			FROM account_table
+			JOIN section_table
+			ON account_table.account_section_id = section_table.section_id
 			WHERE account_email = ?
 			LIMIT 1;
 		`;
@@ -42,12 +47,18 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 			account_last_name,
 			account_section_id,
 			account_password,
+			section_grade,
+			section_strand,
+			section_name,
 		} = objData[0];
 		const userData = {
 			account_id,
 			account_first_name,
 			account_last_name,
 			account_section_id,
+			section_grade,
+			section_strand,
+			section_name,
 		};
 		const isPasswordCorrect: boolean = await bcrypt.compare(
 			password,
@@ -65,20 +76,22 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 				serialize("refresh_token_extreme", refreshToken, {
 					httpOnly: true,
 					secure: true,
-					sameSite: "none",
+					sameSite: "lax",
 					path: "/",
 					expires: new Date(Date.now() + 60 * 1000 * 60 * 24 * 7), // 7 days
 				}),
 				serialize("access_token_extreme", accessToken, {
 					httpOnly: true,
 					secure: true,
-					sameSite: "none",
+					sameSite: "lax",
 					path: "/",
 					expires: new Date(Date.now() + 60 * 1000 * 10), // 10 minutes
 				}),
 			])
 			.send("");
 	} catch (error: unknown) {
+		console.log(error);
+
 		return res.status(500).json({ message: "Internal Server Error" });
 	}
 }

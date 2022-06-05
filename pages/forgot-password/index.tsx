@@ -10,20 +10,22 @@ const ForgotPassword: React.FC = () => {
 	const [email, setEmail] = useState<string>("");
 	const [error, setError] = useState<string>("");
 	const [showError, setShowError] = useState<boolean>(false);
+	const [submitDisabled, setSubmitDisabled] = useState<boolean>(false);
 
 	async function handleSubmit(
 		e: React.FormEvent<HTMLFormElement>
 	): Promise<boolean | void> {
 		try {
 			e.preventDefault();
+			setSubmitDisabled((e) => !e);
 			await axios.post("/forgot-password", {
 				email,
 			});
-			return router.push("/login");
+			return await router.push("/login");
 		} catch (error: any) {
 			let status: number = error.response.status;
 			let message: string = error.response.data.message;
-
+			setSubmitDisabled((e) => !e);
 			if (status === 401) return setError(message), setShowError(true);
 			if (status === 500) return setError(message), setShowError(true);
 			return void 0;
@@ -58,10 +60,7 @@ const ForgotPassword: React.FC = () => {
 							<h2>Forgot Password Form</h2>
 							<hr className="horizontalRule" />
 							<div
-								className="errorDiv"
-								style={{
-									display: showError ? "block" : "none",
-								}}
+								className={showError ? "errorDivX" : "errorDiv"}
 							>
 								<h4>{error}</h4>
 							</div>
@@ -97,7 +96,9 @@ const ForgotPassword: React.FC = () => {
 									</button>
 								</Link>
 
-								<button type="submit">Send Reset Link</button>
+								<button type="submit" disabled={submitDisabled}>
+									Send Reset Link
+								</button>
 							</div>
 						</form>
 					</div>

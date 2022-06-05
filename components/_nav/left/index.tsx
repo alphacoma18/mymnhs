@@ -9,16 +9,13 @@ const LeftMenu: React.FC = () => {
 	const router = useRouter();
 	const [show, setShow] = useState<boolean>(false);
 
-	const toggleStyle: { width: string } = {
-		width: show ? "275px" : "0px",
-	};
 	async function handleLogout(): Promise<boolean | void> {
 		try {
 			await axios.post("/logout");
-			return router.push("/login");
+			return await router.push("/login");
 		} catch (error: unknown) {
 			console.log(error);
-			return router.push("/500");
+			return await router.push("/500");
 		}
 	}
 	return (
@@ -28,15 +25,20 @@ const LeftMenu: React.FC = () => {
 					type="button"
 					className={styles.menuContainer}
 					title="Toggle Right Side Menu"
-					onClick={() => setShow(!show)}
+					onClick={() => setShow((prev) => !prev)}
 				>
 					<div className={styles.menuLines}></div>
 					<div className={styles.menuLines}></div>
 					<div className={styles.menuLines}></div>
 				</button>
 			</section>
-			<div className={styles.outerLeftMenu} style={toggleStyle}>
-				<a className={styles.closeMenu} onClick={() => setShow(!show)}>
+			<div
+				className={show ? styles.outerLeftMenuX : styles.outerLeftMenu}
+			>
+				<a
+					className={styles.closeMenu}
+					onClick={() => setShow((prev) => !prev)}
+				>
 					&times;
 				</a>
 				<div className={styles.mainLeftMenu}>

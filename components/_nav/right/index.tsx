@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import MnhsLogo from "../../_mnhsLogo";
 import styles from "./index.module.css";
 const RightMenu: React.FC = () => {
-	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const [show, setShow] = useState<boolean>(false);
 
-	const toggleStyle: { width: string } = {
-		width: isOpen ? "275px" : "0px",
-	};
 	return (
 		<>
 			<section>
@@ -14,17 +11,21 @@ const RightMenu: React.FC = () => {
 					type="button"
 					className={styles.menuContainer}
 					title="Toggle Right Side Menu"
-					onClick={() => setIsOpen(!isOpen)}
+					onClick={() => setShow((prev) => !prev)}
 				>
 					<div className={styles.menuLines}></div>
 					<div className={styles.menuLines}></div>
 					<div className={styles.menuLines}></div>
 				</button>
 			</section>
-			<div className={styles.outerRightMenu} style={toggleStyle}>
+			<div
+				className={
+					show ? styles.outerRightMenuX : styles.outerRightMenu
+				}
+			>
 				<a
 					className={styles.closeMenu}
-					onClick={() => setIsOpen(!isOpen)}
+					onClick={() => setShow((prev) => !prev)}
 				>
 					&times;
 				</a>

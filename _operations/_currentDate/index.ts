@@ -1,3 +1,5 @@
 export default function NewDate(): string {
-	return new Date().toISOString().slice(0, 19).replace("T", " ");
+	let timestamp = new Date();
+	timestamp.setHours(timestamp.getHours() + 8);
+	return timestamp.toISOString().slice(0, 19).replace("T", " ");
 }
