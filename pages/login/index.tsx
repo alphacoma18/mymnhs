@@ -7,8 +7,8 @@ import { axios } from "../../_operations/axios/axios";
 import { useRouter } from "next/router";
 const Login: React.FC = () => {
 	const router = useRouter();
-	const [email, setEmail] = useState<string>("");
-	const [password, setPassword] = useState<string>("");
+	const [email, setEmail] = useState<string | null>(null);
+	const [password, setPassword] = useState<string | null>(null);
 	const [error, setError] = useState<string>("");
 	const [showError, setShowError] = useState<boolean>(false);
 	const [submitDisabled, setSubmitDisabled] = useState<boolean>(false);
@@ -78,7 +78,7 @@ const Login: React.FC = () => {
 								onChange={(
 									e: React.ChangeEvent<HTMLInputElement>
 								) => setEmail(e.currentTarget.value)}
-								value={email || "dggfkhbappcufkkhau@nthrl.com"}
+								value={email ?? "dggfkhbappcufkkhau@nthrl.com"}
 								autoFocus
 								autoComplete="off"
 								minLength={10}
@@ -92,7 +92,7 @@ const Login: React.FC = () => {
 								onChange={(
 									e: React.ChangeEvent<HTMLInputElement>
 								) => setPassword(e.currentTarget.value)}
-								value={password || "dggfkhbappcufkkhau@nthrl.com"}
+								value={password ?? "dggfkhbappcufkkhau@nthrl.com"}
 								autoComplete="off"
 								minLength={10}
 								maxLength={50}
