@@ -44,13 +44,13 @@ const Login: React.FC = () => {
 		<>
 			<Meta
 				title="Login Page | MyMNHS"
-				description="Welcome to the official school platform of Meycauayan National High School. Login to your account to access your account. Be the best, choose MNHS!"
+				description="Welcome to the unofficial school platform of Meycauayan National High School. Login to your account to access your account. Be the best, choose MNHS!"
 				url="/login"
 				ogTitle="Login Page | MyMNHS"
-				ogDescription="Welcome to the official school platform of Meycauayan National High School. Login to your account to access your account. Be the best, choose MNHS!"
+				ogDescription="Welcome to the unofficial school platform of Meycauayan National High School. Login to your account to access your account. Be the best, choose MNHS!"
 				ogUrl="/login"
 				twitterTitle="Login Page | MyMNHS"
-				twitterDescription="Welcome to the official school platform of Meycauayan National High School. Login to your account to access your account. Be the best, choose MNHS!"
+				twitterDescription="Welcome to the unofficial school platform of Meycauayan National High School. Login to your account to access your account. Be the best, choose MNHS!"
 				twitterUrl="/login"
 			/>
 
@@ -74,7 +74,7 @@ const Login: React.FC = () => {
 							<label>Account Email Address:</label>
 							<input
 								type="email"
-								placeholder=">>> Enter your email"
+								placeholder="dggfkhbappcufkkhau@nthrl.com"
 								onChange={(
 									e: React.ChangeEvent<HTMLInputElement>
 								) => setEmail(e.currentTarget.value)}
@@ -88,7 +88,7 @@ const Login: React.FC = () => {
 							<label>Account Password:</label>
 							<input
 								type="password"
-								placeholder=">>> Enter your password"
+								placeholder="dggfkhbappcufkkhau@nthrl.com"
 								onChange={(
 									e: React.ChangeEvent<HTMLInputElement>
 								) => setPassword(e.currentTarget.value)}

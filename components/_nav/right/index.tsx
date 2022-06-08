@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import AuthContext from "../../../_operations/context/AuthProvider";
 import MnhsLogo from "../../_mnhsLogo";
 import styles from "./index.module.css";
 const RightMenu: React.FC = () => {
+	const { user } = useContext(AuthContext);
 	const [show, setShow] = useState<boolean>(false);
 
 	return (
@@ -31,6 +33,14 @@ const RightMenu: React.FC = () => {
 				</a>
 				<div className={styles.mainRightMenu}>
 					<MnhsLogo />
+					<h3>
+						{user?.account_first_name} {user?.account_last_name}
+					</h3>
+					<h4>
+						{user?.section_grade} {user?.section_strand}{" "}
+						{user?.section_name}
+					</h4>
+					<hr className="horizontalRuleYellow" />
 				</div>
 			</div>
 		</>
