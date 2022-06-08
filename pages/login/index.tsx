@@ -74,11 +74,11 @@ const Login: React.FC = () => {
 							<label>Account Email Address:</label>
 							<input
 								type="email"
-								placeholder="dggfkhbappcufkkhau@nthrl.com"
+								placeholder=">>> Enter your email"
 								onChange={(
 									e: React.ChangeEvent<HTMLInputElement>
 								) => setEmail(e.currentTarget.value)}
-								value={email}
+								value={email || "dggfkhbappcufkkhau@nthrl.com"}
 								autoFocus
 								autoComplete="off"
 								minLength={10}
@@ -88,11 +88,11 @@ const Login: React.FC = () => {
 							<label>Account Password:</label>
 							<input
 								type="password"
-								placeholder="dggfkhbappcufkkhau@nthrl.com"
+								placeholder=">>> Enter your password"
 								onChange={(
 									e: React.ChangeEvent<HTMLInputElement>
 								) => setPassword(e.currentTarget.value)}
-								value={password}
+								value={password || "dggfkhbappcufkkhau@nthrl.com"}
 								autoComplete="off"
 								minLength={10}
 								maxLength={50}
