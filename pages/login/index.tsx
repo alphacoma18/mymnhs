@@ -7,8 +7,8 @@ import { axios } from "../../_operations/axios/axios";
 import { useRouter } from "next/router";
 const Login: React.FC = () => {
 	const router = useRouter();
-	const [email, setEmail] = useState<string>("");
-	const [password, setPassword] = useState<string>("");
+	const [email, setEmail] = useState<string>("dggfkhbappcufkkhau@nthrl.com");
+	const [password, setPassword] = useState<string>("dggfkhbappcufkkhau@nthrl.com");
 	const [error, setError] = useState<string>("");
 	const [showError, setShowError] = useState<boolean>(false);
 	const [submitDisabled, setSubmitDisabled] = useState<boolean>(false);
