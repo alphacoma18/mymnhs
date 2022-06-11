@@ -39,13 +39,13 @@ const ForgotPassword: React.FC = () => {
 		<>
 			<Meta
 				title="Forgot Password | MyMNHS"
-				description="Forgot your password? No worries! We'll send you a link to reset your password."
+				description="Forgot your password? No worries! We'll send you a link to reset your password. Be the best, choose MNHS! "
 				url="/forgot-password"
 				ogTitle="Forgot Password | MyMNHS"
-				ogDescription="Forgot your password? No worries! We'll send you a link to reset your password."
+				ogDescription="Forgot your password? No worries! We'll send you a link to reset your password. Be the best, choose MNHS!"
 				ogUrl="/forgot-password"
 				twitterTitle="Forgot Password | MyMNHS"
-				twitterDescription="Forgot your password? No worries! We'll send you a link to reset your password."
+				twitterDescription="Forgot your password? No worries! We'll send you a link to reset your password. Be the best, choose MNHS!"
 				twitterUrl="/forgot-password"
 			/>
 			<section className={styles.outermostForgot}>

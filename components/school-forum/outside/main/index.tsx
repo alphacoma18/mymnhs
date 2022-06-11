@@ -29,7 +29,9 @@ const OuterForumMain: React.FC<IOuterForumQuestionList> = ({ data }) => {
 									{item.section_grade} - {item.section_strand}
 								</h5>
 								<h5 className={styles.questionTimestamp}>
-									{item.question_timestamp}
+									{item.question_timestamp
+										.slice(0, 19)
+										.replace("T", " ")}
 								</h5>
 							</div>
 						</div>

@@ -20,6 +20,8 @@ const NewForumQuestion: React.FC = () => {
 				createButton={true}
 				placeholderH={">>> Enter Forum Question Header"}
 				placeholderB={">>> Enter Forum Question Body"}
+				maxLengthH={120}
+				maxLengthB={1000}
 			/>
 		</>
 	);

@@ -22,7 +22,11 @@ const InnerForumQuestion: React.FC<{ data: IInnerForumQuestionData }> = ({
 							{data.section_name} - {data.account_first_name}{" "}
 							{data.account_last_name}
 						</p>
-						<p>{data.question_timestamp}</p>
+						<p>
+							{data.question_timestamp
+								.slice(0, 19)
+								.replace("T", " ")}
+						</p>
 					</div>
 					<hr className="horizontalRule" />
 					<div className={styles.qnaNumber}>

@@ -56,14 +56,13 @@
 	flex-wrap: wrap;
 }
 .mainLeftMenu p,
-.mainLeftMenu q {
+.mainLeftMenu q,
+.mainLeftMenu a {
 	font-weight: bold;
 	width: 100%;
 }
 .mainLeftMenu a {
 	display: block;
-	font-weight: bold;
-	width: 100%;
 	padding: 5px 20px;
 	color: var(--primary-text-color-whitesmoke);
 	font-size: 24px;

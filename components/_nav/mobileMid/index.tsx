@@ -125,7 +125,7 @@ const MobileMiddle: React.FC = () => {
 					</a>
 					<FlexHRule />
 					<p>Copyright &copy; 2022.</p>
-					<p>Meycauayan National High School</p>
+					<p>Meycauayan Senior High School</p>
 					<p>All Rights Reserved</p>
 				</div>
 			</div>

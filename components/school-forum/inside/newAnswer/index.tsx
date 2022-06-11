@@ -21,6 +21,7 @@ const NewForumAnswer: React.FC<Props> = ({ currentId }) => {
 				createExecutor={CreateExecutor}
 				createButton={true}
 				placeholderB={">>> Enter your response"}
+				maxLengthB={500}
 			/>
 		</>
 	);

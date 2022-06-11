@@ -1,25 +1,25 @@
 import React, { useContext } from "react";
 import AuthContext from "../_operations/context/AuthProvider";
 import Meta from "../components/_meta";
-import Layout from "../components/_layout";
+import LayoutFooter from "../components/_layoutFooter";
 import styles from "./index.module.css";
 import Link from "next/link";
 const Index: React.FC = () => {
 	const { user } = useContext(AuthContext);
 	return (
 		<>
-			<Layout
+			<LayoutFooter
 				page={
 					<>
 						<Meta
 							title="Home | MyMNHS"
-							description="Welcome to the MyMNHS website! Connect with your classmates and teachers in the school community of Meycauayan National High School. Be the best, choose MNHS!"
+							description="Welcome to the MyMNHS school platform! Connect with your classmates, teachers and fellow students in the campus through the new innovative web platform. Be the best, choose MNHS!"
 							url="/"
 							ogTitle="Home | MyMNHS"
-							ogDescription="Welcome to the MyMNHS website! Connect with your classmates and teachers in the school community of Meycauayan National High School. Be the best, choose MNHS!"
+							ogDescription="Welcome to the MyMNHS school platform! Connect with your classmates, teachers and fellow students in the campus through the new innovative web platform. Be the best, choose MNHS!"
 							ogUrl="/"
 							twitterTitle="Home | MyMNHS"
-							twitterDescription="Welcome to the MyMNHS website! Connect with your classmates and teachers in the school community of Meycauayan National High School. Be the best, choose MNHS!"
+							twitterDescription="Welcome to the MyMNHS school platform! Connect with your classmates, teachers and fellow students in the campus through the new innovative web platform. Be the best, choose MNHS!"
 							twitterUrl="/"
 						/>
 						<section className={styles.outermostSection}>
@@ -36,10 +36,10 @@ const Index: React.FC = () => {
 							</p>
 
 							<p>
-								As a part of final research before graduating,
+								As a part of our final research before graduating,
 								we were tasked to conduct an output based
 								research that solves a particular problem within
-								our school, with connection to our uptaken
+								the school, with connection to our uptaken
 								strand.
 							</p>
 
@@ -73,7 +73,7 @@ const Index: React.FC = () => {
 								frequent updates and additions.
 							</p>
 							<p>
-								We see the immesurable future prospects and
+								We see the immeasurable future prospects and
 								possibilities that will be made possible with
 								this research and its output, and so we are open
 								to new ideas and feature request from the school
@@ -87,7 +87,7 @@ const Index: React.FC = () => {
 								For MNHS students that want to contribute and
 								join the development team, we are also open so
 								just hit us up an email and we&apos;re looking
-								forward to working with you!
+								forward to coding with you!
 							</p>
 							<h4>
 								Head Developer,

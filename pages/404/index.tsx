@@ -37,6 +37,7 @@ const Error404: React.FC = () => {
 								className={styles.linkStyle}
 								title="Go to the official MNHS website"
 								rel="noopener noreferrer"
+								target="_blank"
 							>
 								Visit The School Webpage
 							</a>
@@ -45,6 +46,7 @@ const Error404: React.FC = () => {
 								className={styles.linkStyle}
 								title="Go to the official MNHS Facebook page"
 								rel="noopener noreferrer"
+								target="_blank"
 							>
 								Visit The School Facebook Page
 							</a>

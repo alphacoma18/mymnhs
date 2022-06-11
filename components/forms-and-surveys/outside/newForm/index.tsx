@@ -23,9 +23,9 @@ const NewFormSurvey: React.FC = () => {
 				placeholderURL={">>> Enter Survey Form URL Here"}
 				placeholderH={">>> Enter Survey Form Title Here"}
 				placeholderB={">>> Enter Survey Form Body Here"}
-				maxLengthH={100}
+				maxLengthH={120}
 				maxLengthB={1000}
-				maxLengthURL={100}
+				maxLengthURL={120}
 			/>
 		</>
 	);

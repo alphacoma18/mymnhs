@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				/>
 				<meta
 					name="keywords"
-					content="MNHS, Mecauayan, Meycauayan National High School, School Platform, Official Website, Be the best, Choose MNHS, Senior High School"
+					content="MNHS, Meycauayan, Meycauayan National High School, School Platform, Official Website, Be the best, Choose MNHS, Senior High School"
 				/>
 				<meta name="Classification" content="Education" />
 				{/* <meta name="url" content="https://mymnhs.vercel.app" /> */}

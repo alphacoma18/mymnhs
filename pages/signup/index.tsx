@@ -63,13 +63,13 @@ const Signup: React.FC = () => {
 		<>
 			<Meta
 				title="Signup Page | MyMNHS"
-				description="Signup to the school platform and seamlessly converse with fellow students at blazingly fast speeds!"
+				description="Sign up at the MyMNHS platform and seemlessly get in touch with the MNHS school community! Be the best, choose MNHS!"
 				url={"/signup"}
 				ogTitle="Signup Page | MyMNHS"
-				ogDescription="Signup to the school platform and seamlessly converse with fellow students at blazingly fast speeds!"
+				ogDescription="Sign up at the MyMNHS platform and seemlessly get in touch with the MNHS school community! Be the best, choose MNHS!"
 				ogUrl={"/signup"}
 				twitterTitle="Signup Page | MyMNHS"
-				twitterDescription="Signup to the school platform and seamlessly converse with fellow students at blazingly fast speeds!"
+				twitterDescription="Sign up at the MyMNHS platform and seemlessly get in touch with the MNHS school community! Be the best, choose MNHS!"
 				twitterUrl={"/signup"}
 			/>
 			<section className={styles.outermostSignup}>
@@ -92,7 +92,7 @@ const Signup: React.FC = () => {
 							</p>
 							<br />
 							<div className={styles.buttonDiv}>
-								<Link href={"/"}>
+								<Link href={"/login"}>
 									<button type="button">Back to Login</button>
 								</Link>
 								<button type="button" onClick={handleFirst}>

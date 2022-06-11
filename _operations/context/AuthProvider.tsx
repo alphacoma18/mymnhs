@@ -27,9 +27,10 @@ export interface User {
 export const AuthProvider: React.FC<MainProps> = ({ children }) => {
 	const [user, setUser] = useState<null | undefined | User>(null);
 	useEffect(() => {
-		async function asyncEffect() {
+		async function asyncEffect(): Promise<void> {
 			const x = await axios.get("/auth");
 			setUser(x.data.user);
+			return void 0;
 		}
 		asyncEffect();
 	}, []);

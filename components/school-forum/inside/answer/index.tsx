@@ -22,7 +22,9 @@ const InnerForumAnswer: React.FC<{ data: IInnerForumAnswerData[] }> = ({
 								{response.account_last_name}
 							</p>
 							<p className={styles.meta}>
-								{response.answer_timestamp}
+								{response.answer_timestamp
+									.slice(0, 19)
+									.replace("T", " ")}
 							</p>
 						</div>
 					);

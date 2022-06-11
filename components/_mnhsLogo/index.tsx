@@ -10,6 +10,7 @@ const MnhsLogo: React.FC = () => {
 				width={120}
 				alt="MNHS Logo"
 				title="The Meycauayan National High School Logo"
+				lang="en"
 			/>
 		</div>
 	);

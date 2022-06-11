@@ -55,7 +55,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
 		await NodeMailer69(email, subject, html);
 		return res.status(200).send("");
-	} catch (error: any) {
+	} catch (error: unknown) {
 		return res.status(500).json({ message: "Internal Server Error" });
 	}
 }

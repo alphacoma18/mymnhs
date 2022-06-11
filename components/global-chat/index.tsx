@@ -218,6 +218,7 @@ const GlobalChatComponent: React.FC = () => {
 						className={styles.textarea}
 						placeholder=">>> Enter Your Message"
 						required
+						maxLength={500}
 						onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
 							setMessageContent(e.currentTarget.value)
 						}

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.css";
-import Layout from "../../components/_layout";
+import LayoutFooter from "../../components/_layoutFooter";
 import Meta from "../../components/_meta";
 import dbExecute from "../../_operations/db/db";
 
@@ -13,7 +13,7 @@ import {
 const FormsNSurvey: React.FC<IOuterSurveyPostDataList> = ({ data }) => {
 	return (
 		<>
-			<Layout
+			<LayoutFooter
 				page={
 					<>
 						<Meta

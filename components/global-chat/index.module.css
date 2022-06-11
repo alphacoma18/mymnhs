@@ -50,7 +50,7 @@
 	background: var(--primary-color-darkgreen);
 	grid-column: 1 / span 2;
 	display: flex;
-	gap: 20px;
+	gap: 10px;
 	padding: 20px;
 	justify-content: center;
 	align-items: center;
@@ -58,7 +58,6 @@
 .textarea {
 	width: 100%;
 	resize: none;
-	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 	height: 60px;
 }
 .sendButton {
@@ -91,7 +90,6 @@
 	font-size: 18px;
 	font-weight: bold;
 }
-
 @media screen and (max-width: 768px) {
 	.chatSection {
 		width: 100%;
@@ -122,5 +120,7 @@
 	}
 	.messageForm {
 		grid-column: 1;
+		padding: 5px;
+		gap: 5px;
 	}
 }

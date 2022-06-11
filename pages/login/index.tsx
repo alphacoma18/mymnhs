@@ -7,10 +7,8 @@ import { axios } from "../../_operations/axios/axios";
 import { useRouter } from "next/router";
 const Login: React.FC = () => {
 	const router = useRouter();
-	const [email, setEmail] = useState<string>("dggfkhbappcufkkhau@nthrl.com");
-	const [password, setPassword] = useState<string>(
-		"dggfkhbappcufkkhau@nthrl.com"
-	);
+	const [email, setEmail] = useState<string>("");
+	const [password, setPassword] = useState<string>("");
 	const [error, setError] = useState<string>("");
 	const [showError, setShowError] = useState<boolean>(false);
 	const [submitDisabled, setSubmitDisabled] = useState<boolean>(false);
@@ -46,13 +44,13 @@ const Login: React.FC = () => {
 		<>
 			<Meta
 				title="Login Page | MyMNHS"
-				description="Welcome to the unofficial school platform of Meycauayan National High School. Login to your account to access your account. Be the best, choose MNHS!"
+				description="Welcome to the unofficial school platform of Meycauayan National High School. Login to your account to access the MyMNHS platform. Be the best, choose MNHS!"
 				url="/login"
 				ogTitle="Login Page | MyMNHS"
-				ogDescription="Welcome to the unofficial school platform of Meycauayan National High School. Login to your account to access your account. Be the best, choose MNHS!"
+				ogDescription="Welcome to the unofficial school platform of Meycauayan National High School. Login to your account to access the MyMNHS platform. Be the best, choose MNHS!"
 				ogUrl="/login"
 				twitterTitle="Login Page | MyMNHS"
-				twitterDescription="Welcome to the unofficial school platform of Meycauayan National High School. Login to your account to access your account. Be the best, choose MNHS!"
+				twitterDescription="Welcome to the unofficial school platform of Meycauayan National High School. Login to your account to access the MyMNHS platform. Be the best, choose MNHS!"
 				twitterUrl="/login"
 			/>
 

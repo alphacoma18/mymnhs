@@ -34,7 +34,11 @@ const InnerSurveyMain: React.FC<{ data: IInnerSurveyPostData }> = ({
 							{data.section_name} - {data.account_first_name}{" "}
 							{data.account_last_name}
 						</p>
-						<p>{data.survey_post_timestamp}</p>
+						<p>
+							{data.survey_post_timestamp
+								.slice(0, 19)
+								.replace("T", " ")}
+						</p>
 					</div>
 				</div>
 			</div>

@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../components/_layout";
+import LayoutFooter from "../../components/_layoutFooter";
 import dbExecute from "../../_operations/db/db";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Meta from "../../components/_meta";
@@ -20,7 +20,7 @@ interface Props {
 const IndiForum: React.FC<Props> = ({ forumData, answerData, currentId }) => {
 	return (
 		<>
-			<Layout
+			<LayoutFooter
 				page={
 					<>
 						<Meta

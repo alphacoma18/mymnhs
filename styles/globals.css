@@ -23,6 +23,10 @@
 	--transition-all-1s-ease-in-out: all 1s ease-in-out 0s;
 	--transition-all-500ms-linear: all 500ms linear 0s;
 	--transition-hover-250ms-ease-in-out: 250ms ease-in-out 0s;
+
+	--font-family-gill-sans: "Gill Sans", "Gill Sans MT", Calibri,
+		"Trebuchet MS", sans-serif;
+	--font-family-segoe-ui: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 ::-webkit-scrollbar {
 	width: 1vh;
@@ -51,8 +55,7 @@ html {
 	scroll-behavior: smooth;
 	scrollbar-width: thin;
 	scrollbar-color: var(--primary-color-yellow) var(--primary-color-whitesmoke);
-	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-		sans-serif;
+	font-family: var(--font-family-segoe-ui);
 }
 body {
 	line-height: 1.6em;

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./index.module.css";
-import Layout from "../../components/_layout";
+import LayoutFooter from "../../components/_layoutFooter";
+// import Layout from "../../components/_layout";
 import Meta from "../../components/_meta";
 import { GetStaticProps } from "next";
 import dbExecute from "../../_operations/db/db";
@@ -15,19 +16,19 @@ import {
 const SchoolForum: React.FC<IOuterForumQuestionList> = ({ data }) => {
 	return (
 		<>
-			<Layout
+			<LayoutFooter
 				page={
 					<>
 						<Meta
 							title="School Forum | MyMNHS"
-							description="MyMNHS School Platform lets you connect with your classmates and teachers in the school community of Meycauayan National High School. Be the best, choose MNHS!"
-							url="/schoolPlatform"
+							description="The MyMNHS School Forum allows you to freely ask and answer school related queries for the betterment of the community. Be the best, choose MNHS! "
+							url="/school-forum"
 							ogTitle="School Forum | MyMNHS"
-							ogDescription="MyMNHS School Platform lets you connect with your classmates and teachers in the school community of Meycauayan National High School. Be the best, choose MNHS!"
-							ogUrl="/schoolPlatform"
+							ogDescription="The MyMNHS School Forum allows you to freely ask and answer school related queries for the betterment of the community. Be the best, choose MNHS! "
+							ogUrl="/school-forum"
 							twitterTitle="School Forum | MyMNHS"
-							twitterDescription="MyMNHS School Platform lets you connect with your classmates and teachers in the school community of Meycauayan National High School. Be the best, choose MNHS!"
-							twitterUrl="/schoolPlatform"
+							twitterDescription="The MyMNHS School Forum allows you to freely ask and answer school related queries for the betterment of the community. Be the best, choose MNHS! "
+							twitterUrl="/school-forum"
 						/>
 						<section className={styles.outermostForumSection}>
 							<OuterForumMain data={data} />

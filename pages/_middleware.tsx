@@ -48,7 +48,7 @@ export default async function (
 	const refreshToken: string | undefined = cookies?.refresh_token_extreme;
 	const accessToken: string | undefined = cookies?.access_token_extreme;
 
-	if (openApiPaths.has(url!)) return NextResponse.next();
+	if (await openApiPaths.has(url!)) return NextResponse.next();
 	if (
 		url?.includes(openDynamicApiPaths[0]) ||
 		url?.includes(openDynamicApiPaths[1])

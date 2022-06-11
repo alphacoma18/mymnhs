@@ -10,15 +10,15 @@ const Messages: React.FC = () => {
 				page={
 					<>
 						<Meta
-							title="Messages | MyMNHS"
-							description="MyMNHS Messages lets you chat with your classmates and teachers in real time!"
-							url="/messages"
-							ogTitle="Messages | MyMNHS"
-							ogDescription="MyMNHS Messages lets you chat with your classmates and teachers in real time!"
-							ogUrl="/messages"
-							twitterTitle="Messages | MyMNHS"
-							twitterDescription="MyMNHS Messages lets you chat with your classmates and teachers in real time!"
-							twitterUrl="/messages"
+							title="Global Chat | MyMNHS"
+							description="The MyMNHS global chat lets you chat with your fellow students and teachers in the whole campus, all in real time!"
+							url="/global-chat"
+							ogTitle="Global Chat | MyMNHS"
+							ogDescription="The MyMNHS global chat lets you chat with your fellow students and teachers in the whole campus, all in real time!"
+							ogUrl="/global-chat"
+							twitterTitle="Global Chat | MyMNHS"
+							twitterDescription="The MyMNHS global chat lets you chat with your fellow students and teachers in the whole campus, all in real time!"
+							twitterUrl="/global-chat"
 						/>
 						<section>
 							<GlobalChatComponent />

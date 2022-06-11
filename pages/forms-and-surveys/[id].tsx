@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../components/_layout";
+import LayoutFooter from "../../components/_layoutFooter";
 import dbExecute from "../../_operations/db/db";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Meta from "../../components/_meta";
@@ -24,7 +24,7 @@ const IndiSurvey: React.FC<Props> = ({ surveyData, currentId }) => {
 				twitterDescription={`${surveyData.survey_body} | MyMNHS`}
 				twitterUrl={`/school-forum/${surveyData.survey_id}`}
 			/>
-			<Layout
+			<LayoutFooter
 				page={
 					<>
 						<section className={styles.outermostSurvey}>

@@ -44,13 +44,13 @@ const Reset: React.FC = () => {
 		<>
 			<Meta
 				title="Reset Password | MyMNHS"
-				description="Welcome back! Enter your new password below."
+				description="Welcome back! Enter your new password below. Be the best, choose MNHS!"
 				url="/forgot-password/[token]"
 				ogTitle="Reset Password | MyMNHS"
-				ogDescription="Welcome back! Enter your new password below."
+				ogDescription="Welcome back! Enter your new password below. Be the best, choose MNHS!"
 				ogUrl="/forgot-password/[token]"
 				twitterTitle="Reset Password | MyMNHS"
-				twitterDescription="Welcome back! Enter your new password below."
+				twitterDescription="Welcome back! Enter your new password below. Be the best, choose MNHS!"
 				twitterUrl="/forgot-password/[token]"
 			/>
 			<section className={styles.outermostResetPass}>
