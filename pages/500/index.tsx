@@ -2,19 +2,19 @@ import React from "react";
 import styles from "./index.module.css";
 import Link from "next/link";
 import MnhsLogo from "../../components/_mnhsLogo";
-import Meta from "../../components/_meta";
+import Meta from "../../components/meta";
 const Error404: React.FC = () => {
 	return (
 		<>
 			<Meta
 				title="Error 500 | MyMNHS"
-				description="An internal server error has occured while processing your request. Please try again later."
+				description="An internal server error has occurred while processing your request. Please try again later."
 				url="/500"
 				ogTitle="Error 500 | MyMNHS"
-				ogDescription="An internal server error has occured while processing your request. Please try again later."
+				ogDescription="An internal server error has occurred while processing your request. Please try again later."
 				ogUrl="/500"
 				twitterTitle="Error 500 | MyMNHS"
-				twitterDescription="An internal server error has occured while processing your request. Please try again later."
+				twitterDescription="An internal server error has occurred while processing your request. Please try again later."
 				twitterUrl="/500"
 			/>
 			<section className={styles.outermostError}>

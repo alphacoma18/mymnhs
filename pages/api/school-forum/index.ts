@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { verifyAccessToken } from "../../../_operations/jwt/jwt";
-import dbExecute from "../../../_operations/db/db";
-import NewDate from "../../../_operations/_currentDate";
+import { verifyAccessToken } from "../../../utils/jwt/jwt";
+import dbExecute from "../../../utils/db/db";
+import NewDate from "../../../utils/currentDate";
 import { ITokenValue } from "../../../interface/_token";
 interface ReqData {
 	header: string;
@@ -19,7 +19,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 			);
 			if (!verifiedToken)
 				return res.status(401).json({ message: "Unauthorized" });
-			const sql: string = `
+			const sql = `
                 INSERT INTO forum_question_table(question_header, question_body, question_asker_id, question_timestamp)
                 VALUES (?, ?, ?, ?);`;
 			await dbExecute(sql, [
@@ -29,7 +29,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 				NewDate(),
 			]);
 			return res.status(200).send("");
-		} catch (error: unknown) {
+		} catch (error) {
 			console.log(error);
 			return res.status(500).redirect("https://mymnhs.vercel.app/500");
 		}

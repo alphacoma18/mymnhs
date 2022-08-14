@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import MnhsLogo from "../../components/_mnhsLogo";
-import Meta from "../../components/_meta";
+import Meta from "../../components/meta";
 import Link from "next/link";
-import { axios } from "../../_operations/axios/axios";
+import { axios } from "../../utils/axios/axios";
 import { useRouter } from "next/router";
 const ForgotPassword: React.FC = () => {
 	const router = useRouter();
@@ -12,9 +12,7 @@ const ForgotPassword: React.FC = () => {
 	const [showError, setShowError] = useState<boolean>(false);
 	const [submitDisabled, setSubmitDisabled] = useState<boolean>(false);
 
-	async function handleSubmit(
-		e: React.FormEvent<HTMLFormElement>
-	): Promise<boolean | void> {
+	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		try {
 			e.preventDefault();
 			setSubmitDisabled((e) => !e);
@@ -28,12 +26,10 @@ const ForgotPassword: React.FC = () => {
 			setSubmitDisabled((e) => !e);
 			if (status === 401) return setError(message), setShowError(true);
 			if (status === 500) return setError(message), setShowError(true);
-			return void 0;
 		}
 	}
-	useEffect((): void => {
+	useEffect(() => {
 		setShowError(false);
-		return void 0;
 	}, [email]);
 	return (
 		<>
@@ -73,7 +69,6 @@ const ForgotPassword: React.FC = () => {
 							<input
 								type="email"
 								placeholder=">>> Enter your email"
-								autoFocus
 								autoComplete="off"
 								onChange={(
 									e: React.ChangeEvent<HTMLInputElement>

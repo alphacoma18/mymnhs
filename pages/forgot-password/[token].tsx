@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./token.module.css";
-import Meta from "../../components/_meta";
+import Meta from "../../components/meta";
 import MnhsLogo from "../../components/_mnhsLogo";
-import { axios } from "../../_operations/axios/axios";
+import { axios } from "../../utils/axios/axios";
 import { useRouter } from "next/router";
 const Reset: React.FC = () => {
 	const router = useRouter();
@@ -12,34 +12,31 @@ const Reset: React.FC = () => {
 	const [showError, setShowError] = useState<boolean>(false);
 	const [submitDisabled, setSubmitDisabled] = useState<boolean>(false);
 
-	async function handleSubmit(
-		e: React.FormEvent<HTMLFormElement>
-	): Promise<boolean | void> {
+	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		try {
 			e.preventDefault();
 			setSubmitDisabled((e) => !e);
 			if (newPassword !== confirmPassword)
 				return setError("Passwords do not match."), setShowError(true);
-			const url: string = router.asPath;
-			const token: string = url.split("/")[2];
+			const url = router.asPath;
+			const token = url.split("/")[2];
 
 			await axios.post(`/forgot-password/${token}`, {
 				newPassword,
 			});
-			return await router.push("/login");
+			await router.push("/login");
 		} catch (error: any) {
 			let status: number = error.response.status;
 			let message: string = error.response.data.message;
 			setSubmitDisabled((e) => !e);
 			if (status === 401) return setError(message), setShowError(true);
 			if (status === 500) return setError(message), setShowError(true);
-			return void 0;
 		}
 	}
-	useEffect((): void => {
+	useEffect(() => {
 		setShowError(false);
-		return void 0;
 	}, [newPassword, confirmPassword]);
+
 	return (
 		<>
 			<Meta
@@ -80,7 +77,6 @@ const Reset: React.FC = () => {
 									e: React.ChangeEvent<HTMLInputElement>
 								) => setNewPassword(e.currentTarget.value)}
 								value={newPassword}
-								autoFocus
 								autoComplete="off"
 								required
 							/>

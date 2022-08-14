@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import NodeMailer69 from "../../../_operations/nodeMailer";
-import dbExecute from "../../../_operations/db/db";
-import NewDate from "../../../_operations/_currentDate";
-import { generateResetPasswordToken } from "../../../_operations/jwt/jwt";
+import NodeMailer69 from "../../../utils/nodeMailer";
+import dbExecute from "../../../utils/db/db";
+import NewDate from "../../../utils/currentDate";
+import { generateResetPasswordToken } from "../../../utils/jwt/jwt";
 interface InData {
 	account_id: number;
 	account_email: string;
@@ -18,7 +18,7 @@ type ObjData = InData[];
 export default async function (req: NextApiRequest, res: NextApiResponse) {
 	try {
 		const { email }: { email: string } = req.body;
-		const sql: string = `
+		const sql = `
             SELECT account_id, account_email
             FROM account_table
             WHERE account_email = ?
@@ -26,18 +26,18 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 		const objData: ObjData = await dbExecute(sql, [email]);
 		if (objData.length === 0)
 			return res.status(401).json({ message: "Account not found" });
-		const sql2: string = `
+		const sql2 = `
             INSERT INTO reset_password_table(reset_email, reset_timestamp, reset_account_id)
             VALUES(?, ?, ?)
         `;
 		await dbExecute(sql2, [email, NewDate(), objData[0].account_id]);
-		const resetPasswordToken: string = await generateResetPasswordToken({
+		const resetPasswordToken = await generateResetPasswordToken({
 			email,
 		});
-		const URL: string = `${process.env.CLIENT_URL}/forgot-password/${resetPasswordToken}`;
-		const subject: string =
+		const URL = `${process.env.CLIENT_URL}/forgot-password/${resetPasswordToken}`;
+		const subject =
 			"<No-Reply> MNHS-SHS: Password reset request for school platform account.";
-		const html: string = `
+		const html = `
 <div style="background-color: lightgoldenrodyellow; border: 3px solid black; width: 90%; max-width: 520px; padding: 20px; margin: auto; line-height: 1.6em; border-radius: 20px">
 <h1 style="text-align: center;">Meycauayan National High School</h1>
 <h2 style="text-align: center;">-- The Unofficial Platform --</h2>
@@ -55,7 +55,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
 		await NodeMailer69(email, subject, html);
 		return res.status(200).send("");
-	} catch (error: unknown) {
+	} catch (error) {
 		return res.status(500).json({ message: "Internal Server Error" });
 	}
 }

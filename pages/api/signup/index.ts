@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcrypt";
-import { generateVerificationToken } from "../../../_operations/jwt/jwt";
-import dbExecute from "../../../_operations/db/db";
-import sectionIdGetter from "../../../_operations/sectionIdGetter/index";
-import NodeMailer69 from "../../../_operations/nodeMailer/index";
+import { generateVerificationToken } from "../../../utils/jwt/jwt";
+import dbExecute from "../../../utils/db/db";
+import sectionIdGetter from "../../../utils/sectionIdGetter/index";
+import NodeMailer69 from "../../../utils/nodeMailer/index";
 interface IUser {
 	firstName: string;
 	lastName: string;
@@ -26,10 +26,10 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 	try {
 		const { firstName, lastName, email, password, section }: IUser =
 			req.body;
-		const sectionId: number | void = await sectionIdGetter(section);
-		const hashedPass: string = await bcrypt.hash(password, 10);
+		const sectionId = await sectionIdGetter(section);
+		const hashedPass = await bcrypt.hash(password, 10);
 
-		const sql: string = `
+		const sql = `
 			INSERT INTO verify_user_table (verify_first_name, verify_last_name, verify_email, verify_password, verify_section_id)
 	        VALUES (?, ?, ?, ?, ?)
 		`;
@@ -42,13 +42,13 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 			sectionId,
 		]);
 
-		const verificationToken: string = await generateVerificationToken({
+		const verificationToken = await generateVerificationToken({
 			email,
 		});
-		const URL: string = `${process.env.CLIENT_URL}/api/verification/${verificationToken}`;
-		const subject: string =
+		const URL = `${process.env.CLIENT_URL}/api/verification/${verificationToken}`;
+		const subject =
 			"<No-Reply> MNHS-SHS: Click to verify your email and access the platform!";
-		const html: string = `
+		const html = `
 <div style="background-color: lightgoldenrodyellow; border: 3px solid black; width: 90%; max-width: 520px; padding: 20px; margin: auto; line-height: 1.6em; border-radius: 20px">
 <h1 style="text-align: center;">Meycauayan National High School</h1>
 <h2 style="text-align: center;">-- The Unofficial Platform --</h2>
@@ -67,7 +67,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
 		await NodeMailer69(email, subject, html);
 		return res.status(200).send("");
-	} catch (error: unknown) {
+	} catch (error) {
 		console.log(error);
 		return res.status(500).redirect("https://mymnhs.vercel.app/500");
 	}

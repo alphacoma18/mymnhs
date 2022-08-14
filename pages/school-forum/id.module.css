@@ -1,6 +1,6 @@
 .outermostForum {
 	min-height: 100%;
-	background: var(--primary-color-whitesmoke);
+	background: var(--bg-whitesmoke);
 	width: clamp(0px, 100%, 75ch);
 	margin: auto;
 }

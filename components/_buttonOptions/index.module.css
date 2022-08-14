@@ -2,10 +2,10 @@
 .deleteButton,
 .updateButton,
 .createButton {
-	background: var(--primary-color-darkgreen);
+	background: var(--bg-darkgreen);
 	border: none;
 	position: fixed;
-	color: var(--primary-text-color-whitesmoke);
+	color: var(--color-whitesmoke);
 
 	width: 70px;
 	height: 70px;
@@ -16,10 +16,10 @@
 	align-items: center;
 	display: flex;
 	cursor: pointer;
-	-o-transition: var(--transition-hover-250ms-ease-in-out);
-	-moz-transition: var(--transition-hover-250ms-ease-in-out);
-	-webkit-transition: var(--transition-hover-250ms-ease-in-out);
-	transition: var(--transition-hover-250ms-ease-in-out);
+	-o-transition: var(--fast-transition);
+	-moz-transition: var(--fast-transition);
+	-webkit-transition: var(--fast-transition);
+	transition: var(--fast-transition);
 }
 .actionToggleButton {
 	bottom: 20px;
@@ -57,8 +57,8 @@
 .createButton:hover,
 .createButton:focus,
 .createButton:active {
-	color: var(--primary-text-color-yellow);
-	background: var(--primary-color-green);
+	color: var(--color-yellow);
+	background: var(--bg-green);
 }
 .outerOptionsDivs,
 .outerOptionsDivsX {
@@ -70,12 +70,12 @@
 	top: 0;
 	width: 100%;
 	left: 0;
-	background: var(--primary-color-darkgreen);
+	background: var(--bg-darkgreen);
 	overflow-x: hidden;
-	-o-transition: var(--transition-hover-250ms-ease-in-out);
-	-moz-transition: var(--transition-hover-250ms-ease-in-out);
-	-webkit-transition: var(--transition-hover-250ms-ease-in-out);
-	transition: var(--transition-hover-250ms-ease-in-out);
+	-o-transition: var(--fast-transition);
+	-moz-transition: var(--fast-transition);
+	-webkit-transition: var(--fast-transition);
+	transition: var(--fast-transition);
 }
 .outerOptionsDivs {
 	height: 0px;
@@ -112,10 +112,10 @@
 }
 .optionH2Header {
 	text-align: center;
-	color: var(--primary-text-color-whitesmoke);
+	color: var(--color-whitesmoke);
 }
 .deleteMessage {
-	color: var(--primary-text-color-whitesmoke);
+	color: var(--color-whitesmoke);
 }
 @media screen and (max-width: 480px) {
 	.outerOptionsDivs {

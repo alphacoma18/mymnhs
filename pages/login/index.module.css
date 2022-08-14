@@ -14,7 +14,7 @@
 }
 .loginFormat {
 	background: rgba(0, 0, 0, 0.4);
-	color: var(--primary-text-color-whitesmoke);
+	color: var(--color-whitesmoke);
 	width: clamp(0px, 75%, 500px);
 	min-height: 350px;
 	display: flex;
@@ -43,36 +43,36 @@
 }
 @-webkit-keyframes mnhs-logo-glow {
 	0% {
-		-webkit-box-shadow: 0px 0px 20px 5px var(--primary-color-yellow);
+		-webkit-box-shadow: 0px 0px 20px 5px var(--bg-yellow);
 	}
 	25% {
-		-webkit-box-shadow: 0px 0px 20px 10px var(--primary-color-yellow);
+		-webkit-box-shadow: 0px 0px 20px 10px var(--bg-yellow);
 	}
 	50% {
-		-webkit-box-shadow: 0px 0px 20px 15px var(--primary-color-yellow);
+		-webkit-box-shadow: 0px 0px 20px 15px var(--bg-yellow);
 	}
 	75% {
-		-webkit-box-shadow: 0px 0px 20px 10px var(--primary-color-yellow);
+		-webkit-box-shadow: 0px 0px 20px 10px var(--bg-yellow);
 	}
 	100% {
-		-webkit-box-shadow: 0px 0px 20px 5px var(--primary-color-yellow);
+		-webkit-box-shadow: 0px 0px 20px 5px var(--bg-yellow);
 	}
 }
 @keyframes mnhs-logo-glow {
 	0% {
-		box-shadow: 0px 0px 20px 5px var(--primary-color-yellow);
+		box-shadow: 0px 0px 20px 5px var(--bg-yellow);
 	}
 	25% {
-		box-shadow: 0px 0px 20px 10px var(--primary-color-yellow);
+		box-shadow: 0px 0px 20px 10px var(--bg-yellow);
 	}
 	50% {
-		box-shadow: 0px 0px 20px 15px var(--primary-color-yellow);
+		box-shadow: 0px 0px 20px 15px var(--bg-yellow);
 	}
 	75% {
-		box-shadow: 0px 0px 20px 10px var(--primary-color-yellow);
+		box-shadow: 0px 0px 20px 10px var(--bg-yellow);
 	}
 	100% {
-		box-shadow: 0px 0px 20px 5px var(--primary-color-yellow);
+		box-shadow: 0px 0px 20px 5px var(--bg-yellow);
 	}
 }
 

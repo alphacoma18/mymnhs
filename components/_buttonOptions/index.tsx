@@ -40,32 +40,26 @@ const ButtonOptions: React.FC<Props> = ({
 	const [updateHeader, setUpdateHeader] = useState<string>("");
 	const [updateURL, setUpdateURL] = useState<string>("");
 
-	useEffect((): void => {
+	useEffect(() => {
 		setIsActive(false);
-		return void 0;
 	}, [isCreate, isUpdate, isDelete]);
 
-	function clearUpdate(): void {
+	function clearUpdate() {
 		setUpdateBody("");
 		setUpdateHeader("");
-		return void 0;
 	}
-	function clearCreate(): void {
+	function clearCreate() {
 		setCreateBody("");
 		setCreateHeader("");
-		return void 0;
 	}
 
-	async function handleCreate(
-		e: React.FormEvent<HTMLFormElement>
-	): Promise<void> {
+	async function handleCreate(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 		await createExecutor(createBody, createHeader, createURL);
 		clearCreate();
 		setIsCreate(false);
 		setIsUpdate(false);
 		setIsDelete(false);
-		return void 0;
 	}
 
 	return (

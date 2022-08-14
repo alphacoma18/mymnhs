@@ -1,0 +1,136 @@
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import styles from "./index.module.css";
+import FlexHRule from "../../../components/_flexHRule";
+const MobileMiddle: React.FC = () => {
+	const [show, setShow] = React.useState<boolean>(false);
+	return (
+		<>
+			<button
+				type="button"
+				title="Toggle Page Routes"
+				className={styles.toggleButton}
+				onClick={() => setShow((prev) => !prev)}
+			>
+				<Image
+					src="/attachables/mnhs-images/logos/login_logo.png"
+					width={50}
+					height={50}
+					alt="MNHS Logo"
+					title="Toggle Page Routes"
+				/>
+			</button>
+			<div
+				className={
+					show ? styles.outermostToggleX : styles.outermostToggle
+				}
+			>
+				<a
+					className={styles.closeMenu}
+					onClick={() => setShow((prev) => !prev)}
+				>
+					&times;
+				</a>
+				<div className={styles.mainToggle}>
+					<FlexHRule />
+					<Link href={"/"}>
+						<a className={styles.navLink}>
+							<i className="icon-home">
+								<span>Home</span>
+							</i>
+						</a>
+					</Link>
+					<Link href={"/global-chat"}>
+						<a className={styles.navLink}>
+							<i className="icon-globe">
+								<span>Global Chat</span>
+							</i>
+						</a>
+					</Link>
+					<Link href={"/school-forum"}>
+						<a className={styles.navLink}>
+							<i className="icon-tasks">
+								<span>School Forum</span>
+							</i>
+						</a>
+					</Link>
+					<Link href={"/class-schedule"}>
+						<a className={styles.navLink}>
+							<i className="icon-calendar">
+								<span>Class Schedule</span>
+							</i>
+						</a>
+					</Link>
+					<Link href={"/forms-and-surveys"}>
+						<a className={styles.navLink}>
+							<i className="icon-info-circled">
+								<span>Forms and surveys</span>
+							</i>
+						</a>
+					</Link>
+					<FlexHRule />
+					<a className={styles.navLink}>
+						<i className="icon-rebel">
+							<span>MNHS School Blog</span>
+						</i>
+					</a>
+					<a
+						className={styles.navLink}
+						href="https://mnhs-shs.github.io/unofficial-site/"
+					>
+						<i className="icon-newspaper">
+							<span>MNHS Public Webpage</span>
+						</i>
+					</a>
+					<a
+						className={styles.navLink}
+						href="https://www.facebook.com/ssgovt"
+					>
+						<i className="icon-first-order">
+							<span>MNHS Student Council</span>
+						</i>
+					</a>
+					<a
+						className={styles.navLink}
+						href="https://www.facebook.com/meycauayannationalhsseniorhigh"
+					>
+						<i className="icon-facebook-squared">
+							<span>MNHS Facebook</span>
+						</i>
+					</a>
+					<a
+						className={styles.navLink}
+						href="https://www.youtube.com/channel/UCC3ek2xens8AVd60PvNix1Q/videos"
+					>
+						<i className="icon-youtube-squared">
+							<span>MNHS YouTube</span>
+						</i>
+					</a>
+					<a
+						className={styles.navLink}
+						href="https://twitter.com/meycauayannhs"
+					>
+						<i className="icon-twitter-squared">
+							<span>MNHS Twitter</span>
+						</i>
+					</a>
+					<a
+						className={styles.navLink}
+						href="https://github.com/mnhs-shs"
+					>
+						<i className="icon-github-squared">
+							<span>MNHS Github</span>
+						</i>
+					</a>
+					<FlexHRule />
+					<p>Copyright &copy; 2022.</p>
+					<p>Meycauayan Senior High School</p>
+					<p>All Rights Reserved</p>
+				</div>
+			</div>
+		</>
+	);
+};
+
+export default MobileMiddle;

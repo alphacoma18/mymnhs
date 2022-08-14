@@ -1,9 +1,6 @@
-import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
-import {
-	generateAccessToken,
-	verifyRefreshToken,
-} from "../_operations/jwt/jwt";
+import { NextApiRequest } from "next";
+import { generateAccessToken, verifyRefreshToken } from "../utils/jwt/jwt";
 interface Cookies {
 	cookies?: {
 		refresh_token_extreme?: string;
@@ -11,8 +8,8 @@ interface Cookies {
 	};
 }
 import { ITokenValue } from "../interface/_token";
-const baseUrl: string = "https://mymnhs.vercel.app";
-const openPaths: Set<string> = new Set([
+const baseUrl = "https://mymnhs.vercel.app";
+const openPaths = new Set([
 	`${baseUrl}/login`,
 	`${baseUrl}/signup`,
 	`${baseUrl}/forgot-password`,
@@ -27,28 +24,26 @@ const openPaths: Set<string> = new Set([
 	`${baseUrl}/attachables/mnhs-images/logos/login_logo.png`,
 	`${baseUrl}/attachables/mnhs-images/logos/mnhs_favicon_og.ico`,
 ]);
-const openApiPaths: Set<string> = new Set([
+const openApiPaths = new Set([
 	`${baseUrl}/api/login`,
 	`${baseUrl}/api/signup`,
 	`${baseUrl}/api/forgot-password`,
 ]);
-const openDynamicPaths: string[] = [
+const openDynamicPaths = [
 	`${baseUrl}/forgot-password/`,
 	`${baseUrl}/school-forum/`,
 ];
-const openDynamicApiPaths: string[] = [
+const openDynamicApiPaths = [
 	`${baseUrl}/api/verification/`,
 	`${baseUrl}/api/forgot-password/`,
 ];
-export default async function (
-	req: NextApiRequest
-): Promise<NextResponse | void> {
+export default async function (req: NextApiRequest) {
 	const { cookies }: Cookies = req;
-	const url: string | undefined = req.url;
-	const refreshToken: string | undefined = cookies?.refresh_token_extreme;
-	const accessToken: string | undefined = cookies?.access_token_extreme;
+	const url = req.url;
+	const refreshToken = cookies?.refresh_token_extreme;
+	const accessToken = cookies?.access_token_extreme;
 
-	if (await openApiPaths.has(url!)) return NextResponse.next();
+	if (openApiPaths.has(url!)) return NextResponse.next();
 	if (
 		url?.includes(openDynamicApiPaths[0]) ||
 		url?.includes(openDynamicApiPaths[1])
@@ -67,9 +62,7 @@ export default async function (
 		const verifiedToken: ITokenValue = await verifyRefreshToken(
 			refreshToken
 		);
-		const newToken: string = await generateAccessToken(
-			verifiedToken?.user ?? {}
-		);
+		const newToken = await generateAccessToken(verifiedToken?.user ?? {});
 		return NextResponse.redirect(`${baseUrl}`).cookie(
 			"access_token_extreme",
 			newToken,
@@ -86,9 +79,7 @@ export default async function (
 		const verifiedToken: ITokenValue = await verifyRefreshToken(
 			refreshToken
 		);
-		const newToken: string = await generateAccessToken(
-			verifiedToken?.user ?? {}
-		);
+		const newToken = await generateAccessToken(verifiedToken?.user ?? {});
 		return NextResponse.next().cookie("access_token_extreme", newToken, {
 			httpOnly: true,
 			secure: true,

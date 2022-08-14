@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { serialize } from "cookie";
-import dbExecute from "../../../_operations/db/db";
+import dbExecute from "../../../utils/db/db";
 import bcrypt from "bcrypt";
 import {
 	generateAccessToken,
 	generateRefreshToken,
-} from "../../../_operations/jwt/jwt";
+} from "../../../utils/jwt/jwt";
 interface InData {
 	account_id: number;
 	account_first_name: string;
@@ -30,7 +30,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 	try {
 		const { email, password }: { email: string; password: string } =
 			req.body;
-		const sql: string = `
+		const sql = `
 			SELECT account_id, account_first_name, account_last_name, account_section_id, account_password, section_grade, section_strand, section_name
 			FROM account_table
 			JOIN section_table
@@ -60,7 +60,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 			section_strand,
 			section_name,
 		};
-		const isPasswordCorrect: boolean = await bcrypt.compare(
+		const isPasswordCorrect = await bcrypt.compare(
 			password,
 			account_password
 		);
@@ -69,8 +69,8 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 				.status(401)
 				.json({ message: "Email or password is incorrect" });
 
-		const accessToken: string = await generateAccessToken(userData);
-		const refreshToken: string = await generateRefreshToken(userData);
+		const accessToken = await generateAccessToken(userData);
+		const refreshToken = await generateRefreshToken(userData);
 		return res
 			.setHeader("Set-Cookie", [
 				serialize("refresh_token_extreme", refreshToken, {
@@ -89,9 +89,8 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 				}),
 			])
 			.send("");
-	} catch (error: unknown) {
+	} catch (error) {
 		console.log(error);
-
 		return res.status(500).json({ message: "Internal Server Error" });
 	}
 }

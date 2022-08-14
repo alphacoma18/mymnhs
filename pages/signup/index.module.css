@@ -14,7 +14,7 @@
 }
 .signupFormat {
 	background: rgba(0, 0, 0, 0.6);
-	color: var(--primary-text-color-whitesmoke);
+	color: var(--color-whitesmoke);
 	width: clamp(0px, 75%, 500px);
 	min-height: 350px;
 	padding: 20px;
@@ -74,18 +74,18 @@ label.sectionLabel {
 
 @keyframes mnhs-logo-glow {
 	0% {
-		box-shadow: 0px 0px 20px 5px var(--primary-color-yellow);
+		box-shadow: 0px 0px 20px 5px var(--bg-yellow);
 	}
 	25% {
-		box-shadow: 0px 0px 20px 10px var(--primary-color-yellow);
+		box-shadow: 0px 0px 20px 10px var(--bg-yellow);
 	}
 	50% {
-		box-shadow: 0px 0px 20px 15px var(--primary-color-yellow);
+		box-shadow: 0px 0px 20px 15px var(--bg-yellow);
 	}
 	75% {
-		box-shadow: 0px 0px 20px 10px var(--primary-color-yellow);
+		box-shadow: 0px 0px 20px 10px var(--bg-yellow);
 	}
 	100% {
-		box-shadow: 0px 0px 20px 5px var(--primary-color-yellow);
+		box-shadow: 0px 0px 20px 5px var(--bg-yellow);
 	}
 }

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import styles from "./index.module.css";
 import Link from "next/link";
 import MnhsLogo from "../../components/_mnhsLogo";
-import Meta from "../../components/_meta";
-import sectionGetter from "../../components/signup";
-import Map from "../../components/signup/map";
-import { axios } from "../../_operations/axios/axios";
+import Meta from "../../components/meta";
+import sectionGetter from "../../components/pages/signup";
+import Map from "../../components/pages/signup/map";
+import { axios } from "../../utils/axios/axios";
 import { useRouter } from "next/router";
 const Signup: React.FC = () => {
 	const router = useRouter();
@@ -14,15 +14,13 @@ const Signup: React.FC = () => {
 	const [thirdShow, setThirdShow] = useState<boolean>(false);
 	const [submitDisabled, setSubmitDisabled] = useState<boolean>(false);
 
-	function handleFirst(): void {
+	function handleFirst() {
 		setFirstShow((e) => !e);
 		setSecondShow((e) => !e);
-		return void 0;
 	}
-	function handleSecond(): void {
+	function handleSecond() {
 		setSecondShow((e) => !e);
 		setThirdShow((e) => !e);
-		return void 0;
 	}
 	const [firstName, setFirstName] = useState<string>("");
 	const [lastName, setLastName] = useState<string>("");
@@ -35,17 +33,14 @@ const Signup: React.FC = () => {
 
 	const [sectionList, setSectionList] = useState<string[] | void>([]);
 
-	useEffect((): void => {
+	useEffect(() => {
 		setSectionList(sectionGetter(grade, strand));
-		return void 0;
 	}, [grade, strand]);
 
-	async function handleSubmit(
-		e: React.FormEvent<HTMLFormElement>
-	): Promise<boolean | void> {
-		e.preventDefault();
-		setSubmitDisabled((e) => !e);
+	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		try {
+			e.preventDefault();
+			setSubmitDisabled((e) => !e);
 			await axios.post("/signup", {
 				firstName,
 				lastName,
@@ -54,7 +49,7 @@ const Signup: React.FC = () => {
 				section,
 			});
 			return await router.push("/login");
-		} catch (error: unknown) {
+		} catch (error) {
 			return void 0;
 		}
 	}

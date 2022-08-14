@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { verifyResetPasswordToken } from "../../../_operations/jwt/jwt";
-import dbExecute from "../../../_operations/db/db";
+import { verifyResetPasswordToken } from "../../../utils/jwt/jwt";
+import dbExecute from "../../../utils/db/db";
 import bcrypt from "bcrypt";
 interface VerifiedToken {
 	user?: {
@@ -31,7 +31,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 		if (!verifiedToken.user)
 			return res.status(401).json({ message: "Invalid token" });
 		const { email } = verifiedToken.user;
-		const sql: string = `
+		const sql = `
             SELECT reset_email, reset_account_id
             FROM reset_password_table
             WHERE reset_email = ?
@@ -42,15 +42,15 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 		const { reset_email, reset_account_id } = objData[0];
 		if (reset_email !== email)
 			return res.status(401).json({ message: "Invalid token" });
-		const hashedPass: string = await bcrypt.hash(newPassword, 10);
-		const sql2: string = `
+		const hashedPass = await bcrypt.hash(newPassword, 10);
+		const sql2 = `
             UPDATE account_table
             SET account_password = ?
             WHERE account_id = ?
         `;
 		await dbExecute(sql2, [hashedPass, reset_account_id]);
 		return res.status(200).send("");
-	} catch (error: unknown) {
+	} catch (error) {
 		return res.status(500).json({ message: "Internal Server Error" });
 	}
 }

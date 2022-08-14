@@ -1,0 +1,24 @@
+{
+	"name": "MyMNHS | School Website",
+	"short_name": "MyMNHS",
+	"theme_color": "#006400",
+	"background_color": "#006400",
+	"display": "standalone",
+	"orientation": "portrait",
+	"scope": "/",
+	"start_url": "/",
+	"$schema": "https://schema.org/WebApplication",
+	"description": "The unofficial school platform of Meycauayan National High School - Senior High School! 'Be the Best, Choose MNHS!'",
+	"icons": [
+		{
+			"src": "attachables/favicons/android-chrome-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "attachables/favicons/android-chrome-256x256.png",
+			"sizes": "256x256",
+			"type": "image/png"
+		}
+	]
+}

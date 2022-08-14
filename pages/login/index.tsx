@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
 import styles from "./index.module.css";
 import MnhsLogo from "../../components/_mnhsLogo";
-import Meta from "../../components/_meta";
+import Meta from "../../components/meta";
 import Link from "next/link";
-import { axios } from "../../_operations/axios/axios";
+import { axios } from "../../utils/axios/axios";
 import { useRouter } from "next/router";
 const Login: React.FC = () => {
 	const router = useRouter();
 	const [email, setEmail] = useState<string>("dggfkhbappcufkkhau@nthrl.com");
-	const [password, setPassword] = useState<string>("dggfkhbappcufkkhau@nthrl.com");
+	const [password, setPassword] = useState<string>(
+		"dggfkhbappcufkkhau@nthrl.com"
+	);
 	const [error, setError] = useState<string>("");
 	const [showError, setShowError] = useState<boolean>(false);
 	const [submitDisabled, setSubmitDisabled] = useState<boolean>(false);
 
-	async function handleLogin(
-		e: React.FormEvent<HTMLFormElement>
-	): Promise<boolean | void> {
-		e.preventDefault();
-		setSubmitDisabled((e) => !e);
+	async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
 		try {
+			e.preventDefault();
+			setSubmitDisabled((e) => !e);
 			await axios.post("/login", {
 				email,
 				password,
@@ -32,12 +32,10 @@ const Login: React.FC = () => {
 			if (status === 401) return setError(message), setShowError(true);
 			if (status === 403) return setError(message), setShowError(true);
 			if (status === 500) return setError(message), setShowError(true);
-			return void 0;
 		}
 	}
-	useEffect((): void => {
+	useEffect(() => {
 		setShowError(false);
-		return void 0;
 	}, [email, password]);
 
 	return (
@@ -79,7 +77,6 @@ const Login: React.FC = () => {
 									e: React.ChangeEvent<HTMLInputElement>
 								) => setEmail(e.currentTarget.value)}
 								value={email}
-								autoFocus
 								autoComplete="off"
 								minLength={10}
 								maxLength={50}

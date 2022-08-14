@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { verifyVerificationToken } from "../../../_operations/jwt/jwt";
-import dbExecute from "../../../_operations/db/db";
+import { verifyVerificationToken } from "../../../utils/jwt/jwt";
+import dbExecute from "../../../utils/db/db";
 
 interface UserInfo {
 	user?: {
@@ -34,7 +34,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 			token as string
 		);
 
-		const sql: string = `
+		const sql = `
             SELECT * FROM verify_user_table
             WHERE verify_email = ?
             LIMIT 1;`;
@@ -49,13 +49,13 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 			verify_section_id,
 		} = objData[0];
 
-		const sql2: string = `
+		const sql2 = `
             DELETE FROM verify_user_table
             WHERE verify_id = ?
 			LIMIT 1;`;
 
 		await dbExecute(sql2, [verify_id]);
-		const sql3: string = `
+		const sql3 = `
             INSERT INTO account_table (account_first_name, account_last_name, account_email, account_password, account_section_id)
             VALUES (?, ?, ?, ?, ?);`;
 
@@ -67,7 +67,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 			verify_section_id,
 		]);
 		return res.status(200).redirect("https://mymnhs.vercel.app/login");
-	} catch (error: unknown) {
+	} catch (error) {
 		return res.status(500).redirect("https://mymnhs.vercel.app/500");
 	}
 }

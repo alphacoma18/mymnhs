@@ -5,7 +5,7 @@ const MnhsLogo: React.FC = () => {
 	return (
 		<div className={styles.imagePositioner}>
 			<Image
-				src="/attachables/mnhs-images/logos/login_logo.png"
+				src="/mobileLogo.png"
 				height={120}
 				width={120}
 				alt="MNHS Logo"

@@ -1,0 +1,15 @@
+.outermostMain {
+	background: url("/attachables/mnhs-images/main_background.jpg");
+	background-attachment: fixed;
+}
+.pageFormatter {
+	width: 95vw;
+	margin: auto;
+	background: var(--bg-whitesmoke);
+}
+
+@media screen and (max-width: 768px) {
+	.pageFormatter {
+		width: 100%;
+	}
+}

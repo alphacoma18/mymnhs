@@ -1,12 +1,12 @@
 import React from "react";
-import LayoutFooter from "../../components/_layoutFooter";
-import dbExecute from "../../_operations/db/db";
 import { GetStaticProps, GetStaticPaths } from "next";
-import Meta from "../../components/_meta";
+import Layout1 from "../../layout/layout1";
+import dbExecute from "../../utils/db/db";
+import Meta from "../../components/meta";
 import styles from "./id.module.css";
-import InnerForumAnswer from "../../components/school-forum/inside/answer";
-import InnerForumQuestion from "../../components/school-forum/inside/question";
-import NewForumAnswer from "../../components/school-forum/inside/newAnswer";
+import InnerForumAnswer from "../../components/pages/school-forum/inside/answer";
+import InnerForumQuestion from "../../components/pages/school-forum/inside/question";
+import NewForumAnswer from "../../components/pages/school-forum/inside/newAnswer";
 import {
 	IInnerForumAnswerData,
 	IInnerForumQuestionData,
@@ -20,28 +20,26 @@ interface Props {
 const IndiForum: React.FC<Props> = ({ forumData, answerData, currentId }) => {
 	return (
 		<>
-			<LayoutFooter
-				page={
-					<>
-						<Meta
-							title={`${forumData.question_header} | MyMNHS`}
-							description={`${forumData.question_body} | MyMNHS`}
-							url={`/school-forum/${forumData.question_id}`}
-							ogTitle={`${forumData.question_header} | MyMNHS`}
-							ogDescription={`${forumData.question_body} | MyMNHS`}
-							ogUrl={`/school-forum/${forumData.question_id}`}
-							twitterTitle={`${forumData.question_header} | MyMNHS`}
-							twitterDescription={`${forumData.question_body} | MyMNHS`}
-							twitterUrl={`/school-forum/${forumData.question_id}`}
-						/>
-						<section className={styles.outermostForum}>
-							<InnerForumQuestion data={forumData} />
-							<InnerForumAnswer data={answerData} />
-							<NewForumAnswer currentId={currentId} />
-						</section>
-					</>
-				}
-			/>
+			<Layout1>
+				<>
+					<Meta
+						title={`${forumData.question_header} | MyMNHS`}
+						description={`${forumData.question_body} | MyMNHS`}
+						url={`/school-forum/${forumData.question_id}`}
+						ogTitle={`${forumData.question_header} | MyMNHS`}
+						ogDescription={`${forumData.question_body} | MyMNHS`}
+						ogUrl={`/school-forum/${forumData.question_id}`}
+						twitterTitle={`${forumData.question_header} | MyMNHS`}
+						twitterDescription={`${forumData.question_body} | MyMNHS`}
+						twitterUrl={`/school-forum/${forumData.question_id}`}
+					/>
+					<section className={styles.outermostForum}>
+						<InnerForumQuestion data={forumData} />
+						<InnerForumAnswer data={answerData} />
+						<NewForumAnswer currentId={currentId} />
+					</section>
+				</>
+			</Layout1>
 		</>
 	);
 };
@@ -51,7 +49,7 @@ interface Data {
 	question_id: number;
 }
 export const getStaticPaths: GetStaticPaths = async () => {
-	const sql: string = `
+	const sql = `
 		SELECT question_id FROM forum_question_table`;
 	const data: Data[] = await dbExecute(sql);
 	const paths = data.map((item: Data) => {
@@ -67,7 +65,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
 	const { params } = context;
 	const id = params?.id;
-	const sql: string = `
+	const sql = `
 		SELECT account_first_name, account_last_name, section_grade, section_strand, section_name, question_id, question_header, question_body, question_timestamp
 		FROM forum_question_table
 		JOIN account_table
@@ -79,7 +77,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	const questionData: IInnerForumAnswerData[] = await dbExecute(sql, [id]);
 	const _questionData: IInnerForumAnswerData = questionData[0];
 
-	const sql2: string = `
+	const sql2 = `
 		SELECT account_first_name, account_last_name, section_grade , section_strand, section_name, general_id, answer_content, answer_timestamp
 		FROM forum_answer_table
 		JOIN forum_question_table

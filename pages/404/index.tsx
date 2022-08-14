@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./index.module.css";
 import Link from "next/link";
+import styles from "./index.module.css";
 import MnhsLogo from "../../components/_mnhsLogo";
-import Meta from "../../components/_meta";
+import Meta from "../../components/meta";
 const Error404: React.FC = () => {
 	return (
 		<>
