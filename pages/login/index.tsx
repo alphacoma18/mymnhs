@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import styles from "./index.module.css";
 import MnhsLogo from "../../components/_mnhsLogo";
 import Meta from "../../components/meta";
-import Link from "next/link";
 import { axios } from "../../utils/axios/axios";
-import { useRouter } from "next/router";
 const Login: React.FC = () => {
 	const router = useRouter();
 	const [email, setEmail] = useState<string>("dggfkhbappcufkkhau@nthrl.com");

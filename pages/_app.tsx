@@ -33,7 +33,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<meta name="publisher" content="Alpha Romer Coma" />
 				<meta name="owner" content="Alpha Romer Coma" />
 				<meta name="target" content="all" />
-				<meta name="copyright" content="Kinabukasan Production" />
+				<meta
+					name="copyright"
+					content="Meycauayan National High School"
+				/>
 				<meta
 					name="keywords"
 					content="MNHS, Meycauayan, Meycauayan National High School, School Platform, Official Website, Be the best, Choose MNHS, Senior High School"

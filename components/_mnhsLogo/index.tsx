@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "./index.module.css";
 import Image from "next/image";
+import styles from "./index.module.css";
 const MnhsLogo: React.FC = () => {
 	return (
 		<div className={styles.imagePositioner}>
 			<Image
-				src="/mobileLogo.png"
+				src="/attachables/logos/mnhs.png"
 				height={120}
 				width={120}
 				alt="MNHS Logo"
