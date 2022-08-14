@@ -1,7 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import { serialize } from "cookie";
-import dbExecute from "../../../utils/db/db";
 import bcrypt from "bcrypt";
+import { NextApiRequest, NextApiResponse } from "next";
+import dbExecute from "../../../utils/db/db";
 import {
 	generateAccessToken,
 	generateRefreshToken,
