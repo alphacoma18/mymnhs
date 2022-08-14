@@ -15,13 +15,12 @@ const openPaths = new Set([
 	`${baseUrl}/forgot-password`,
 	`${baseUrl}/500`,
 	`${baseUrl}/school-forum`,
-	`${baseUrl}/favicon.ico`,
 	`${baseUrl}/vercel.svg`,
 	`${baseUrl}/_next/webpack-hmr`,
+	`${baseUrl}/attachables/logos/mnhs.png`,
 	`${baseUrl}/attachables/campus-images/image1.jpg`,
 	`${baseUrl}/attachables/campus-images/image10.jpg`,
 	`${baseUrl}/attachables/campus-images/image15.jpg`,
-	`${baseUrl}/attachables/mnhs-images/logos/login_logo.png`,
 	`${baseUrl}/attachables/mnhs-images/logos/mnhs_favicon_og.ico`,
 ]);
 const openApiPaths = new Set([

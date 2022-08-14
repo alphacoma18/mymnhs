@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { axios } from "../axios/axios";
 import { io, Socket } from "socket.io-client";
+import { axios } from "../axios/axios";
 const socket = io("https://mymnhs.herokuapp.com");
 interface IAuthContext {
 	user: null | undefined | User;
@@ -27,10 +27,9 @@ export interface User {
 export const AuthProvider: React.FC<MainProps> = ({ children }) => {
 	const [user, setUser] = useState<null | undefined | User>(null);
 	useEffect(() => {
-		async function asyncEffect(): Promise<void> {
+		async function asyncEffect() {
 			const x = await axios.get("/auth");
 			setUser(x.data.user);
-			return void 0;
 		}
 		asyncEffect();
 	}, []);
