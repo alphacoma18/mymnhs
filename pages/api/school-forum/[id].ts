@@ -6,10 +6,7 @@ interface Request {
 	body: string;
 	currentId: string;
 }
-export default async function (
-	req: NextApiRequest,
-	res: NextApiResponse
-) {
+export default async function (req: NextApiRequest, res: NextApiResponse) {
 	try {
 		const { body, currentId }: Request = req.body;
 		const userId = await AccessCookieUser(req.cookies.access_token_extreme);
@@ -20,7 +17,7 @@ export default async function (
 		return res.status(200).send("");
 	} catch (error) {
 		console.log(error);
-		res.status(500).redirect("http://localhost:3000/500");
+		res.status(500).redirect("https://mymnhs.vercel.app/500");
 		return void 0;
 	}
 }

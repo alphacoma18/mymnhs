@@ -4,7 +4,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 	try {
 		const sql = `
                 SELECT message_id, message_content, message_timestamp, account_first_name, account_last_name, section_grade, section_strand, section_name
-                FROM global_chat_table 
+                FROM global_chat_table
                 JOIN account_table
                 ON global_chat_table.message_sender_id = account_table.account_id
                 JOIN section_table
@@ -15,6 +15,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 		return res.json({ result });
 	} catch (error) {
 		console.log(error);
-		return res.status(500).redirect("http://localhost:3000/500");
+		return res.status(500).redirect("https://mymnhs.vercel.app/500");
 	}
 }
