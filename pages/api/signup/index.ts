@@ -31,7 +31,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
 		const sql = `
 			INSERT INTO verify_user_table (verify_first_name, verify_last_name, verify_email, verify_password, verify_section_id)
-	        VALUES (?, ?, ?, ?, ?)
+	        VALUES ($1, $2, $3, $4, $5);
 		`;
 
 		await dbExecute(sql, [
@@ -69,6 +69,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 		return res.status(200).send("");
 	} catch (error) {
 		console.log(error);
-		return res.status(500).redirect("https://mymnhs.vercel.app/500");
+		return res.status(500).redirect("http://localhost:3000/500");
 	}
 }

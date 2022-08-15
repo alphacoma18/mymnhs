@@ -8,12 +8,12 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
 			const sql = `
                 INSERT INTO global_chat_table(message_sender_id, message_content, message_timestamp)
-                VALUES (?, ?, ?);`;
+                VALUES ($1, $2, $3);`;
 			await dbExecute(sql, [user.account_id, message, timestamp]);
 			return res.status(204).send("");
 		}
 	} catch (error) {
 		console.log(error);
-		return res.status(500).redirect("https://mymnhs.vercel.app/500");
+		return res.status(500).redirect("http://localhost:3000/500");
 	}
 }

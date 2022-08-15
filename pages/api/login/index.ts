@@ -35,7 +35,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 			FROM account_table
 			JOIN section_table
 			ON account_table.account_section_id = section_table.section_id
-			WHERE account_email = ?
+			WHERE account_email = $1
 			LIMIT 1;
 		`;
 		const objData: ObjData = await dbExecute(sql, [email]);

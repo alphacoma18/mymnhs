@@ -36,8 +36,9 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
 		const sql = `
             SELECT * FROM verify_user_table
-            WHERE verify_email = ?
-            LIMIT 1;`;
+            WHERE verify_email = $1
+			LIMIT 1;
+			`;
 
 		const objData: ObjData = await dbExecute(sql, [userInfo.user?.email]);
 		const {
@@ -49,15 +50,15 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 			verify_section_id,
 		} = objData[0];
 
+		console.log(objData[0]);
 		const sql2 = `
             DELETE FROM verify_user_table
-            WHERE verify_id = ?
-			LIMIT 1;`;
+            WHERE verify_id = $1;`;
 
 		await dbExecute(sql2, [verify_id]);
 		const sql3 = `
             INSERT INTO account_table (account_first_name, account_last_name, account_email, account_password, account_section_id)
-            VALUES (?, ?, ?, ?, ?);`;
+            VALUES ($1, $2, $3, $4, $5);`;
 
 		await dbExecute(sql3, [
 			verify_first_name,
@@ -66,8 +67,10 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 			verify_password,
 			verify_section_id,
 		]);
-		return res.status(200).redirect("https://mymnhs.vercel.app/login");
+		return res.status(200).redirect("http://localhost:3000/login");
 	} catch (error) {
-		return res.status(500).redirect("https://mymnhs.vercel.app/500");
+		console.log(error);
+
+		return res.status(500).redirect("http://localhost:3000/500");
 	}
 }

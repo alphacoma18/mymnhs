@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./index.module.css";
 import Link from "next/link";
+import styles from "./index.module.css";
 import { IOuterForumQuestionList } from "../../../../../interface/school-forum/question";
 const OuterForumMain: React.FC<IOuterForumQuestionList> = ({ data }) => {
 	return (
@@ -31,7 +31,8 @@ const OuterForumMain: React.FC<IOuterForumQuestionList> = ({ data }) => {
 								<h5 className={styles.questionTimestamp}>
 									{item.question_timestamp
 										.slice(0, 19)
-										.replace("T", " ")}
+										.replace("T", " ")
+									}
 								</h5>
 							</div>
 						</div>

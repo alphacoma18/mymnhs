@@ -15,12 +15,12 @@ export default async function (
 		const userId = await AccessCookieUser(req.cookies.access_token_extreme);
 		const sql = `
             INSERT INTO forum_answer_table(forum_id, answerer_id, answer_content, answer_timestamp)
-            VALUES (?, ?, ?, ?)`;
+            VALUES ($1, $2, $3, $4)`;
 		await dbExecute(sql, [currentId, userId, body, NewDate()]);
 		return res.status(200).send("");
 	} catch (error) {
 		console.log(error);
-		res.status(500).redirect("https://mymnhs.vercel.app/500");
+		res.status(500).redirect("http://localhost:3000/500");
 		return void 0;
 	}
 }

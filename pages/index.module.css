@@ -2,7 +2,6 @@
 	width: clamp(0px, 90%, 60ch);
 	margin: auto;
 	text-align: center;
-	font-size: 1.1rem;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;

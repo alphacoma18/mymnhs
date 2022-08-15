@@ -125,17 +125,17 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<link
 					rel="mask-icon"
 					href="attachables/favicons/safari-pinned-tab.svg"
-					color="#006400"
+					color="#f5f5f5"
 				/>
 				<meta name="apple-mobile-web-app-title" content="MyMNHS" />
 				<meta name="application-name" content="MyMNHS" />
-				<meta name="msapplication-TileColor" content="#000000" />
+				<meta name="msapplication-TileColor" content="#f5f5f5" />
 				<meta
 					name="msapplication-TileImage"
 					content="images/favicons/mstile-144x144.png"
 				/>
 
-				<meta name="msapplication-navbutton-color" content="#006400" />
+				<meta name="msapplication-navbutton-color" content="#f5f5f5" />
 				<link
 					rel="shortcut icon"
 					href="attachables/favicons/favicon.ico"
@@ -148,12 +148,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<meta name="mobile-web-app-capable" content="yes" />
 				<meta
 					name="apple-mobile-web-app-status-bar-style"
-					content="#006400"
+					content="#f5f5f5"
 				/>
 				<meta name="apple-mobile-web-app-capable" content="yes" />
 				<meta name="apple-touch-fullscreen" content="yes" />
 
-				<meta name="theme-color" content="#006400" />
+				<meta name="theme-color" content="#f5f5f5" />
 				<meta name="format-detection" content="telephone=no" />
 				<meta
 					httpEquiv="Content-Security-Policy"

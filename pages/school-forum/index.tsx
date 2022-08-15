@@ -48,10 +48,9 @@ export const getStaticProps: GetStaticProps = async () => {
 			ON account_table.account_section_id = section_table.section_id
 			ORDER BY question_timestamp DESC`;
 	const data: IOuterForumQuestionData[] = await dbExecute(sql);
-
 	return {
 		props: {
-			data: data,
+			data,
 		},
 		revalidate: 5,
 	};

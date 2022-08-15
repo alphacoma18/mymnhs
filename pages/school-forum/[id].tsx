@@ -49,8 +49,7 @@ interface Data {
 	question_id: number;
 }
 export const getStaticPaths: GetStaticPaths = async () => {
-	const sql = `
-		SELECT question_id FROM forum_question_table`;
+	const sql = `SELECT question_id FROM forum_question_table`;
 	const data: Data[] = await dbExecute(sql);
 	const paths = data.map((item: Data) => {
 		return { params: { id: `${item.question_id}` } };
@@ -72,7 +71,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		ON forum_question_table.question_asker_id = account_table.account_id
 		JOIN section_table
 		ON account_table.account_section_id = section_table.section_id
-		WHERE forum_question_table.question_id = ?;`;
+		WHERE forum_question_table.question_id = $1;`;
 
 	const questionData: IInnerForumAnswerData[] = await dbExecute(sql, [id]);
 	const _questionData: IInnerForumAnswerData = questionData[0];
@@ -86,7 +85,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		ON forum_answer_table.answerer_id = account_table.account_id
 		JOIN section_table
 		ON account_table.account_section_id = section_table.section_id
-		WHERE forum_question_table.question_id = ?;`;
+		WHERE forum_question_table.question_id = $1;`;
 
 	const answerData: IInnerForumAnswerData = await dbExecute(sql2, [id]);
 

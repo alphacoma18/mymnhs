@@ -34,7 +34,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 		const sql = `
             SELECT reset_email, reset_account_id
             FROM reset_password_table
-            WHERE reset_email = ?
+            WHERE reset_email = $1
         `;
 		const objData: ObjData = await dbExecute(sql, [email]);
 		if (objData.length === 0)
@@ -45,8 +45,8 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 		const hashedPass = await bcrypt.hash(newPassword, 10);
 		const sql2 = `
             UPDATE account_table
-            SET account_password = ?
-            WHERE account_id = ?
+            SET account_password = $1
+            WHERE account_id = $2
         `;
 		await dbExecute(sql2, [hashedPass, reset_account_id]);
 		return res.status(200).send("");

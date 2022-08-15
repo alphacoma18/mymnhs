@@ -4,7 +4,7 @@ export default async function NodeMailer69(
 	receiver: string,
 	subject: string,
 	html: string
-): Promise<void> {
+) {
 	try {
 		const transporter = nodeMailer.createTransport({
 			service: "gmail",
@@ -20,8 +20,9 @@ export default async function NodeMailer69(
 			html: html,
 		};
 		await transporter.sendMail(mailOptions);
-		return void 0;
+		return;
 	} catch (error) {
-		return console.log(error);
+		console.log(error);
+		return;
 	}
 }

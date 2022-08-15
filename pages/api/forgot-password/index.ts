@@ -21,14 +21,14 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 		const sql = `
             SELECT account_id, account_email
             FROM account_table
-            WHERE account_email = ?
+            WHERE account_email = $1
         `;
 		const objData: ObjData = await dbExecute(sql, [email]);
 		if (objData.length === 0)
 			return res.status(401).json({ message: "Account not found" });
 		const sql2 = `
             INSERT INTO reset_password_table(reset_email, reset_timestamp, reset_account_id)
-            VALUES(?, ?, ?)
+            VALUES ($1, $2, $3)
         `;
 		await dbExecute(sql2, [email, NewDate(), objData[0].account_id]);
 		const resetPasswordToken = await generateResetPasswordToken({
