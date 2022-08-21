@@ -7,9 +7,9 @@ import Meta from "../../components/meta";
 import { axios } from "../../utils/axios/axios";
 const Login: React.FC = () => {
 	const router = useRouter();
-	const [email, setEmail] = useState<string>("dggfkhbappcufkkhau@nthrl.com");
+	const [email, setEmail] = useState<string>("Kobayashi69000@gmail.com");
 	const [password, setPassword] = useState<string>(
-		"dggfkhbappcufkkhau@nthrl.com"
+		"Kobayashi69000@gmail.com"
 	);
 	const [error, setError] = useState<string>("");
 	const [showError, setShowError] = useState<boolean>(false);
