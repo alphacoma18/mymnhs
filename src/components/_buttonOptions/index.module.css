@@ -1,0 +1,122 @@
+.actionToggleButton,
+.deleteButton,
+.updateButton,
+.createButton {
+	background: var(--bg-darkgreen);
+	border: none;
+	position: fixed;
+	color: var(--color-whitesmoke);
+
+	width: 70px;
+	height: 70px;
+	z-index: 2;
+	text-align: center;
+	border-radius: 50%;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	cursor: pointer;
+}
+.actionToggleButton {
+	bottom: 20px;
+	right: 20px;
+}
+.deleteButton,
+.updateButton,
+.createButton {
+	font-size: 25px;
+	width: 50px;
+	height: 50px;
+}
+.deleteButton {
+	bottom: 100px;
+	right: 40px;
+}
+.updateButton {
+	bottom: 40px;
+	right: 100px;
+}
+.createButton {
+	bottom: 100px;
+	right: 100px;
+}
+
+.actionToggleButton:hover,
+.actionToggleButton:focus,
+.actionToggleButton:active,
+.deleteButton:hover,
+.deleteButton:focus,
+.deleteButton:active,
+.updateButton:hover,
+.updateButton:focus,
+.updateButton:active,
+.createButton:hover,
+.createButton:focus,
+.createButton:active {
+	color: var(--color-yellow);
+	background: var(--bg-green);
+}
+.outerOptionsDivs,
+.outerOptionsDivsX {
+	position: fixed;
+	z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	width: 100%;
+	left: 0;
+	background: var(--bg-darkgreen);
+	overflow-x: hidden;
+}
+.outerOptionsDivs {
+	height: 0px;
+}
+.outerOptionsDivsX {
+	height: 100%;
+}
+.optionForms {
+	width: clamp(0px, 450px, 85%);
+}
+.questionTextAreaH,
+.questionTextAreaB,
+.questionURL {
+	width: 100%;
+	resize: vertical;
+	border-radius: 5px;
+}
+.questionTextAreaH {
+	min-height: 80px;
+}
+.questionTextAreaB {
+	min-height: 200px;
+}
+.optionButtons {
+	width: 100%;
+	display: flex;
+	gap: 10px;
+}
+.optionButtons button {
+	cursor: pointer;
+	width: 100%;
+	padding: 5px;
+	font-weight: bold;
+}
+.optionH2Header {
+	text-align: center;
+	color: var(--color-whitesmoke);
+}
+.deleteMessage {
+	color: var(--color-whitesmoke);
+}
+@media screen and (max-width: 480px) {
+	.outerOptionsDivs {
+		z-index: 3;
+	}
+	.actionToggleButton,
+	.deleteButton,
+	.updateButton,
+	.createButton {
+		z-index: 4;
+	}
+}

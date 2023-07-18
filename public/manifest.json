@@ -7,7 +7,6 @@
 	"orientation": "portrait",
 	"scope": "/",
 	"start_url": "/",
-	"$schema": "https://schema.org/WebApplication",
 	"description": "The unofficial school platform of Meycauayan National High School - Senior High School! 'Be the Best, Choose MNHS!'",
 	"icons": [
 		{
@@ -20,5 +19,6 @@
 			"sizes": "256x256",
 			"type": "image/png"
 		}
-	]
+	],
+	"$schema": "http://json-schema.org/draft-04/schema#"
 }
