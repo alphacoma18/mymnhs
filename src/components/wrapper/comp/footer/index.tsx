@@ -12,7 +12,7 @@ const Footer: FC = () => {
 					<div className={styles.leftFlexItem}>
 						<span className={styles.logoLeft}>
 							<Image
-								src="/attachables/logos/mnhs.png"
+								src="/media/logos/mnhs.png"
 								height={100}
 								width={100}
 								alt="MNHS Logo"
@@ -21,7 +21,7 @@ const Footer: FC = () => {
 						</span>
 						<span className={styles.logoRight}>
 							<Image
-								src="/attachables/logos/deped.png"
+								src="/media/logos/deped.png"
 								height={100}
 								width={100}
 								alt="DepEd Logo"

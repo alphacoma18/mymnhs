@@ -119,7 +119,7 @@ function MyApp(props: AppPropsWithLayout & AppProps<{ session: Session }>) {
 				<meta name="twitter:app:country" content="EN" />
 				<meta
 					name="twitter:image"
-					content={`${host}/logo/og_blue.png`}
+					content={`${host}/images`}
 				/>
 				<meta name="twitter:image:type" content="image/png" />
 				<meta
@@ -143,6 +143,7 @@ function MyApp(props: AppPropsWithLayout & AppProps<{ session: Session }>) {
 					httpEquiv="Content-Security-Policy"
 					content="upgrade-insecure-requests"
 				/> */}
+
 				<meta name="mobile-web-app-capable" content="yes" />
 				<meta name="apple-mobile-web-app-capable" content="yes" />
 				<meta
@@ -155,7 +156,6 @@ function MyApp(props: AppPropsWithLayout & AppProps<{ session: Session }>) {
 					content="#006400"
 				/>
 				<meta name="application-name" content="MyMNHS" />
-				<meta name="msapplication-TileColor" content="#006400" />
 				<meta name="msapplication-navbutton-color" content="#006400" />
 				<meta
 					name="msapplication-TileImage"
@@ -165,9 +165,11 @@ function MyApp(props: AppPropsWithLayout & AppProps<{ session: Session }>) {
 					name="msapplication-config"
 					content="/browserconfig.xml"
 				/>
+				<meta name="msapplication-TileColor" content="#ffffff" />
+				<meta name="theme-color" content="#ffffff" />
 				<meta name="msapplication-tap-highlight" content="no" />
-				<meta name="theme-color" content="#006400" />
 				<meta name="format-detection" content="telephone=no" />
+
 				<link
 					rel="apple-touch-icon"
 					sizes="180x180"

@@ -2,13 +2,26 @@
 	"name": "MyMNHS | School Platform",
 	"short_name": "MyMNHS",
 	"theme_color": "#006400",
-	"background_color": "#006400",
+	"background_color": "#000000",
 	"dir": "ltr",
 	"display": "standalone",
 	"orientation": "portrait",
 	"scope": "/",
 	"start_url": "http://localhost:3000/",
+	"lang": "en",
 	"display_override": ["standalone", "minimal-ui", "fullscreen"],
+	"edge_side_panel": {
+		"preferred_width": 400
+	},
+	"categories": [
+		"education",
+		"entertainment",
+		"news",
+		"lifestyle",
+		"social",
+		"utilities",
+		"productivity"
+	],
 	"description": "The unofficial school platform of Meycauayan National High School - Senior High School! 'Be the Best, Choose MNHS!'",
 	"icons": [
 		{
