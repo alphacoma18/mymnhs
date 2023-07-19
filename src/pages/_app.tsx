@@ -6,13 +6,11 @@ import { NextPage } from "next";
 import { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
-import { Montserrat } from "next/font/google";
 import Head from "next/head";
 import NextNProgress from "nextjs-progressbar";
 import { ReactElement, ReactNode } from "react";
 import { ContextProviderGlobal } from "../utils/context/_global";
 
-const fonts = Montserrat({ subsets: ["latin"] });
 export type NextPageWithLayout<P = Record<string, never>, IP = P> = NextPage<
 	P,
 	IP
@@ -233,7 +231,7 @@ function MyApp(props: AppPropsWithLayout & AppProps<{ session: Session }>) {
 								);
 							}}
 						/>
-						<div
+						{/* <div
 							style={{
 								background: "#006400",
 								height: "3px",
@@ -241,8 +239,8 @@ function MyApp(props: AppPropsWithLayout & AppProps<{ session: Session }>) {
 								width: "100%",
 								zIndex: 100,
 							}}
-						></div>
-						<main className={fonts.className}>
+						></div> */}
+						<main>
 							<Component {...pageProps} />
 							<Analytics />
 						</main>

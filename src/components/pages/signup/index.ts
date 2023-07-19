@@ -1,22 +1,4 @@
-interface GradeList {
-	"11": {
-		STEM: string[];
-		ICT: string[];
-		HUMMS: string[];
-		HE: string[];
-		GAS: string[];
-		ABM: string[];
-	};
-	"12": {
-		STEM: string[];
-		ICT: string[];
-		HUMMS: string[];
-		HE: string[];
-		GAS: string[];
-		ABM: string[];
-	};
-}
-const gradeList: GradeList = {
+const sectionList = {
 	"11": {
 		STEM: ["Pythagoras", "Euclid", "Archimedes"],
 		ICT: ["Torvalds", "Jobs", "Gates", "Dell"],
@@ -34,22 +16,12 @@ const gradeList: GradeList = {
 		ABM: ["Morgan", "Ford"],
 	},
 };
-interface Strand {
-	STEM: string[];
-	ICT: string[];
-	HUMMS: string[];
-	HE: string[];
-	GAS: string[];
-	ABM: string[];
-}
 
 function sectionGetter(
-	grade: keyof GradeList | string,
-	strand: keyof Strand | string
-): string[] | void {
-	if ((grade as string) === "" || (strand as string) === "") {
-		return void 0;
-	}
-	return gradeList[grade as keyof GradeList][strand as keyof Strand];
+	grade: keyof typeof sectionList,
+	strand: keyof (typeof sectionList)[typeof grade],
+): string[] {
+	return sectionList[grade][strand];
 }
+
 export default sectionGetter;

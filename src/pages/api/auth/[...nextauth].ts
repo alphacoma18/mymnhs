@@ -18,7 +18,7 @@ export const authOptions: NextAuthOptions = {
 					recipient: email,
 					subject: "Sign in to MyMNHS | School Platform",
 					// TODO
-					// html: emailSignin({ url }),
+					html: emailSignin({ url }),
 				});
 			},
 		}),

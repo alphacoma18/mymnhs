@@ -1,6 +1,6 @@
-import React from "react";
+import { FC } from "react";
 
-const SchoolForumMulti: React.FC = () => {
+const SchoolForumMulti: FC = () => {
 	return <></>;
 };
 export default SchoolForumMulti;
