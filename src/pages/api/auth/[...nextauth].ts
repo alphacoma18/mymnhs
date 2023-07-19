@@ -1,4 +1,4 @@
-// import emailSignin from "@/utils/mailer/templates/signin";
+import emailSignin from "@/utils/mailer/template/signin";
 import Mailer, { serverDetails } from "@/utils/mailer";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
@@ -17,7 +17,6 @@ export const authOptions: NextAuthOptions = {
 				await Mailer({
 					recipient: email,
 					subject: "Sign in to MyMNHS | School Platform",
-					// TODO
 					html: emailSignin({ url }),
 				});
 			},

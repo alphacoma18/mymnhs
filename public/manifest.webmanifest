@@ -7,8 +7,7 @@
 	"display": "standalone",
 	"orientation": "portrait",
 	"scope": "/",
-	"start_url": "/",
-	"$schema": "https://schema.org/WebApplication",
+	"start_url": "http://localhost:3000/",
 	"display_override": ["standalone", "minimal-ui", "fullscreen"],
 	"description": "The unofficial school platform of Meycauayan National High School - Senior High School! 'Be the Best, Choose MNHS!'",
 	"icons": [
