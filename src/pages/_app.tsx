@@ -29,30 +29,27 @@ function MyApp(props: AppPropsWithLayout & AppProps<{ session: Session }>) {
 	} = props;
 	const getLayout = Component.getLayout ?? ((page) => page);
 	const host = process.env.HOST_URL;
+	const title = "MyMNHS | School Platform";
+	const description = `The unofficial school platform of Meycauayan National High School - Senior High School! 'Be the Best, Choose MNHS!'`;
+	const dev = "Alpha Romer Coma";
 	return (
 		<>
 			<Head>
 				<meta charSet="utf-8" />
-				<title>MyMNHS | School Platform</title>
-				<meta
-					name="description"
-					content="The unofficial school platform of Meycauayan National High School! 'Be the Best, Choose MNHS!'"
-				/>
+				<title>{title}</title>
+				<meta name="description" content={description} />
 				<meta name="url" content={host} />
-				<meta
-					name="abstract"
-					content="The unofficial school platform of Meycauayan National High School - Senior High School! 'Be the Best, Choose MNHS!'"
-				/>
+				<meta name="abstract" content={description} />
 				<meta
 					name="author"
 					content="Alpha Romer Coma, alphacoma18@gmail.com"
 				/>
 				<meta name="reply-to" content="alphacoma18@gmail.com" />
-				<meta name="designer" content="Alpha Romer Coma" />
-				<meta name="publisher" content="Alpha Romer Coma" />
-				<meta name="owner" content="Alpha Romer Coma" />
+				<meta name="designer" content={dev} />
+				<meta name="publisher" content={dev} />
+				<meta name="owner" content={dev} />
 				<meta name="target" content="all" />
-				<meta name="copyright" content="Alpha Romer Coma" />
+				<meta name="copyright" content={dev} />
 				<meta
 					name="keywords"
 					content="MNHS, MHS, Meycauayan National High School, Be the best"
@@ -73,24 +70,18 @@ function MyApp(props: AppPropsWithLayout & AppProps<{ session: Session }>) {
 				<meta name="revisit-after" content="2 days" />
 				{/* Open Graph Meta Tags */}
 				<meta property="og:title" content="MyMNHS | School Platform" />
-				<meta
-					property="og:description"
-					content="The unofficial school platform of Meycauayan National High School - Senior High School! 'Be the Best, Choose MNHS!'"
-				/>
+				<meta property="og:description" content={description} />
 				<meta property="og:url" content={host} />
-				<meta
-					property="og:site_name"
-					content="MyMNHS | School Platform"
-				/>
+				<meta property="og:site_name" content={title} />
 				<meta property="og:type" content="website" />
 				<meta
 					property="og:image"
-					content={`${host}/logo/og_blue.png`}
+					content={`${host}/media/campus-images/image1.jpg`}
 				/>
-				<meta property="og:image:type" content="image/png" />
+				<meta property="og:image:type" content="image/jpg" />
 				<meta
 					property="og:image:alt"
-					content="Meycauayan National High School Logo"
+					content="Meycauayan National High School Campus"
 				/>
 				<meta property="og:image:width" content="1200" />
 				<meta property="og:image:height" content="630" />
@@ -99,19 +90,13 @@ function MyApp(props: AppPropsWithLayout & AppProps<{ session: Session }>) {
 				<meta property="og:email" content="alphacoma18@gmail.com" />
 				<meta property="og:locale:alternative" content="ja_JP" />
 				{/* <meta property="fb:app_id" content="5945161925561758" /> */}
-				{/* <meta property="fb:pages" content="104838309260260" /> */}
+				<meta property="fb:pages" content="112513732128709" />
 				{/* https://developers.facebook.com/docs/instant-articles/crawler-ingestion/ */}
 				{/* <meta property="ia:markup_url" content="{URL}"></meta> */}
 
 				{/* Twitter Meta Tags */}
-				<meta
-					property="twitter:title"
-					content="MyMNHS | School Platform"
-				/>
-				<meta
-					property="twitter:description"
-					content="The unofficial school platform of Meycauayan National High School - Senior High School! 'Be the Best, Choose MNHS!'"
-				/>
+				<meta property="twitter:title" content={title} />
+				<meta property="twitter:description" content={description} />
 
 				{/* switch to twitter app card */}
 				<meta property="twitter:url" content={host} />
@@ -119,12 +104,12 @@ function MyApp(props: AppPropsWithLayout & AppProps<{ session: Session }>) {
 				<meta name="twitter:app:country" content="EN" />
 				<meta
 					name="twitter:image"
-					content={`${host}/images`}
+					content={`${host}/media/campus-images/image1.jpg`}
 				/>
-				<meta name="twitter:image:type" content="image/png" />
+				<meta name="twitter:image:type" content="image/jpg" />
 				<meta
 					name="twitter:image:alt"
-					content="Meycauayan National High School Logo"
+					content="Meycauayan National High School Campus"
 				/>
 				<meta name="twitter:image:width" content="1200" />
 				<meta name="twitter:image:height" content="630" />
@@ -146,10 +131,7 @@ function MyApp(props: AppPropsWithLayout & AppProps<{ session: Session }>) {
 
 				<meta name="mobile-web-app-capable" content="yes" />
 				<meta name="apple-mobile-web-app-capable" content="yes" />
-				<meta
-					name="apple-mobile-web-app-title"
-					content="MyMNHS | School Platform"
-				/>
+				<meta name="apple-mobile-web-app-title" content={title} />
 				<meta name="apple-touch-fullscreen" content="yes" />
 				<meta
 					name="apple-mobile-web-app-status-bar-style"
