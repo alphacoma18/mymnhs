@@ -1,9 +1,0 @@
-.outermostSection {
-	width: clamp(0px, 90%, 60ch);
-	margin: auto;
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	padding: 10px;
-}

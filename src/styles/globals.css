@@ -1,0 +1,139 @@
+:root {
+	--darkgreen: #006400;
+	--yellow: #f0f000;
+	--green: #008000;
+	--whitesmoke: #f5f5f5;
+	--black: #000000;
+	--red: #ff0000;
+
+	--bg-darkgreen: var(--darkgreen);
+	--bg-yellow: var(--yellow);
+	--bg-green: var(--green);
+	--bg-whitesmoke: var(--whitesmoke);
+	--bg-red: var(--red);
+	--bg-yellow-op: #f0f000cc;
+
+	--color-whitesmoke: var(--whitesmoke);
+	--color-black: var(--black);
+	--color-yellow: var(--yellow);
+
+	--padding-1rem: 1rem;
+	--padding-d4rem: 0.4rem;
+
+	--border-2px-solid-black: 2px solid var(--color-black);
+	--border-3px-solid-black: 3px solid var(--color-black);
+
+	--border-2px-solid-white: 2px solid var(--color-whitesmoke);
+	--border-3px-solid-white: 3px solid var(--color-whitesmoke);
+
+	--border-2px-solid-darkgreen: 2px solid var(--bg-darkgreen);
+	--border-3px-solid-darkgreen: 3px solid var(--bg-darkgreen);
+
+	--border-radius-full-round: 50%;
+
+	--bs-shadow: rgba(0, 0, 0, 0.25);
+	--bs-down: 0px 4px 8px 0px var(--bs-shadow);
+	--bs-top: 0px -4px 8px 0px var(--bs-shadow);
+	--bs-left: -4px 0px 8px 0px var(--bs-shadow);
+	--bs-right: 4px 0px 8px 0px var(--bs-shadow);
+	--bs-full: 0px 0px 8px 0px var(--bs-shadow);
+
+	--font: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+
+	--fw-bold: bold;
+	--pd-sm: 0.2rem;
+	--pd-md: 0.4rem;
+	--pd-lg: 1rem;
+
+	--fs-sm: 0.8rem;
+	--fs-md: 1rem;
+	--fs-lg: 1.2rem;
+
+	--gap-sm: 0.2rem;
+	--gap-md: 0.4rem;
+	--gap-lg: 1rem;
+
+	--ta-center: center;
+
+	--tr: 100ms ease-in-out;
+	--tr-border: border-color 100ms linear;
+	--tr-opacity: opacity 100ms ease-in-out;
+}
+
+::-moz-selection,
+::selection {
+	background: var(--bg-yellow);
+	color: var(--color-black);
+}
+
+::target-text {
+	background: var(--bg-yellow);
+	color: var(--color-black);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--bg-yellow);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--bg-yellow-op);
+}
+
+::-webkit-scrollbar-track {
+	background: 0;
+}
+
+::-webkit-scrollbar {
+	width: 1vh;
+	height: 1vh;
+}
+
+*,
+::after,
+::before {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+	scrollbar-width: thin;
+	scrollbar-color: var(--bg-yellow) transparent;
+}
+
+*,
+html {
+	color: var(--color);
+	margin: 0;
+	padding: 0;
+	transition: var(--tr);
+}
+
+*,
+html {
+	margin: 0;
+	padding: 0;
+	font-family: var(--font);
+}
+
+body {
+	font-size: 16px;
+	line-height: 1.6rem;
+	background: var(--bg-whitesmoke);
+	transition: var(--tr);
+}
+
+a {
+	text-decoration: none;
+}
+
+a:is(:hover, :focus, :active) {
+	cursor: pointer;
+	color: var(--color-yellow);
+}
+
+.centerImage {
+	display: block;
+	margin: auto;
+}
