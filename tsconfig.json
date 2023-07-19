@@ -28,6 +28,7 @@
 			"@/styles/*": ["src/styles/*"],
 			"@/types/*": ["./src/types/*"],
 			"@/fontello/*": ["./public/media/fontello/*"],
+			"@/nextPage": ["./src/pages/_app.tsx"],
 		}
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

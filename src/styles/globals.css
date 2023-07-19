@@ -6,15 +6,16 @@
 	--black: #000000;
 	--red: #ff0000;
 
-	--bg-darkgreen: var(--bg-darkgreen);
-	--bg-yellow: var(--bg-yellow);
-	--bg-green: var(--bg-green);
-	--bg-whitesmoke: var(--bg-whitesmoke);
-	--bg-red: var(--bg-red);
+	--bg-darkgreen: var(--darkgreen);
+	--bg-yellow: var(--yellow);
+	--bg-green: var(--green);
+	--bg-whitesmoke: var(--whitesmoke);
+	--bg-red: var(--red);
+	--bg-yellow-op: #f0f000cc;
 
-	--color-whitesmoke: var(--bg-whitesmoke);
-	--color-black: var(--bg-black);
-	--color-yellow: var(--bg-yellow);
+	--color-whitesmoke: var(--whitesmoke);
+	--color-black: var(--black);
+	--color-yellow: var(--yellow);
 
 	--padding-1rem: 1rem;
 	--padding-d4rem: 0.4rem;
@@ -58,37 +59,54 @@
 	--tr-opacity: opacity 100ms ease-in-out;
 }
 
+::-moz-selection,
+::selection,
+::target-text {
+	background: var(--bg-yellow);
+	color: var(--color-black);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--bg-yellow);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--bg-yellow-op);
+}
+
+::-webkit-scrollbar-track {
+	background: 0;
+}
+
 ::-webkit-scrollbar {
 	width: 1vh;
 	height: 1vh;
 }
 
-::-webkit-scrollbar-track {
-	background: var(--bg-whitesmoke);
-	border-radius: 12px;
+*,
+::after,
+::before {
+	box-sizing: border-box;
 }
 
-::-webkit-scrollbar-thumb {
-	border-radius: 10px;
-	background: var(--bg-yellow);
+html {
+	scroll-behavior: smooth;
+	scrollbar-width: thin;
+	scrollbar-color: var(--bg-yellow) transparent;
 }
 
-::-webkit-scrollbar-thumb:hover {
-	background: var(--bg-yellow);
-}
-
-::selection {
-	background: var(--bg-yellow);
-	color: var(--color-black);
+*,
+html {
+	color: var(--color);
+	margin: 0;
+	padding: 0;
+	transition: var(--tr);
 }
 
 *,
 html {
 	margin: 0;
 	padding: 0;
-	scroll-behavior: smooth;
-	scrollbar-width: thin;
-	scrollbar-color: var(--bg-yellow) var(--bg-whitesmoke);
 	font-family: var(--font);
 }
 
@@ -118,42 +136,4 @@ body {
 	100% {
 		box-shadow: 0px 0px 20px 5px var(--bg-yellow);
 	}
-}
-
-.horizontalRule {
-	margin: 10px;
-	background: var(--bg-darkgreen);
-	color: var(--bg-darkgreen);
-	height: 3px;
-	border: var(--border-2px-solid-white);
-	border-radius: 10px;
-}
-
-.horizontalRuleYellow {
-	margin: 10px;
-	background: var(--bg-yellow);
-	color: var(--bg-yellow);
-	height: 3px;
-	border: var(--border-2px-solid-black);
-	border-radius: 10px;
-}
-
-.errorDiv {
-	width: 100%;
-	display: none;
-	background: var(--bg-red);
-	border-radius: 50px;
-	margin: auto;
-	padding: 4px;
-	text-align: center;
-}
-
-.errorDivX {
-	width: 100%;
-	display: block;
-	background: var(--bg-red);
-	border-radius: 50px;
-	margin: auto;
-	padding: 4px;
-	text-align: center;
 }

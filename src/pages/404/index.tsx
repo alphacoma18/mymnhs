@@ -1,21 +1,17 @@
 import MnhsLogo from "@/components/_mnhsLogo";
-import Meta from "@/components/meta";
+import GenMeta from "@/components/gen/meta";
+import { NextPageWithLayout } from "@/nextPage";
 import Link from "next/link";
-import React from "react";
 import styles from "./index.module.css";
-const Error404: React.FC = () => {
+const Error404: NextPageWithLayout = () => {
 	return (
 		<>
-			<Meta
-				title="Error 404 | MyMNHS"
-				description="The page you are looking for does not exist. Please check the URL and try again."
-				url="/404"
-				ogTitle="Error 404 | MyMNHS"
-				ogDescription="The page you are looking for does not exist. Please check the URL and try again."
-				ogUrl="/404"
-				twitterTitle="Error 404 | MyMNHS"
-				twitterDescription="The page you are looking for does not exist. Please check the URL and try again."
-				twitterUrl="/404"
+			<GenMeta
+				props={{
+					title: "Error 404",
+					description:
+						"The page you are looking for does not exist. Please check the URL and try again.",
+				}}
 			/>
 			<section className={styles.outermostError}>
 				<div className={styles.errorFill}>

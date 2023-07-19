@@ -1,12 +1,6 @@
+import { GetStaticProps } from "next";
 import React from "react";
-import { GetStaticProps, GetStaticPaths } from "next";
-import Layout1 from "../../layout/layout1";
-import dbExecute from "../../utils/db/db";
-import Meta from "../../components/meta";
-import styles from "./id.module.css";
-import InnerForumAnswer from "../../components/pages/school-forum/inside/answer";
-import InnerForumQuestion from "../../components/pages/school-forum/inside/question";
-import NewForumAnswer from "../../components/pages/school-forum/inside/newAnswer";
+// import Meta from "../../components/meta";
 import {
 	IInnerForumAnswerData,
 	IInnerForumQuestionData,
@@ -20,81 +14,9 @@ interface Props {
 const IndiForum: React.FC<Props> = ({ forumData, answerData, currentId }) => {
 	return (
 		<>
-			<Layout1>
-				<>
-					<Meta
-						title={`${forumData.question_header} | MyMNHS`}
-						description={`${forumData.question_body} | MyMNHS`}
-						url={`/school-forum/${forumData.question_id}`}
-						ogTitle={`${forumData.question_header} | MyMNHS`}
-						ogDescription={`${forumData.question_body} | MyMNHS`}
-						ogUrl={`/school-forum/${forumData.question_id}`}
-						twitterTitle={`${forumData.question_header} | MyMNHS`}
-						twitterDescription={`${forumData.question_body} | MyMNHS`}
-						twitterUrl={`/school-forum/${forumData.question_id}`}
-					/>
-					<section className={styles.outermostForum}>
-						<InnerForumQuestion data={forumData} />
-						<InnerForumAnswer data={answerData} />
-						<NewForumAnswer currentId={currentId} />
-					</section>
-				</>
-			</Layout1>
+			<h1></h1>
 		</>
 	);
 };
 export default IndiForum;
-
-interface Data {
-	question_id: number;
-}
-export const getStaticPaths: GetStaticPaths = async () => {
-	const sql = `SELECT question_id FROM forum_question_table`;
-	const data: Data[] = await dbExecute(sql);
-	const paths = data.map((item: Data) => {
-		return { params: { id: `${item.question_id}` } };
-	});
-
-	return {
-		paths,
-		fallback: "blocking",
-	};
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-	const { params } = context;
-	const id = params?.id;
-	const sql = `
-		SELECT account_first_name, account_last_name, section_grade, section_strand, section_name, question_id, question_header, question_body, question_timestamp
-		FROM forum_question_table
-		JOIN account_table
-		ON forum_question_table.question_asker_id = account_table.account_id
-		JOIN section_table
-		ON account_table.account_section_id = section_table.section_id
-		WHERE forum_question_table.question_id = $1;`;
-
-	const questionData: IInnerForumAnswerData[] = await dbExecute(sql, [id]);
-	const _questionData: IInnerForumAnswerData = questionData[0];
-
-	const sql2 = `
-		SELECT account_first_name, account_last_name, section_grade , section_strand, section_name, general_id, answer_content, answer_timestamp
-		FROM forum_answer_table
-		JOIN forum_question_table
-		ON forum_question_table.question_id = forum_answer_table.forum_id
-		JOIN account_table
-		ON forum_answer_table.answerer_id = account_table.account_id
-		JOIN section_table
-		ON account_table.account_section_id = section_table.section_id
-		WHERE forum_question_table.question_id = $1;`;
-
-	const answerData: IInnerForumAnswerData = await dbExecute(sql2, [id]);
-
-	return {
-		props: {
-			forumData: _questionData,
-			answerData,
-			currentId: id,
-		},
-		revalidate: 5,
-	};
-};
+export const getStaticProps: GetStaticProps = async (context) => {};

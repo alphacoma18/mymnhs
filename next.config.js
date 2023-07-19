@@ -2,7 +2,7 @@
 
 const runtimeCaching = require("next-pwa/cache");
 const nextDataIndex = runtimeCaching.findIndex(
-	(entry) => entry.options.cacheName === "next-data"
+	(entry) => entry.options.cacheName === "next-data",
 );
 if (nextDataIndex !== -1) {
 	runtimeCaching[nextDataIndex].handler = "NetworkFirst";
@@ -14,13 +14,13 @@ const withPWA = require("next-pwa")({
 	dest: "public",
 	// runtimeCaching,
 	cacheOnFrontEndNav: process.env.NODE_ENV === "production",
-	// fallbacks: {
-	// 	image: "/android-chrome-512x512.png",
-	// 	// document: '/pages/_offline.tsx',
-	// 	// font: '',
-	// 	// audio: '',
-	// 	// video: ''
-	// },
+	fallbacks: {
+		image: "/android-chrome-512x512.png",
+		document: "/pages/_offline.tsx",
+		font: "",
+		audio: "",
+		video: "",
+	},
 	buildExcludes: [/middleware-manifest.json$/],
 	skipWaiting: true,
 	scope: "/",

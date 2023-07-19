@@ -1,3 +1,5 @@
+import "@/fontello/css/fontello.css";
+import "@/styles/globals.css";
 import { Partytown } from "@builder.io/partytown/react";
 import { Analytics } from "@vercel/analytics/react";
 import { NextPage } from "next";
@@ -8,8 +10,6 @@ import { Montserrat } from "next/font/google";
 import Head from "next/head";
 import NextNProgress from "nextjs-progressbar";
 import { ReactElement, ReactNode } from "react";
-import "@/fontello/css/fontello.css"
-import "@/styles/globals.css";
 import { ContextProviderGlobal } from "../utils/context/_global";
 
 const fonts = Montserrat({ subsets: ["latin"] });
@@ -227,7 +227,7 @@ function MyApp(props: AppPropsWithLayout & AppProps<{ session: Session }>) {
 									<style>
 										{css.replace(
 											"top: 15px;",
-											"bottom: 15px;"
+											"bottom: 15px;",
 										)}
 									</style>
 								);
@@ -247,7 +247,7 @@ function MyApp(props: AppPropsWithLayout & AppProps<{ session: Session }>) {
 							<Analytics />
 						</main>
 					</ContextProviderGlobal>
-				</SessionProvider>
+				</SessionProvider>,
 			)}
 		</>
 	);
