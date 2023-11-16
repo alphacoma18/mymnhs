@@ -31,7 +31,7 @@
 		"prisma": "^5.0.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"sharp": "^0.32.3",
+		"sharp": "^0.32.6",
 		"socket.io-client": "^4.7.1",
 		"stylelint": "^15.10.2",
 		"stylelint-config-prettier": "^9.0.5",
